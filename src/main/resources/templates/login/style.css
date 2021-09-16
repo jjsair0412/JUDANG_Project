@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.03em;
+  color: #212529;
+}
+
+/* Reset CSS */
+button,
+input,
+textarea {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  outline: none;
+  box-shadow: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* login */
+
+h1 {
+  width: 360px;
+  font-weight: 100;
+  font-size: 32px;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  color: #101010;
+  letter-spacing: -0.05em;
+  text-align: center;
+}
+
+label {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  width: 360px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 7px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  border: 1px solid #d3dce6;
+  transition: border-color 200ms ease-in-out;
+}
+
+input:focus,
+input:hover,
+input:active {
+  outline: none;
+  box-shadow: none;
+  border-color: #1fb6ff;
+}
+
+.sc-button {
+  margin-top: 20px;
+}
+
+.s-button,
+.c-button {
+  display: inline-flex; /* width값을 주고 텍스트 가운데 배치를 위해 */
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #d3dce6;
+  width: 140px;
+  height: 48px;
+  color: black;
+  background-color: white;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+  transition: opacity 300ms ease-in-out;
+}
+
+.s-button:hover,
+.c-button:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    margin-top: 100px;
+  }
+
+  .s-button {
+    margin-right: 75px;
+  }
+}
+
+/* custom grid system - Fix container width */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
