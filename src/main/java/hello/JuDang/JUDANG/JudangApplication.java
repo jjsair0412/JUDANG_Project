@@ -9,5 +9,4 @@ public class JudangApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JudangApplication.class, args);
 	}
-hi
 }
