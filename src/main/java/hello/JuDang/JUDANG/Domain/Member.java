@@ -11,4 +11,5 @@ public class Member {
     private String Name;
     private String Email;
     private int age;
+    private UserType userType;
 }
