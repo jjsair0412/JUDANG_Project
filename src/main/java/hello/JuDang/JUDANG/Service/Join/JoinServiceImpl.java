@@ -13,11 +13,16 @@ public class JoinServiceImpl implements JoinService{
     private final JoinRepository sellerJoinRepository;
 
     @Override
-    public void memberRegister(Member member) {
+    public int memberRegister(Member member) {
+        int result;
         if(member.getUserType().equals(UserType.BUYER)){
-            buyerJoinRepository.save(member);
+            result = buyerJoinRepository.save(member);
         }
-        else sellerJoinRepository.save(member);
+        else{
+            result = sellerJoinRepository.save(member);
+        }
+        return result;
+
 
     }
 
