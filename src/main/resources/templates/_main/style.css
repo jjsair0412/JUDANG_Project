@@ -53,3 +53,59 @@ li {
   font-size: 25px;
   color: white;
 }
+
+/* main-title */
+.title-section {
+  background-color: #263343;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title i {
+  font-size: 150px;
+  color: white;
+  margin: 100px 0 30px;
+}
+
+#judang {
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .title-section {
+    height: auto;
+    padding-bottom: 70px;
+  }
+
+  .title i {
+    font-size: 200px;
+    margin-top: 50px;
+  }
+
+  #judang {
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+  }
+
+  #judang::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 4px;
+    height: 100%;
+    background-color: white;
+  }
+
+  #judang.active::after {
+    display: none;
+  }
+}
