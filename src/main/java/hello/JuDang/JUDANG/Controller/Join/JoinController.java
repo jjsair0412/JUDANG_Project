@@ -16,6 +16,7 @@ public class JoinController {
     public String joinForm(){
         return "login/index";
     }
+
     @PostMapping("/login")
     public String join(MemberForm form){
         Member member = new Member();
