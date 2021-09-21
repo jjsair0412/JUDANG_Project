@@ -23,12 +23,16 @@ public class JoinServiceImpl implements JoinService{
         }
         return result;
 
-
     }
 
     @Override
     public Member searchById(String Id) {
-        return null;
+        int result =0;
+        if(buyerJoinRepository.findById(Id).equals(1)){
+            result = buyerJoinRepository.findById(Id);
+            return
+        }
+        return ;
     }
 
     @Override
