@@ -4,8 +4,12 @@ import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Repository.Join.JoinRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JoinServiceImpl implements JoinService{
@@ -26,17 +30,16 @@ public class JoinServiceImpl implements JoinService{
     }
 
     @Override
-    public Member searchById(String Id) {
-        int result =0;
+    public Optional<Member> searchById(String Id) {
         if(buyerJoinRepository.findById(Id).equals(1)){
-            result = buyerJoinRepository.findById(Id);
-            return
-        }
-        return ;
+            return buyerJoinRepository.findById(Id);
+        }else if(sellerJoinRepository.findById(Id).equals(1)){
+            return sellerJoinRepository.findById(Id);
+        }else return null;
     }
 
     @Override
-    public Member memberModify(Member member) {
+    public int memberModify(Member member) {
         return null;
     }
 

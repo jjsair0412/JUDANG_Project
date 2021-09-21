@@ -34,7 +34,6 @@ public class BuyerJoinRepository implements JoinRepository {
             ps.setString(4, member.getEmail());
             ps.setInt(5, member.getAge());
         });
-
         return result;
     }
 
