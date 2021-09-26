@@ -14,5 +14,6 @@ public class MemberForm {
     private String Name;
     private String Email;
     private int age;
-    private UserType userType;
+    private String typeBuyer;
+    private String typeSeller;
 }

@@ -21,7 +21,7 @@ public class SellerJoinRepository implements JoinRepository{
 
     @Override
     public int save(Member member) {
-        int result = jdbcTemplate.update("INSERT INTO buyer(id,password,name,email,age) values (?,?,?,?,?)", ps -> {
+        int result = jdbcTemplate.update("INSERT INTO seller(id,password,name,email,age) values (?,?,?,?,?)", ps -> {
             ps.setString(1,member.getId());
             ps.setString(2,member.getPassword());
             ps.setString(3,member.getName());
