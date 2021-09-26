@@ -1,18 +1,19 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JUDANG</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" th:href="@{/css/_main/style.css}"/>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <script defer src="./main.js"></script>
+    <script defer th:src="@{/css/_main/main.js}"></script>
     <script
-      src="https://kit.fontawesome.com/9175f8db53.js"
+      th:src="@{https://kit.fontawesome.com/9175f8db53.js}"
       crossorigin="anonymous"
     ></script>
   </head>

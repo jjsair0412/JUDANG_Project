@@ -3,7 +3,6 @@ package hello.JuDang.JUDANG.Controller.Join;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Service.Join.JoinService;
-import jdk.internal.net.http.common.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ public class JoinController {
     @GetMapping
     public String joinForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-
         return "join/join";
     }
 
@@ -47,6 +45,4 @@ public class JoinController {
         joinService.memberRegister(member);
         return "_main/main";
     }
-
-
 }
