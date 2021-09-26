@@ -18,15 +18,15 @@ public class JoinServiceImpl implements JoinService{
 
     @Override
     public int memberRegister(Member member) {
-        int result;
+        int result=0;
         if(member.getUserType().equals(UserType.BUYER)){
             result = buyerJoinRepository.save(member);
-        }
-        else{
-            result = sellerJoinRepository.save(member);
-        }
-        return result;
 
+        }else if(member.getUserType().equals(UserType.SELLER)){
+            result = sellerJoinRepository.save(member);
+
+        }else return 0;
+        return result;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class JoinServiceImpl implements JoinService{
 
     @Override
     public int memberModify(Member member) {
-        return null;
+        return 0;
     }
 
     @Override

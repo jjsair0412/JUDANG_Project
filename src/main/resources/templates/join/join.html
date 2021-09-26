@@ -20,26 +20,28 @@
           <div class="login">
             <h1>JUDANG - 회원가입</h1>
 
-            <form action="" method="post">
-              <label for="buyer">구매자</label>
-              <input type="radio" name="user" value="select-buyer" id="buyer" />
+            <form th:action th:method="post" th:object="${memberForm}">
+              <label for="typeBuyer">구매자</label>
+              <input type="radio" name="user" value="BUYER" id="typeBuyer" th:field="*{typeBuyer}"/>
 
-              <label for="seller">판매자</label>
+              <label for="typeSeller">판매자</label>
               <input
                 type="radio"
                 name="user"
-                value="select-seller"
-                id="seller"
+                value="SELLER"
+                id="typeSeller"
+                th:field="*{typeSeller}"
               />
 
               <label for="Name">이름</label>
-              <input type="text" id="Name" placeholder="이름" required />
+              <input type="text" id="Name" placeholder="이름" required th:field="*{name}" />
 
               <label for="Id">아이디</label>
-              <input type="text" id="Id" placeholder="ID" required />
+              <input type="text" id="Id" placeholder="ID" required th:field="*{id}"/>
 
               <label for="Password">비밀번호</label>
               <input
+                      th:field="*{password}"
                 type="password"
                 id="Password"
                 placeholder="Password"
@@ -48,6 +50,7 @@
 
               <label for="Email">이메일</label>
               <input
+                      th:field="*{email}"
                 type="email"
                 id="Email"
                 placeholder="Email"
@@ -56,19 +59,21 @@
 
               <label for="age">나이</label>
               <input
+                      th:field="*{age}"
                 type="number"
                 id="age"
                 min="20"
                 max="100"
                 placeholder="Age ( 구매자는 입력 필수 )"
               />
-            </form>
+
 
             <div class="sc-button">
               <button type="submit" class="s-button">가입</button>
 
               <button type="submit" class="c-button">취소</button>
             </div>
+            </form>
           </div>
         </div>
       </div>
