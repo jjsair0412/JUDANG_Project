@@ -45,6 +45,6 @@ public class JoinServiceImpl implements JoinService{
 
     @Override
     public int memberDelete(Member member) {
-        return 01;
+        return 0;
     }
 }

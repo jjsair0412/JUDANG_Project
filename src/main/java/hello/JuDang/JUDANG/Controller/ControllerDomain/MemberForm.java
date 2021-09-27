@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Controller.Join;
+package hello.JuDang.JUDANG.Controller.ControllerDomain;
 
 import hello.JuDang.JUDANG.Domain.UserType;
 import lombok.Getter;
