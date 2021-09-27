@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* Reset CSS */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font-size: 16px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  outline: none;
+  box-shadow: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* css */
+.div1 {
+  text-align: center;
+}
+
+.div1 h1 {
+  margin: 100px 0 30px;
+  font-size: 26px;
+}
+
+.div1 strong {
+  font-size: 20px;
+}
+
+.div2 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 30px;
+}
+
+.btn {
+  font-size: 20px;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .div1 h1 {
+    font-size: 40px;
+    margin: 300px 0 50px;
+  }
+
+  .div1 strong {
+    font-size: 20px;
+  }
+}
