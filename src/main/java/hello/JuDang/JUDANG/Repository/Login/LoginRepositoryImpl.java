@@ -16,24 +16,44 @@ public class LoginRepositoryImpl implements LoginRepository{
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
+    public List<Member> selectSeller(Member member) {
+        List<Member> loginMember = jdbcTemplate.query("select * from seller where id = ?and password=?",
+                new RowMapper<Member>() {
+                    @Override
+                    public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Member member = new Member();
+                        member.setId(rs.getString("Id"));
+                        member.setId(rs.getString("Password"));
+                        member.setName(rs.getString("Name"));
+                        member.setEmail(rs.getString("Email"));
+                        member.setAge(rs.getInt("age"));
+                        return member;
+                    }
+                }, member.getId(), member.getPassword());
+        loginMember = loginMember;
+        if(loginMember.isEmpty()){
+            return null;
+        }else return loginMember;
+    }
+
     @Override
-    public Member select(String id, String password) {
-        Member member = jdbcTemplate.query("select * from seller where id = ?,password=?",id,password);
-
+    public List<Member> selectBuyer(Member member) {
+        List<Member> loginMember = jdbcTemplate.query("select * from buyer where id = ?and password=?",
+                new RowMapper<Member>() {
+                    @Override
+                    public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Member member = new Member();
+                        member.setId(rs.getString("Id"));
+                        member.setId(rs.getString("Password"));
+                        member.setName(rs.getString("Name"));
+                        member.setEmail(rs.getString("Email"));
+                        member.setAge(rs.getInt("age"));
+                        return member;
+                    }
+                }, member.getId(), member.getPassword());
+        if(loginMember.isEmpty()){
+            return null;
+        }else return loginMember;
     }
 
-    private RowMapper<Member> memberRowMapper(){
-        return new RowMapper<Member>() {
-            @Override
-            public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Member member = new Member();
-                member.setId(rs.getString("Id"));
-                member.setPassword(rs.getString("Password"));
-                member.setName(rs.getString("Name"));
-                member.setEmail(rs.getString("Email"));
-                member.setAge(rs.getInt("age"));
-                return member;
-            }
-        };
-    }
 }
