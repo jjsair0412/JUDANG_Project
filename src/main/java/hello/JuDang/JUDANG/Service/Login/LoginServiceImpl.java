@@ -19,4 +19,9 @@ public class LoginServiceImpl implements LoginService{
             return buyerLogin.get(0);
         }else  return null;
     }
+
+
+
+
+
 }

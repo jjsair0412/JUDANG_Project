@@ -16,6 +16,7 @@ public class LoginRepositoryImpl implements LoginRepository{
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
+    @Override
     public List<Member> selectSeller(Member member) {
         List<Member> loginMember = jdbcTemplate.query("select * from seller where id = ?and password=?",
                 new RowMapper<Member>() {
@@ -55,5 +56,12 @@ public class LoginRepositoryImpl implements LoginRepository{
             return null;
         }else return loginMember;
     }
+
+
+
+
+
+
+
 
 }

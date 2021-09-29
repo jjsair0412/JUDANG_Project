@@ -7,4 +7,6 @@ import java.util.List;
 public interface LoginRepository {
     List<Member> selectSeller(Member member);
     List<Member> selectBuyer(Member member);
+
+
 }
