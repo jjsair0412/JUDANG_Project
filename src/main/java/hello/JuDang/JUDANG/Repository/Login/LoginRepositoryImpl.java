@@ -56,12 +56,4 @@ public class LoginRepositoryImpl implements LoginRepository{
             return null;
         }else return loginMember;
     }
-
-
-
-
-
-
-
-
 }
