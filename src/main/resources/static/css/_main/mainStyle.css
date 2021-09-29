@@ -106,6 +106,72 @@ li {
   font-size: 25px;
 }
 
+.introduce-title p {
+  margin-bottom: 30px;
+}
+
+/* footer */
+label {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  width: 260px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 7px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  border: 1px solid #d3dce6;
+  transition: border-color 200ms ease-in-out;
+}
+
+input:focus,
+input:hover,
+input:active {
+  outline: none;
+  box-shadow: none;
+  border-color: #1fb6ff;
+}
+
+.footer-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lj-btn {
+  margin: 30px 0;
+}
+.login-btn {
+  margin-right: 50px;
+}
+
+.login-btn,
+.join-btn {
+  border: 2px solid #d3dce6;
+  width: 100px;
+  height: 48px;
+  color: black;
+  background-color: white;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+  transition: opacity 300ms ease-in-out;
+}
+
+.login-btn:hover,
+.join-btn:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   .title-section {
     height: auto;
@@ -141,5 +207,15 @@ li {
   /* introduce */
   .introduce-title p {
     font-size: 20px;
+    margin-bottom: 50px;
+  }
+
+  /* footer */
+  input {
+    width: 350px;
+  }
+
+  .login-btn {
+    margin-right: 145px;
   }
 }
