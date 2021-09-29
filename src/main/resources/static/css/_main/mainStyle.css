@@ -57,7 +57,7 @@ li {
 /* main-title */
 .title-section {
   background-color: #263343;
-  height: 100vh;
+  height: 70vh;
 }
 
 .title {
@@ -75,6 +75,35 @@ li {
 
 #judang {
   color: white;
+}
+
+/* introduce */
+.introduce i {
+  margin: 30px 0 10px;
+  font-size: 80px;
+}
+
+.introduce-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.introduce strong {
+  font-size: 20px;
+}
+
+.introduce-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.introduce-title h1 {
+  margin: 30px 0;
+  font-size: 25px;
 }
 
 @media screen and (min-width: 768px) {
@@ -107,5 +136,10 @@ li {
 
   #judang.active::after {
     display: none;
+  }
+
+  /* introduce */
+  .introduce-title p {
+    font-size: 20px;
   }
 }
