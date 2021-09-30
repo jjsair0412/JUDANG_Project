@@ -3,9 +3,11 @@ package hello.JuDang.JUDANG.Service.Login;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Repository.Login.LoginRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LoginServiceImpl implements LoginService{
     private LoginRepository loginRepository;
 
