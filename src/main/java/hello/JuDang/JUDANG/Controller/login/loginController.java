@@ -6,14 +6,10 @@ import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Service.Login.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpSession;
 
 @RequestMapping("/login")
 @RequiredArgsConstructor
@@ -29,17 +25,15 @@ public class loginController {
     }
 
     @PostMapping
-    public String login(MemberForm form,HttpSession session) {
+    public String login(MemberForm form) {
         Member member = new Member();
         member.setId(form.getId());
         member.setPassword(form.getPassword());
         Member loginMember = loginService.login(member);
-        session.setAttribute("loginMember",member);
-
         if (loginMember.getUserType().equals(UserType.BUYER)) {
-            return "";
+            return "BUYERPAGE";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
-            return "";
+            return "SELLERPAGE";
         }else return "/redirect:";
 
     }
