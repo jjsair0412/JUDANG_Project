@@ -1,9 +1,11 @@
 package hello.JuDang.JUDANG.Service.ShopRegister;
 
 import hello.JuDang.JUDANG.Domain.Shop;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ShopRegisterImpl implements ShopRegister{
     @Override
     public int shopRegister(Shop shop) {
