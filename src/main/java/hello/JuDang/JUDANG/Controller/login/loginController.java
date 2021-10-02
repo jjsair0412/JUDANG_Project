@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @RequestMapping("/login")
 @RequiredArgsConstructor
 @Slf4j
@@ -25,16 +27,16 @@ public class loginController {
     }
 
     @PostMapping
-    public String login(MemberForm form) {
+    public String login(MemberForm form, HttpSession session) {
         Member member = new Member();
         member.setId(form.getId());
         member.setPassword(form.getPassword());
         Member loginMember = loginService.login(member);
+        session.setAttribute("loginMember",loginMember);
         if (loginMember.getUserType().equals(UserType.BUYER)) {
             return "BUYERPAGE";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
             return "SELLERPAGE";
         }else return "/redirect:";
-
     }
 }

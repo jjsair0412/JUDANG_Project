@@ -1,9 +1,11 @@
 package hello.JuDang.JUDANG.Repository.shop;
 
 import hello.JuDang.JUDANG.Domain.Shop;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public int save(Shop shop) {
