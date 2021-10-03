@@ -1,5 +1,10 @@
 package hello.JuDang.JUDANG.Domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Shop {
     private String sellerId;
     private String shopName;

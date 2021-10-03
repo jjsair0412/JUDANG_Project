@@ -1,30 +1,48 @@
 package hello.JuDang.JUDANG.Service.ShopRegister;
 
 import hello.JuDang.JUDANG.Domain.Shop;
+import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @Service
+@RequiredArgsConstructor
 public class ShopRegisterImpl implements ShopRegister{
+    private final ShopRepository shopRepository;
+
     @Override
     public int shopRegister(Shop shop) {
-        return 0;
+        int result = shopRepository.save(shop);
+        return result;
     }
 
     @Override
-    public Optional<Shop> findAllShop() {
-        return Optional.empty();
+    public List<Shop> findAllShop() {
+        return shopRepository.findAllShop();
     }
 
     @Override
-    public Shop findByName(String name) {
-        return null;
+    public Optional<List<Shop>> findByName(String name) {
+        List<Shop> shopList = shopRepository.findByName(name);
+        Optional<List<Shop>> shops = Optional.ofNullable(shopList);
+
+        if(shops.isPresent()){
+            return shops;
+        }else return null;
     }
 
     @Override
-    public Shop findByCategory(String category) {
-        return null;
+    public Optional<List<Shop>> findByCategory(String category) {
+        List<Shop> shopList = shopRepository.findByCategory(category);
+        Optional<List<Shop>> shops = Optional.ofNullable(shopList);
+
+        if(shops.isPresent()){
+            return shops;
+        }else return null;
     }
 
     @Override

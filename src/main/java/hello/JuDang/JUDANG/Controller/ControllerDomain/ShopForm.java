@@ -1,5 +1,9 @@
 package hello.JuDang.JUDANG.Controller.ControllerDomain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class ShopForm {
     private String sellerId;
     private String shopName;
