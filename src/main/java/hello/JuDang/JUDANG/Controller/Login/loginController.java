@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Controller.login;
+package hello.JuDang.JUDANG.Controller.Login;
 
 import hello.JuDang.JUDANG.Controller.ControllerDomain.MemberForm;
 import hello.JuDang.JUDANG.Domain.Member;
