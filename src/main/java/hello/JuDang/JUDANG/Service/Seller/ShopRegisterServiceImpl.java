@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Service.ShopRegister;
+package hello.JuDang.JUDANG.Service.Seller;
 
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
@@ -7,11 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
-public class ShopRegisterImpl implements ShopRegister{
+public class ShopRegisterServiceImpl implements ShopRegisterService{
     private final ShopRepository shopRepository;
 
     @Override
