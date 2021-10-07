@@ -1,7 +1,6 @@
 package hello.JuDang.JUDANG.Controller.Menu;
 
-import hello.JuDang.JUDANG.Repository.Menu.MenuManageRepository;
-import hello.JuDang.JUDANG.Service.Menu.MenuManageService;
+import hello.JuDang.JUDANG.Service.Seller.Menu.MenuManageService;
 import org.springframework.stereotype.Controller;
 
 @Controller

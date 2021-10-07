@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Service.Menu;
+package hello.JuDang.JUDANG.Service.Seller.Menu;
 
 import hello.JuDang.JUDANG.Domain.Menu;
 import hello.JuDang.JUDANG.Domain.Shop;

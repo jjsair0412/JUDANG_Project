@@ -27,7 +27,6 @@ public class JoinController {
 
     @PostMapping
     public String join(MemberForm form) {
-
         Member member = new Member();
         member.setId(form.getId());
         member.setName(form.getName());
