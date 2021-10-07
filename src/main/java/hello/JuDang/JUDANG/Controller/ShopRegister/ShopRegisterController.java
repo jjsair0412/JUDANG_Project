@@ -23,6 +23,7 @@ public class ShopRegisterController {
         model.addAttribute("Shop",new Shop());
         return "";
     }
+
     @PostMapping("")
     public String shopRegister(Shop shop, HttpSession session){
         int result = shopRegister.shopRegister(shop);
@@ -30,4 +31,6 @@ public class ShopRegisterController {
             return "";
         }else return "";
     }
+
+
 }

@@ -2,9 +2,8 @@ package hello.JuDang.JUDANG.Repository.Login;
 
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
-import hello.JuDang.JUDANG.Repository.Join.JoinRepository;
+import hello.JuDang.JUDANG.Repository.Member.MemberRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,15 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @Transactional
 class LoginRepositoryImplTest {
 
     @Autowired LoginRepository loginRepository;
-    @Autowired JoinRepository buyerJoinRepository;
-    @Autowired JoinRepository sellerJoinRepository;
+    @Autowired
+    MemberRepository buyerJoinRepository;
+    @Autowired
+    MemberRepository sellerJoinRepository;
 
     @Test
     void selectBuyer() {

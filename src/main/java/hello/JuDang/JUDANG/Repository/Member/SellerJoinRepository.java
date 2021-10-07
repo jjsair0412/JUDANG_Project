@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Repository.Join;
+package hello.JuDang.JUDANG.Repository.Member;
 
 import hello.JuDang.JUDANG.Domain.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class SellerJoinRepository implements JoinRepository{
+public class SellerJoinRepository implements MemberRepository {
     private JdbcTemplate jdbcTemplate;
 
     public SellerJoinRepository(DataSource ds) {
