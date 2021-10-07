@@ -1,10 +1,10 @@
-package hello.JuDang.JUDANG.Service.Join;
+package hello.JuDang.JUDANG.Service.Member;
 
 import hello.JuDang.JUDANG.Domain.Member;
 
 import java.util.Optional;
 
-public interface JoinService {
+public interface MemberService {
     int memberRegister(Member member);
     Optional<Member> searchById(String Id);
     int memberModify(Member member);

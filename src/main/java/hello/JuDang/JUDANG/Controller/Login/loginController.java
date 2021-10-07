@@ -36,7 +36,7 @@ public class loginController {
         if (loginMember.getUserType().equals(UserType.BUYER)) {
             return "BUYERPAGE";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
-            return "SELLERPAGE";
+            return "seller_main/seller_main";
         }else return "/redirect:";
     }
 }

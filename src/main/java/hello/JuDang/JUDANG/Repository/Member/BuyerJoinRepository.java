@@ -1,7 +1,6 @@
-package hello.JuDang.JUDANG.Repository.Join;
+package hello.JuDang.JUDANG.Repository.Member;
 
 import hello.JuDang.JUDANG.Domain.Member;
-import org.hibernate.loader.plan.spi.Join;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class BuyerJoinRepository implements JoinRepository {
+public class BuyerJoinRepository implements MemberRepository {
 
 
     private JdbcTemplate jdbcTemplate;
@@ -45,13 +44,19 @@ public class BuyerJoinRepository implements JoinRepository {
 
     @Override
     public int update(Member member) {
-        int result =jdbcTemplate.update("UPDATE BUYER SET id=?,password=?,name=?,Email=?,age=?",memberRowMapper());
+        int result = jdbcTemplate.update("UPDATE BUYER SET password=?"
+                ,memberRowMapper()
+                ,member.getPassword());
         return result;
     }
 
     @Override
     public int delete(Member member) {
         int result = jdbcTemplate.update("DELETE FROM BUYER WHERE id=?", memberRowMapper());
+
+
+
+
         return result;
     }
 

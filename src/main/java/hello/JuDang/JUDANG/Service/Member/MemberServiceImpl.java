@@ -1,8 +1,8 @@
-package hello.JuDang.JUDANG.Service.Join;
+package hello.JuDang.JUDANG.Service.Member;
 
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
-import hello.JuDang.JUDANG.Repository.Join.JoinRepository;
+import hello.JuDang.JUDANG.Repository.Member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class JoinServiceImpl implements JoinService{
-    private final JoinRepository buyerJoinRepository;
-    private final JoinRepository sellerJoinRepository;
+public class MemberServiceImpl implements MemberService {
+    private final MemberRepository buyerJoinRepository;
+    private final MemberRepository sellerJoinRepository;
 
     @Override
     public int memberRegister(Member member) {
@@ -30,17 +30,17 @@ public class JoinServiceImpl implements JoinService{
     }
 
     @Override
-    public Optional<Member> searchById(String Id) {
-        if(buyerJoinRepository.findById(Id).equals(1)){
-            return buyerJoinRepository.findById(Id);
-        }else if(sellerJoinRepository.findById(Id).equals(1)){
-            return sellerJoinRepository.findById(Id);
+    public Optional<Member> searchById(String id) {
+        if(buyerJoinRepository.findById(id).equals(1)){
+            return buyerJoinRepository.findById(id);
+        }else if(sellerJoinRepository.findById(id).equals(1)){
+            return sellerJoinRepository.findById(id);
         }else return null;
     }
 
     @Override
     public int memberModify(Member member) {
-        return 0;
+        return buyerJoinRepository.update(member);
     }
 
     @Override
