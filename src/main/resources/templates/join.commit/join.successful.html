@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,9 +7,9 @@
     <title>JUDANG-회원가입 성공</title>
     <link
       rel="stylesheet"
-      href="/JUDANG_Project/src/main/resources/static/css/_join.commit/_join.sc.css"
+      th:href="@{/css/_join.commit/_join.sc.css}"
     />
-    <link rel="stylesheet" href="/JUDANG_Project/src/main/resources/static/css/grid.mim.css">
+    <link rel="stylesheet" th:href="@{/css/grid.mim.css}">
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
       rel="stylesheet"
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-12 col-md-12">
                 <div class="div2">
-                    <button type="button" class="btn">돌아가기</button>
+                    <button type="button" class="btn" th:onclick="|location.href='@{/}'|">돌아가기</button>
                   </div>
             </div>
         </div>

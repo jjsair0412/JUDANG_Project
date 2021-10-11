@@ -1,22 +1,17 @@
 $('#loginFuncJs').click(function () {
     const data = {
-        'Id': $("#user-id"),
-        'Password': $("#user-password")
+        'id': $("#ID").val(),
+        'password': $("#Password").val()
     }
     $.ajax({
-        type: "POST",
-        url: "/oneMovie/viewOneMovie",
+        type: "post",
+        url: "/StartLogin",
         data: data,
         success: function (result) {
-            newPage(result)
+            alert(result)
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("통신 실패.")
         }
     });
 });
-
-window.newPage = function (URI) {
-    let newPage = window.open("about:blank");
-    newPage.location.href(URI);
-}

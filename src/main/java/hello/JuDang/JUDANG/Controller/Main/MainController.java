@@ -1,17 +1,47 @@
 package hello.JuDang.JUDANG.Controller.Main;
 
+import hello.JuDang.JUDANG.Controller.ControllerDomain.LoginForm;
+import hello.JuDang.JUDANG.Domain.Member;
+import hello.JuDang.JUDANG.Domain.UserType;
+import hello.JuDang.JUDANG.Service.Login.LoginService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/")
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class MainController {
+    private final LoginService loginService;
 
     @GetMapping
     public String mainPage(){
         return "_main/main";
+    }
+
+    @PostMapping("/StartLogin")
+    @ResponseBody
+    public String StartLogin(LoginForm loginForm,
+                             HttpServletRequest request){
+        Member member = new Member();
+        member.setId(loginForm.getId());
+        member.setPassword(loginForm.getPassword());
+        HttpSession session = request.getSession();
+        Member loginMember = loginService.login(member);
+        session.setAttribute("loginMember",loginMember);
+        if (loginMember.getUserType().equals(UserType.BUYER)) {
+            return "구매자 로그인 완료";
+        } else if (loginMember.getUserType().equals(UserType.SELLER)) {
+            return "판매자 로그인 완료";
+        }else return "로그인 실패";
     }
 }
