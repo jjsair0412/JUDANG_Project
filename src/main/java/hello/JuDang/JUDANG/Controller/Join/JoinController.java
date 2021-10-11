@@ -43,6 +43,6 @@ public class JoinController {
         }else return null;
 
         joinService.memberRegister(member);
-        return "_main/main";
+        return "/join.commit/join.successful";
     }
 }

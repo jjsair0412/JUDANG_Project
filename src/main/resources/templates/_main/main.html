@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <html lang="en">
     <head>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +11,7 @@
       <link rel="stylesheet" th:href="@{/css/_main/mainStyle.css}" />
       <link
         rel="stylesheet"
-        href="/JUDANG_Project/src/main/resources/static/css/grid.mim.css"
+        th:href="@{/css/grid.mim.css}"
       />
       <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
@@ -96,9 +98,13 @@
           <div class="row">
             <div class="col-12 col-md-12">
               <div class="footer-form">
-                <form action="#" method="">
+                <form>
                   <label for="Id">아이디</label>
-                  <input type="text" id="ID" placeholder="ID" required />
+                  <input type="text"
+                         id="ID"
+                         placeholder="ID"
+                         required
+                  />
 
                   <label for="Password">비밀번호</label>
                   <input
@@ -109,8 +115,8 @@
                   />
 
                   <div class="lj-btn">
-                    <button type="submit" class="login-btn">로그인</button>
-                    <button type="submit" class="join-btn">회원가입</button>
+                    <button type="button" id="loginFuncJs" class="login-btn">로그인</button>
+                    <button type="button" th:onclick="|location.href='@{/join}'|" class="join-btn">회원가입</button>
                   </div>
                 </form>
               </div>
@@ -118,6 +124,7 @@
           </div>
         </div>
       </footer>
+      <script th:src="@{/js/loginFunc/login.js}"></script>
     </body>
   </html>
 </html>
