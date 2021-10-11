@@ -1,9 +1,9 @@
-package hello.JuDang.JUDANG.Controller.Join;
+package hello.JuDang.JUDANG.Controller.Main;
 
-import hello.JuDang.JUDANG.Controller.ControllerDomain.MemberForm;
+import hello.JuDang.JUDANG.Controller.ControllerDomain.LoginForm;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
-import hello.JuDang.JUDANG.Service.Member.MemberService;
+import hello.JuDang.JUDANG.Service.Login.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,40 +11,37 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@Slf4j
-@Controller
-@RequestMapping("/join")
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+@RequestMapping("/")
 @RequiredArgsConstructor
-public class JoinController {
-    private final MemberService memberService;
+@Controller
+@Slf4j
+public class MainController {
+    private final LoginService loginService;
 
     @GetMapping
-    public String joinForm(Model model) {
-        model.addAttribute("memberForm", new MemberForm());
-        return "join/join";
+    public String mainPage(){
+        return "_main/main";
     }
 
-
-    @PostMapping
-    public String join(MemberForm form) {
+    @PostMapping("/StartLogin")
+    @ResponseBody
+    public String StartLogin(LoginForm loginForm,
+                             HttpServletRequest request){
         Member member = new Member();
-        member.setId(form.getId());
-        member.setName(form.getName());
-        member.setPassword(form.getPassword());
-        member.setEmail(form.getEmail());
-        member.setAge(form.getAge());
-
-        //타입 정해주기
-        if ("BUYER".equals(form.getTypeBuyer())) {
-            member.setUserType(UserType.BUYER);
-        }else if ("SELLER".equals(form.getTypeSeller())) {
-            member.setUserType(UserType.SELLER);
-        }else return null;
-
-        int result = memberService.memberRegister(member);
-        if(result==0){
-            return "redirect:";
-        } return "_main/main";
+        member.setId(loginForm.getId());
+        member.setPassword(loginForm.getPassword());
+        HttpSession session = request.getSession();
+        Member loginMember = loginService.login(member);
+        session.setAttribute("loginMember",loginMember);
+        if (loginMember.getUserType().equals(UserType.BUYER)) {
+            return "구매자 로그인 완료";
+        } else if (loginMember.getUserType().equals(UserType.SELLER)) {
+            return "판매자 로그인 완료";
+        }else return "로그인 실패";
     }
 }
