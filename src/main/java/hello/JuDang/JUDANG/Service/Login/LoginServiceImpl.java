@@ -17,10 +17,9 @@ public class LoginServiceImpl implements LoginService{ // 얘 테스트코드 �
 
     @Override
     public Member login(Member member) {
-        List<Member> loginMember = loginTypeCheck.checkType(member);
-        if(loginMember.size()!=0) {
-            return loginMember.get(0);
-        }else return null;
+        Member loginMember = loginTypeCheck.checkType(member);
+        return loginMember;
+
     }
 
 }

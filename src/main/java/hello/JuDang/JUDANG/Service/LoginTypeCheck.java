@@ -13,14 +13,18 @@ import java.util.List;
 public class LoginTypeCheck {
     private final LoginRepository loginRepository;
 
-    public List<Member> checkType(Member member){
+    public Member checkType(Member member){
         List<Member> buyerLogin = loginRepository.selectBuyer(member);
         List<Member> sellerLogin = loginRepository.selectSeller(member);
 
-        if(buyerLogin.isEmpty()){
-            return sellerLogin;
-        }else if(sellerLogin.isEmpty()){
-            return buyerLogin;
+        if(buyerLogin.size()!=0){
+            Member buyer = buyerLogin.get(0);
+            buyer.setUserType(UserType.BUYER);
+            return buyer;
+        }else if(sellerLogin.size()!=0){
+            Member seller = sellerLogin.get(0);
+            seller.setUserType(UserType.SELLER);
+            return seller;
         }else return null;
 
     }
