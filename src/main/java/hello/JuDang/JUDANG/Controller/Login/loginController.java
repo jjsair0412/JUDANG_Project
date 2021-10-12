@@ -34,7 +34,7 @@ public class loginController {
         Member loginMember = loginService.login(member);
         session.setAttribute("loginMember",loginMember);
         if (loginMember.getUserType().equals(UserType.BUYER)) {
-            return "BUYERPAGE";
+            return "buyer_main/buyer_main";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
             return "seller_main/seller_main";
         }else return "/redirect:";

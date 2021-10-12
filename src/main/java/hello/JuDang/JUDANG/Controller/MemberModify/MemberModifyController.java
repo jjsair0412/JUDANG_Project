@@ -23,12 +23,10 @@ public class MemberModifyController {
         model.addAttribute("modifyMember",new MemberForm());
         return "";
     }
-
     @PostMapping
     public String memberModify(MemberForm form, HttpSession session){
         Member loginMember = (Member)session.getAttribute("loginMember");
         loginMember.setPassword(form.getPassword());
-
         int result = memberService.memberModify(loginMember);
         if (result==0){
             return "redirect:";

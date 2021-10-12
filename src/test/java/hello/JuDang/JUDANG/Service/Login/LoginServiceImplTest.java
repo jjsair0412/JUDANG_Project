@@ -1,8 +1,8 @@
 package hello.JuDang.JUDANG.Service.Login;
 
 import hello.JuDang.JUDANG.Domain.Member;
-import hello.JuDang.JUDANG.Repository.Join.JoinRepository;
-import hello.JuDang.JUDANG.Repository.Join.SellerJoinRepository;
+
+import hello.JuDang.JUDANG.Repository.Member.MemberRepository;
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
@@ -21,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class LoginServiceImplTest {
     @Autowired LoginService loginService;
-    @Autowired static JoinRepository sellerJoinRepository;
-    @Autowired static JoinRepository buyerJoinRepository;
+    @Autowired static MemberRepository sellerJoinRepository;
+    @Autowired static MemberRepository buyerJoinRepository;
 
     @Test
     static void 회원가입진행() {

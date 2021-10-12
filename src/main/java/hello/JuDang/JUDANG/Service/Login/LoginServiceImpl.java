@@ -3,6 +3,7 @@ package hello.JuDang.JUDANG.Service.Login;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Repository.Login.LoginRepository;
+import hello.JuDang.JUDANG.Service.LoginTypeCheck;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService{ // 얘 테스트코드 있음
     private final LoginRepository loginRepository;
+    private final LoginTypeCheck loginTypeCheck;
 
     @Override
     public Member login(Member member) {
-        List<Member> buyerLogin = loginRepository.selectBuyer(member);
-        List<Member> sellerLogin = loginRepository.selectSeller(member);
-        if(buyerLogin == null){
-            Member memberSeller = sellerLogin.get(0);
-            memberSeller.setUserType(UserType.SELLER);
-            return memberSeller;
-        }else if(sellerLogin == null){
-            Member memberBuyer = sellerLogin.get(0);
-            memberBuyer.setUserType(UserType.BUYER);
-            return memberBuyer;
+        List<Member> loginMember = loginTypeCheck.checkType(member);
+        if(loginMember.size()!=0) {
+            return loginMember.get(0);
         }else return null;
-
     }
 
 }
