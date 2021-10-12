@@ -22,19 +22,14 @@ public class LoginRepositoryImpl implements LoginRepository{
     public List<Member> selectSeller(Member member) {
         List<Member> loginMember = jdbcTemplate.query("select * from seller where id = ?and password=?",
                 getMemberRowMapper(), member.getId(), member.getPassword());
-        loginMember = loginMember;
-        if(loginMember.isEmpty()){
-            return null;
-        }else return loginMember;
+        return loginMember;
     }
 
     @Override
     public List<Member> selectBuyer(Member member) {
         List<Member> loginMember = jdbcTemplate.query("select * from buyer where id = ?and password=?",
                 getMemberRowMapper(), member.getId(), member.getPassword());
-        if(loginMember.isEmpty()){
-            return null;
-        }else return loginMember;
+        return loginMember;
     }
 
     private RowMapper<Member> getMemberRowMapper() {
@@ -51,11 +46,6 @@ public class LoginRepositoryImpl implements LoginRepository{
             }
         };
     }
-
-
-
-
-
 }
 
 

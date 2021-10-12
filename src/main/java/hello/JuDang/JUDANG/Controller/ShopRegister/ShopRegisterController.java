@@ -1,5 +1,6 @@
 package hello.JuDang.JUDANG.Controller.ShopRegister;
 
+import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
 import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
@@ -26,6 +27,8 @@ public class ShopRegisterController {
 
     @PostMapping("")
     public String shopRegister(Shop shop, HttpSession session){
+        Member loginMember =(Member) session.getAttribute("loginMember");
+        shop.setSellerId(loginMember.getId());
         int result = shopRegister.shopRegister(shop);
         if(result==0){
             return "";
