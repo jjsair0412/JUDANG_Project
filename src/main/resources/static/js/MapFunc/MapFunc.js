@@ -13,7 +13,7 @@ function success(pos) {
 
     $.ajax({
         type: "post",
-        url: "/map/saveShop",
+        url: "/map/mylocation",
         data: coordinate,
         success: function (result) {
             console.log(result)

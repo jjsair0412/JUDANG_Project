@@ -16,10 +16,14 @@ function success(pos){
 
     $.ajax({
         type: "post",
-        url: "/map/mylocation",
+        url: "/SellerPage/saveShop",
         data: coordinate,
         success: function (result) {
-            console.log(result)
+            if(result === 1){
+                alert("등록완료")
+            }else{
+                alert("등록실패")
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("통신 실패.")
