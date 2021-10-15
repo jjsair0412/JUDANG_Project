@@ -21,6 +21,7 @@ public class SellerPage {
         return "seller_main/seller_main";
     }
 
+
     @PostMapping("/saveShop")
     @ResponseBody
     public String myGetMyPosition(ShopForm shopForm){
