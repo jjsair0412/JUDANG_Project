@@ -11,7 +11,7 @@ public class ShopForm {
     private String category;
     private int totalSeat;
     private int currentSeat;
-    private Long latitude;
-    private Long longitude;
+    private String latitude;
+    private String longitude;
     private boolean open;
 }

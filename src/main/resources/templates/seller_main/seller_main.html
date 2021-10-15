@@ -25,6 +25,9 @@
     />
     <script th:src="@{/css/_seller_main/jquery-1.12.3.js}"></script>
     <script th:src="@{/css/_seller_main/seller_main.js}"></script>
+    <script th:src="@{js/MapFunc/MyLocationFunc.js}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
   <body>
     <header>
@@ -58,7 +61,7 @@
         <div class="row">
           <div class="col-12 col-md-12">
             <div class="main-title">
-              <h2>판매자 - 가게 등록 버튼 <i class="fas fa-caret-square-down"></i> </h2>
+              <h2 onclick="testSellerFunc()">판매자 - 가게 등록 버튼 <i class="fas fa-caret-square-down"></i> </h2>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 const mylo = document.getElementById("mylocation");
 let coordinate = new Object(); // 현재 좌표값 저장되는 객체
 if ('geolocation' in navigator) {
-    navigator.geolocation.watchPosition(success) // 사용자의 위치가 변화할때마다 콜백 실행. ( 다시 좌표값 받아옴 )
+    navigator.geolocation.watchPosition(success) // 사용자의 위치가 변화할때마다 콜백 실행. ( 다시 좌표값 받아옴 ) 위치가 변할때마다 콜백이라 onclick에선 못쓸듯
 } else {
     alert("위치정보를 사용할 수 없어요.")
 }
@@ -13,7 +13,7 @@ function success(pos) {
 
     $.ajax({
         type: "post",
-        url: "/map/mylocation",
+        url: "/map/saveShop",
         data: coordinate,
         success: function (result) {
             console.log(result)
