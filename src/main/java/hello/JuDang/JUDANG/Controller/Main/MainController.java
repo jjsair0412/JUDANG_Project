@@ -39,9 +39,9 @@ public class MainController {
         Member loginMember = loginService.login(member);
         session.setAttribute("loginMember",loginMember);
         if (loginMember.getUserType().equals(UserType.BUYER)) {
-            return "구매자 로그인 완료";
+            return "buyer";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
-            return "판매자 로그인 완료";
-        }else return "로그인 실패";
+            return "seller";
+        }else return "fail";
     }
 }
