@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,11 +7,11 @@
     <title>판매자 - Seller</title>
     <link
       rel="stylesheet"
-      href="/JUDANG_Project/src/main/resources/static/css/_seller_main/seller_main.css"
+      th:href="@{/css/_seller_main/seller_main.css}"
     />
     <link
       rel="stylesheet"
-      href="/JUDANG_Project/src/main/resources/static/css/grid.mim.css"
+      th:href="@{/css/grid.mim.css}"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
@@ -23,8 +23,8 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <script src="/JUDANG_Project/src/main/resources/static/css/_seller_main/jquery-1.12.3.js"></script>
-    <script src="/JUDANG_Project/src/main/resources/static/css/_seller_main/seller_main.js"></script>
+    <script th:src="@{/css/_seller_main/jquery-1.12.3.js}"></script>
+    <script th:src="@{/css/_seller_main/seller_main.js}"></script>
   </head>
   <body>
     <header>
