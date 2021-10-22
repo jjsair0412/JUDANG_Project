@@ -1,31 +1,43 @@
 const mylo = document.getElementById("mylocation");
-let coordinate = new Object(); // 현재 좌표값 저장되는 객체
+let data = new Object(); // 현재 좌표값 저장되는 객체
 if ('geolocation' in navigator) {
-    navigator.geolocation.watchPosition(success) // 사용자의 위치가 변화할때마다 콜백 실행. ( 다시 좌표값 받아옴 ) 위치가 변할때마다 콜백이라 onclick에선 못쓸듯
+    navigator.geolocation.getCurrentPosition(success)
 } else {
     alert("위치정보를 사용할 수 없어요.")
 }
 
-function success(pos) {
-    coordinate.latitude = pos.coords.latitude; // 위도
-    coordinate.longitude = pos.coords.longitude; // 경도
-    mylo.innerText = "당신의 위도 : " + coordinate.latitude + " 당신의 경도 : " + coordinate.longitude;
+
+function storeSave() {
+    data.shopName = $('#storeName').val();
+    data.totalSeat = $('#allSeat').val();
+    data.category = $('#category').val();
 
     $.ajax({
         type: "post",
-        url: "/SellerPage/mylocation",
-        data: coordinate,
+        url: "/SellerPage/saveShop",
+        data: data,
         success: function (result) {
-            console.log(result)
+            if (result == 1) {
+                alert("가게 등록완료")
+            } else {
+                alert("가게 등록실패")
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("통신 실패.")
         }
     });
+}
+
+function success(pos) {
+    data.latitude = pos.coords.latitude; // 위도
+    data.longitude = pos.coords.longitude; // 경도
+    mylo.innerText = "당신의 위도 : " + data.latitude + " 당신의 경도 : " + data.longitude;
+
 
 
     var HOME_PATH = window.HOME_PATH || '.';
-    var myPosition = new naver.maps.LatLng(coordinate.latitude, coordinate.longitude),
+    var myPosition = new naver.maps.LatLng(data.latitude, data.longitude),
         map = new naver.maps.Map('map', {
             center: myPosition,
             zoom: 15
