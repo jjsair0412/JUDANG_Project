@@ -1,4 +1,4 @@
-function testSellerFunc(){
+function storeSave(){
     if('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(success)
     } else {
@@ -8,16 +8,19 @@ function testSellerFunc(){
 
 function success(pos){
 
-    let coordinate = new Object(); // 현재 좌표값 저장되는 객체
+    let data = new Object(); // 현재 좌표값 저장되는 객체
 
-    coordinate.latitude = pos.coords.latitude;
-    coordinate.longitude = pos.coords.longitude;
+    data.latitude = pos.coords.latitude;
+    data.longitude = pos.coords.longitude;
 
+    data.shopName = $('#storeName').val();
+    data.totalSeat = $('#allSeat').val();
+    data.category = $('#category').val();
 
     $.ajax({
         type: "post",
         url: "/SellerPage/saveShop",
-        data: coordinate,
+        data: data,
         success: function (result) {
             if(result === 1){
                 alert("등록완료")
