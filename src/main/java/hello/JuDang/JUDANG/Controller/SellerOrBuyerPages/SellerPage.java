@@ -26,6 +26,7 @@ public class SellerPage {
     public String goSellerPage(
             @SessionAttribute(name = "loginMember", required = false) String id
     ) {
+        log.info("세션 id값 = {}",id);
         int i = typeCheck(id);
         if (i == 1) {
             return "seller_main/seller_form";
@@ -38,7 +39,7 @@ public class SellerPage {
         Member member = new Member();
         member.setId(id);
         Member result = typeCheck.checkType(member);
-        if (result.getUserType().equals(UserType.SELLER)) {
+        if (UserType.SELLER.equals(result.getUserType())) {
             return 1;
         } else {
             return 0;
