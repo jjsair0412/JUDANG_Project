@@ -23,7 +23,6 @@
     ></script>
     <script th:src="@{/css/_seller_main/jquery-1.12.3.js}"></script>
     <script th:src="@{/css/_seller_main/seller_main.js}"></script>
-    <script th:src="@{js/MapFunc/MyLocationFunc.js}"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript"
@@ -56,7 +55,7 @@
                         <input type="number" id="allSeat" placeholder="총 좌석 수" required/>
                         <input type="text" id="category" placeholder="가게 카테고리"/>
                         <button onclick="storeSave()" class="btn">등록</button>
-                        <button type="button" class="btn-2">돌아가기</button>
+                        <button type="button" onclick="window.close()" class="btn-2">돌아가기</button>
                     </form>
                 </div>
             </div>

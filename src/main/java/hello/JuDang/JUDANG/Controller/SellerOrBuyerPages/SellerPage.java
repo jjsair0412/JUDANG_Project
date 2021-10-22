@@ -47,6 +47,18 @@ public class SellerPage {
         }
     }
 
+    /**
+     * 얘 저장은 되는데,
+     * 폼에서 받아온 위도=37.6584085
+     * 폼에서 받아온 경도=127.0292881
+     *
+     * 변경후 위도=127
+     * 변경후 경도=37
+     *
+     * 요렇게 long타입으로 캐스팅해주면 소수점날아감..
+     * 아예 String으로 받는거 고려 ㄱㄱ
+     */
+
     @PostMapping("/saveShop")
     @ResponseBody
     public int myGetMyPosition(
@@ -54,11 +66,9 @@ public class SellerPage {
             ShopForm shopForm) {
 
         Shop shop = new Shop();
-        BigDecimal Latitude = new BigDecimal(shopForm.getLatitude());
-        BigDecimal Longitude = new BigDecimal(shopForm.getLongitude());
 
-        Long long_Latitude = new Long(Latitude.longValue());
-        Long long_Longitude = new Long(Longitude.longValue());
+        long long_Longitude = (long) Double.parseDouble(shopForm.getLongitude());
+        long long_Latitude = (long)  Double.parseDouble(shopForm.getLatitude());
 
         shop.setCategory(shopForm.getCategory());
         shop.setSellerId(id);
@@ -66,13 +76,9 @@ public class SellerPage {
         shop.setLatitude(long_Latitude);
         shop.setLongitude(long_Longitude);
 
+        shop.setOpen(true); // 얘 DB값이 notnull이라 true로 일단 줘슴
+
         return ShopService.shopRegister(shop);
     }
 
-    @PostMapping("/mylocation")
-    @ResponseBody
-    public String myLocation(coordinateForm coordinateForm) {
-        log.info("위도 = {} 경도 = {}", coordinateForm.getLatitude(), coordinateForm.getLongitude());
-        return "ok";
-    }
 }
