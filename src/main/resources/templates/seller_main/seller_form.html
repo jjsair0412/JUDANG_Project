@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>판매자 - 가게 등록 페이지</title>
     <link
@@ -63,15 +61,13 @@
                 </div>
             </div>
             <div class="col-8">
-                <div class="store-map">
+                <div id="map" class="store-map"> <!-- 지도들어감 -->
               <span>지도<br/>
-                  <!-- 지도크기 여기서 설정 -->
-<div id="map" style="width:100%;height:400px;"></div>
-                  <!-- 내 위도 경도값 나오는 div -->
-<div id="mylocation"></div>
                   가게 위치 찾기
-    <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
+                    <div id="mylocation"></div> <!-- 내위치정보 -->
               </span>
+                    <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
+
                 </div>
             </div>
         </div>
