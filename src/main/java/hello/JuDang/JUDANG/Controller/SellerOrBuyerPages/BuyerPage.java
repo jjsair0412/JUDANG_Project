@@ -14,7 +14,6 @@ public class BuyerPage {
 
     @GetMapping
     public String goBuyerPage() {
-
         return "";
     }
 }
