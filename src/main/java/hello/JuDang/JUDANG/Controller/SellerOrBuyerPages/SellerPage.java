@@ -27,7 +27,7 @@ public class SellerPage {
             @SessionAttribute(name = "loginMember", required = false) String id,
             @SessionAttribute(name = "loginPassword", required = false) String password
     ) {
-        int i = typeCheck(id,password);
+        int i = typeCheck(id, password);
         if (i == 1) {
             return "seller_main/seller_form";
         } else {
@@ -51,7 +51,7 @@ public class SellerPage {
     @ResponseBody
     public int myGetMyPosition(
             @SessionAttribute(name = "loginMember", required = false) String id,
-                               ShopForm shopForm) {
+            ShopForm shopForm) {
 
         Shop shop = new Shop();
         BigDecimal Latitude = new BigDecimal(shopForm.getLatitude());
@@ -67,5 +67,12 @@ public class SellerPage {
         shop.setLongitude(long_Longitude);
 
         return ShopService.shopRegister(shop);
+    }
+
+    @PostMapping("/mylocation")
+    @ResponseBody
+    public String myLocation(coordinateForm coordinateForm) {
+        log.info("위도 = {} 경도 = {}", coordinateForm.getLatitude(), coordinateForm.getLongitude());
+        return "ok";
     }
 }
