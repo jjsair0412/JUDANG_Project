@@ -22,11 +22,11 @@ public class SellerJoinRepository implements MemberRepository {
     @Override
     public int save(Member member) {
         int result = jdbcTemplate.update("INSERT INTO seller(id,password,name,email,age) values (?,?,?,?,?)", ps -> {
-            ps.setString(1,member.getId());
-            ps.setString(2,member.getPassword());
-            ps.setString(3,member.getName());
-            ps.setString(4,member.getEmail());
-            ps.setInt(5,member.getAge());
+            ps.setString(1, member.getId());
+            ps.setString(2, member.getPassword());
+            ps.setString(3, member.getName());
+            ps.setString(4, member.getEmail());
+            ps.setInt(5, member.getAge());
         });
         return result;
     }
@@ -37,19 +37,25 @@ public class SellerJoinRepository implements MemberRepository {
         return memberList.stream().findAny();
     }
 
-    @Override
+    @Override // update구문 sql 이상함 where조건이 없는디 ?
     public int update(Member member) {
-        int result =jdbcTemplate.update("UPDATE seller SET id=?,password=?,name=?,Email=?,age=?",memberRowMapper());
+        int result = jdbcTemplate.update("UPDATE seller SET id=?,password=?,name=?,Email=?,age=?"
+                , memberRowMapper()
+                , member.getId()
+                , member.getPassword()
+                , member.getName()
+                , member.getEmail());
         return result;
     }
 
     @Override
     public int delete(Member member) {
-        int result = jdbcTemplate.update("DELETE FROM seller WHERE id=?", memberRowMapper());
+        int result = jdbcTemplate.update("DELETE FROM seller WHERE id=?"
+                , member.getId());
         return result;
     }
 
-    private RowMapper<Member> memberRowMapper(){
+    private RowMapper<Member> memberRowMapper() {
         return new RowMapper<Member>() {
             @Override
             public Member mapRow(ResultSet rs, int rowNum) throws SQLException {

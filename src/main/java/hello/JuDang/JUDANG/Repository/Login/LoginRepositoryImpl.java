@@ -1,6 +1,7 @@
 package hello.JuDang.JUDANG.Repository.Login;
 
 import hello.JuDang.JUDANG.Domain.Member;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
+@Slf4j
 public class LoginRepositoryImpl implements LoginRepository{
     private JdbcTemplate jdbcTemplate;
 
@@ -20,15 +22,18 @@ public class LoginRepositoryImpl implements LoginRepository{
 
     @Override
     public List<Member> selectSeller(Member member) {
-        List<Member> loginMember = jdbcTemplate.query("select * from seller where id = ?and password=?",
+        List<Member> loginMember = jdbcTemplate.query("select * from seller where id = ? and password=?",
                 getMemberRowMapper(), member.getId(), member.getPassword());
         return loginMember;
     }
 
     @Override
     public List<Member> selectBuyer(Member member) {
-        List<Member> loginMember = jdbcTemplate.query("select * from buyer where id = ?and password=?",
-                getMemberRowMapper(), member.getId(), member.getPassword());
+        List<Member> loginMember = jdbcTemplate.query(
+                "select * from buyer where id = ? and password=?",
+                getMemberRowMapper(),
+                member.getId(), member.getPassword()
+        );
         return loginMember;
     }
 

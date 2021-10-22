@@ -38,6 +38,7 @@ public class MainController {
         HttpSession session = request.getSession();
         Member loginMember = loginService.login(member);
         session.setAttribute("loginMember",loginMember.getId());
+        session.setAttribute("loginPassword",loginMember.getPassword()); // ...
         if (loginMember.getUserType().equals(UserType.BUYER)) {
             return "buyer";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {

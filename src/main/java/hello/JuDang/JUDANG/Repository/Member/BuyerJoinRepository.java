@@ -44,19 +44,15 @@ public class BuyerJoinRepository implements MemberRepository {
 
     @Override
     public int update(Member member) {
-        int result = jdbcTemplate.update("UPDATE BUYER SET password=?"
-                ,memberRowMapper()
+        int result = jdbcTemplate.update("UPDATE buyer SET password=?"
                 ,member.getPassword());
         return result;
     }
 
     @Override
     public int delete(Member member) {
-        int result = jdbcTemplate.update("DELETE FROM BUYER WHERE id=?", memberRowMapper());
-
-
-
-
+        int result = jdbcTemplate.update("DELETE FROM buyer WHERE id = ?"
+                ,member.getId());
         return result;
     }
 

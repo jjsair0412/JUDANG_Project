@@ -4,11 +4,13 @@ import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Repository.Login.LoginRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class LoginTypeCheck {
     private final LoginRepository loginRepository;

@@ -24,10 +24,10 @@ public class SellerPage {
 
     @GetMapping
     public String goSellerPage(
-            @SessionAttribute(name = "loginMember", required = false) String id
+            @SessionAttribute(name = "loginMember", required = false) String id,
+            @SessionAttribute(name = "loginPassword", required = false) String password
     ) {
-        log.info("세션 id값 = {}",id);
-        int i = typeCheck(id);
+        int i = typeCheck(id,password);
         if (i == 1) {
             return "seller_main/seller_form";
         } else {
@@ -35,11 +35,12 @@ public class SellerPage {
         }
     }
 
-    public int typeCheck(String id) {
+    public int typeCheck(String id, String password) {
         Member member = new Member();
         member.setId(id);
+        member.setPassword(password);
         Member result = typeCheck.checkType(member);
-        if (UserType.SELLER.equals(result.getUserType())) {
+        if (result.getUserType().equals(UserType.SELLER)) {
             return 1;
         } else {
             return 0;
