@@ -56,11 +56,11 @@ public class SellerPage {
         shop.setCategory(shopForm.getCategory());
         shop.setSellerId(id);
         shop.setShopName(shopForm.getShopName());
+        shop.setCurrentSeat(0);
         shop.setTotalSeat(Integer.parseInt(shopForm.getTotalSeat()));
         shop.setLatitude(shopForm.getLongitude());
         shop.setLongitude(shopForm.getLatitude());
-
-        shop.setOpen(true); // 얘 DB값이 notnull이라 true로 일단 줘슴
+        shop.setOpen(false);
 
         return ShopService.shopRegister(shop);
     }
