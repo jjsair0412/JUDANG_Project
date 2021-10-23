@@ -27,6 +27,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript"
             src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=gntulelzn3"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=gntulelzn3&submodules=geocoder"></script>
 </head>
 <body>
 <header>
@@ -51,7 +52,8 @@
             <div class="col-4">
                 <div class="input-form">
                     <form>
-                        <input type ="text" id="positionSearch" /> <!-- 사용자 위치검색기능 ( 주소로 검색 ) -->
+                        <input type ="text" id="positionSearch" placeholder="주소 검색창"/> <!-- 사용자 위치검색기능 ( 주소로 검색 ) -->
+                        <input type ="button" onclick="SearchMyStore()" value="위치 검색버튼"/>
                         <input type="text" id="storeName" placeholder="가게 이름" required/>
                         <input type="number" id="allSeat" placeholder="총 좌석 수" required/>
                         <input type="text" id="category" placeholder="가게 카테고리"/>
@@ -62,8 +64,8 @@
             </div>
             <div class="col-8">
                 <div id="map" class="store-map"> <!-- 지도들어감 -->
-              <span>지도<br/>
-                  가게 위치 찾기
+              <span><br/>
+                  등록할 가게의 주소를 먼저 검색해 주세요 !
                     <div id="mylocation"></div> <!-- 내위치정보 -->
               </span>
                     <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
