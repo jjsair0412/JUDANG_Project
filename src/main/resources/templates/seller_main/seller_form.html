@@ -51,6 +51,7 @@
             <div class="col-4">
                 <div class="input-form">
                     <form>
+                        <input type ="text" id="positionSearch" /> <!-- 사용자 위치검색기능 ( 주소로 검색 ) -->
                         <input type="text" id="storeName" placeholder="가게 이름" required/>
                         <input type="number" id="allSeat" placeholder="총 좌석 수" required/>
                         <input type="text" id="category" placeholder="가게 카테고리"/>
@@ -66,7 +67,6 @@
                     <div id="mylocation"></div> <!-- 내위치정보 -->
               </span>
                     <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
-
                 </div>
             </div>
         </div>
