@@ -1,11 +1,24 @@
-const mylo = document.getElementById("mylocation");
-let data = new Object(); // 현재 좌표값 저장되는 객체
-if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(success)
-} else {
-    alert("위치정보를 사용할 수 없어요.")
-}
+let data = new Object(); // 서버로 전달할 값들 저장하는 객체
+function SearchMyStore() {
+    let position = $('#positionSearch').val();
+    naver.maps.Service.geocode({
+        query: position
+    }, function (status, response) {
+        if (status !== naver.maps.Service.Status.OK) {
+            return alert('Something wrong!');
+        }
 
+        var result = response.v2, // 검색 결과의 컨테이너
+            items = result.addresses; // 검색 결과의 배열
+
+        data.latitude = items[0].y; // 위도
+        data.longitude = items[0].x; // 경도
+
+        console.log("위도 ="+data.latitude+ " 경도 = "+data.longitude)
+
+        showMap(data);
+    });
+}
 
 function storeSave() {
     data.shopName = $('#storeName').val();
@@ -29,13 +42,7 @@ function storeSave() {
     });
 }
 
-function success(pos) {
-    data.latitude = pos.coords.latitude; // 위도
-    data.longitude = pos.coords.longitude; // 경도
-    mylo.innerText = "당신의 위도 : " + data.latitude + " 당신의 경도 : " + data.longitude;
-
-
-
+function showMap(pos) {
     var HOME_PATH = window.HOME_PATH || '.';
     var myPosition = new naver.maps.LatLng(data.latitude, data.longitude),
         map = new naver.maps.Map('map', {
