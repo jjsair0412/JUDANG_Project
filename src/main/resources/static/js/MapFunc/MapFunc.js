@@ -1,18 +1,18 @@
 let data = new Object(); // 서버로 전달할 값들 저장하는 객체
 function SearchMyStore() {
-    let position = $('#positionSearch').val();
-    naver.maps.Service.geocode({
-        query: position
+    let position = $('#positionSearch').val(); // 사용자가 작성한 주소값 position 변수에 저장
+    naver.maps.Service.geocode({ // 이부분부터 지오코드 네이버 api들어감
+        query: position // query에 주소정보 들어감
     }, function (status, response) {
         if (status !== naver.maps.Service.Status.OK) {
             return alert('Something wrong!');
         }
 
         var result = response.v2, // 검색 결과의 컨테이너
-            items = result.addresses; // 검색 결과의 배열
+            items = result.addresses; // 검색 결과의 배열 items배열에 json 형식으로 위도 / 경도가 들어감
 
-        data.latitude = items[0].y; // 위도
-        data.longitude = items[0].x; // 경도
+        data.latitude = items[0].y; // 위도 y가 위도고
+        data.longitude = items[0].x; // 경도 x가 경도임
 
         console.log("위도 =" + data.latitude + " 경도 = " + data.longitude)
 
