@@ -25,16 +25,14 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public int save(Shop shop) {
         int result = jdbcTemplate.update(
-                "INSERT INTO shop(sellerId,shopName,category,totalSeat,currentSeat,latitude,longitude,open) values(?,?,?,?,?,?,?,?)",
+                "INSERT INTO shop(sellerId,shopName,category,totalSeat,latitude,longitude) values(?,?,?,?,?,?)",
                 ps -> {
                     ps.setString(1, shop.getSellerId());
                     ps.setString(2, shop.getShopName());
                     ps.setString(3, shop.getCategory());
                     ps.setInt(4, shop.getTotalSeat());
-                    ps.setInt(5, shop.getCurrentSeat());
-                    ps.setLong(6, shop.getLatitude());
-                    ps.setLong(7, shop.getLongitude());
-                    ps.setBoolean(8,shop.isOpen());
+                    ps.setString(5, shop.getLatitude());
+                    ps.setString(6, shop.getLongitude());
                 });
         return result;
     }
@@ -85,8 +83,8 @@ public class ShopRepositoryImpl implements ShopRepository{
                 shop.setCategory(rs.getString("category"));
                 shop.setTotalSeat(rs.getInt("totalSeat"));
                 shop.setCurrentSeat(rs.getInt("currentSeat"));
-                shop.setLatitude(rs.getLong("latitude"));
-                shop.setLongitude(rs.getLong("longitude"));
+                shop.setLatitude(rs.getString("latitude"));
+                shop.setLongitude(rs.getString("longitude"));
                 shop.setOpen(rs.getBoolean("open"));
                 return null;
             }
