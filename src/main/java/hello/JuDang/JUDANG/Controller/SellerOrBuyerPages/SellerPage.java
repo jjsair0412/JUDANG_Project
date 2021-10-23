@@ -1,6 +1,7 @@
 package hello.JuDang.JUDANG.Controller.SellerOrBuyerPages;
 
 import hello.JuDang.JUDANG.Controller.ControllerDomain.ShopForm;
+import hello.JuDang.JUDANG.Controller.ControllerDomain.ShopOpenCloseForm;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Domain.UserType;
@@ -48,6 +49,13 @@ public class SellerPage {
         } else {
             return 0;
         }
+    }
+
+    @GetMapping("/openCloseFunc")
+    @ResponseBody
+    public int openFunc(ShopOpenCloseForm openCloseForm){
+        log.info("Store = {},isOpen ? ={}",openCloseForm.getShopName(),openCloseForm.getIsOpen());
+        return 1;
     }
 
     @PostMapping("/saveShop")

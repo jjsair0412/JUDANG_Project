@@ -73,24 +73,10 @@
         </div>
     </div>
 </main>
-
-<!-- 가게정보들 받아옴 -->
-    <tr th:each="shops : ${myShops}">
-        가게이름
-        <td th:text="${shops.getShopName()}">shopName</td type >
-        </br>
-        카테고리
-        <td th:text="${shops.getCategory()}">category</td>
-        </br>
-        전체좌석
-        <td th:text="${shops.getTotalSeat()}">totalSeat</td>
-        </br>
-        현재 남은 좌석
-        <td th:text="${shops.getCurrentSeat()}">currentSeat</td>
-        </br>
-        현재 상태 ( open인지 close인지 체크 . 체크되면 open )
-        <input type="checkbox" id="isOpen" onclick="checkLogic()" th:filed="${shop.isOpen()}">
-    </tr>
+<script th:inline="javascript">
+    const myShops = [[${myShops}]]
+</script>
+<div id="myshopsInfoPosition"></div><!-- 가게정보들 붙음 -->
 <script th:src="@{/js/ShopOpenOrCloseFunc/ShopOpenOrCloseFunc.js}"></script>
 </body>
 </html>
