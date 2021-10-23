@@ -33,6 +33,7 @@ function storeSave() {
             console.log(result);
             if (result == 1) {
                 alert("가게 등록완료")
+                location.reload();
             } else {
                 alert("가게 등록실패")
             }
