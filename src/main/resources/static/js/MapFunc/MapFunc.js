@@ -14,7 +14,7 @@ function SearchMyStore() {
         data.latitude = items[0].y; // 위도
         data.longitude = items[0].x; // 경도
 
-        console.log("위도 ="+data.latitude+ " 경도 = "+data.longitude)
+        console.log("위도 =" + data.latitude + " 경도 = " + data.longitude)
 
         showMap(data);
     });
@@ -30,6 +30,7 @@ function storeSave() {
         url: "/SellerPage/saveShop",
         data: data,
         success: function (result) {
+            console.log(result);
             if (result == 1) {
                 alert("가게 등록완료")
             } else {
@@ -41,6 +42,7 @@ function storeSave() {
         }
     });
 }
+
 
 function showMap(pos) {
     var HOME_PATH = window.HOME_PATH || '.';
