@@ -71,7 +71,7 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public int delete(Shop shop) {
-        return 0;
+        return jdbcTemplate.update("delete from shop where sellerId = ?", shop.getSellerId());
     }
 
 

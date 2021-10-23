@@ -4,11 +4,13 @@ import hello.JuDang.JUDANG.Controller.ControllerDomain.ShopForm;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Domain.UserType;
+import hello.JuDang.JUDANG.Service.GetMyShopInfo.GetMyShopInfo;
 import hello.JuDang.JUDANG.Service.LoginTypeCheck;
 import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -18,14 +20,18 @@ import org.springframework.web.bind.annotation.*;
 public class SellerPage {
     private final ShopRegisterService ShopService;
     private final LoginTypeCheck typeCheck;
+    private final GetMyShopInfo myshops;
 
     @GetMapping
     public String goSellerPage(
             @SessionAttribute(name = "loginMember", required = false) String id,
-            @SessionAttribute(name = "loginPassword", required = false) String password
+            @SessionAttribute(name = "loginPassword", required = false) String password,
+            Model model
     ) {
         int i = typeCheck(id, password);
         if (i == 1) {
+            model.addAttribute("shop",new Shop());
+            model.addAttribute("myShops",myshops.myShops(id));
             return "seller_main/seller_form";
         } else {
             return "/";
