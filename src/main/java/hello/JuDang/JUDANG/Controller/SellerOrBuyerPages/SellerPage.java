@@ -59,7 +59,12 @@ public class SellerPage {
             @SessionAttribute(name = "loginMember",required = false) String id,
             ShopOpenCloseForm openCloseForm
     ){
-        return openCloseFunc.OpenCloseFunc(id,openCloseForm.getShopName(),Boolean.parseBoolean(openCloseForm.getIsOpen()));
+        return openCloseFunc.OpenCloseFunc(
+                id,
+                openCloseForm.getShopName(),
+                openCloseForm.getHtmlId(),
+                Boolean.parseBoolean(openCloseForm.getIsOpen())
+        );
     }
 
     @PostMapping("/saveShop")
@@ -70,7 +75,7 @@ public class SellerPage {
 
         Shop shop = new Shop();
 
-
+        shop.setHtmlId(shopForm.getHtmlId());
         shop.setCategory(shopForm.getCategory());
         shop.setSellerId(id);
         shop.setShopName(shopForm.getShopName());

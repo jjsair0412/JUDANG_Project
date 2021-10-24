@@ -67,7 +67,6 @@
                   등록할 가게의 주소를 먼저 검색해 주세요 !
                     <div id="mylocation"></div> <!-- 내위치정보 -->
               </span>
-                    <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
                 </div>
             </div>
         </div>
@@ -77,6 +76,7 @@
     const myShops = [[${myShops}]]
 </script>
 <div id="myshopsInfoPosition"></div><!-- 가게정보들 붙음 -->
+<script th:src="@{/js/MapFunc/MapFunc.js}"></script>
 <script th:src="@{/js/ShopOpenOrCloseFunc/ShopOpenOrCloseFunc.js}"></script>
 </body>
 </html>

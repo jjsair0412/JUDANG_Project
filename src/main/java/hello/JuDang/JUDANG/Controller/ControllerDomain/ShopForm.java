@@ -14,4 +14,5 @@ public class ShopForm {
     private String latitude; // 위도
     private String longitude; // 경도
     private boolean open;
+    private String htmlId;
 }

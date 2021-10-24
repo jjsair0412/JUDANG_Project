@@ -24,7 +24,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public int save(Shop shop) {
         int result = jdbcTemplate.update(
-                "INSERT INTO shop(sellerId,shopName,category,totalSeat,currentSeat,latitude,longitude,open) values(?,?,?,?,?,?,?,?)",
+                "INSERT INTO shop(sellerId,shopName,category,totalSeat,currentSeat,latitude,longitude,open,htmlId) values(?,?,?,?,?,?,?,?,?)",
                 ps -> {
                     ps.setString(1, shop.getSellerId());
                     ps.setString(2, shop.getShopName());
@@ -34,6 +34,7 @@ public class ShopRepositoryImpl implements ShopRepository{
                     ps.setString(6, shop.getLatitude());
                     ps.setString(7, shop.getLongitude());
                     ps.setBoolean(8,shop.isOpen());
+                    ps.setString(9,shop.getHtmlId());
                 });
         return result;
     }
@@ -65,7 +66,9 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public int update(Shop shop) {
-        return jdbcTemplate.update("Update shop set open = ? where shopName = ? And sellerId = ?",shop.isOpen(),shop.getShopName(),shop.getSellerId());
+        return jdbcTemplate.update("Update shop set open = ? where shopName = ? And sellerId = ? And htmlId = ?",
+                shop.isOpen(),shop.getShopName(),shop.getSellerId(), shop.getHtmlId()
+        );
     }
 
 
@@ -88,6 +91,7 @@ public class ShopRepositoryImpl implements ShopRepository{
                 shop.setLatitude(rs.getString("latitude"));
                 shop.setLongitude(rs.getString("longitude"));
                 shop.setOpen(rs.getBoolean("open"));
+                shop.setHtmlId(rs.getString("htmlId"));
                 return null;
             }
         };
