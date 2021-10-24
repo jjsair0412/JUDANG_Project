@@ -14,6 +14,8 @@ if (myShops===null) {
         const nowShop = myShops[i].shopName;
         storeCheckBoxIds.checkBoxId = +a;
 
+
+
         $('#myshopsInfoPosition').append('가게 이름 : <div>' + myShops[i].shopName + '</div>')
         $('#myshopsInfoPosition').append('가게 카테고리 : <div>' + myShops[i].category + '</div>')
         $('#myshopsInfoPosition').append('전체 좌석수 : <div>' + myShops[i].totalSeat + '</div>')
@@ -31,13 +33,18 @@ if (myShops===null) {
             openShop.shopName = shopName;
             openShop.isOpen = checked;
             openShop.htmlId = htmlId-1;
+
             $.ajax({
                 type: "get",
                 url: "/SellerPage/openCloseFunc",
                 data: openShop,
                 success: function (result) {
                     if (result == 1) {
-                        alert("열고닫기 완료")
+                        if(checked){
+                            alert(shopName + " 가게 영업 시작")
+                        }else{
+                            alert(shopName + " 가게 영업 종료")
+                        }
                     } else {
                         alert("가게 열고 닫기 실패")
                     }
