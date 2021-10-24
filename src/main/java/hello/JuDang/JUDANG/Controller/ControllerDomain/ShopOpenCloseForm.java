@@ -6,4 +6,5 @@ import lombok.Data;
 public class ShopOpenCloseForm {
     private String shopName;
     private String isOpen;
+    private String htmlId;
 }

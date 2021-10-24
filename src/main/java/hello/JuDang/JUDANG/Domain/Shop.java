@@ -14,4 +14,5 @@ public class Shop {
     private String latitude;
     private String longitude;
     private boolean open;
+    private String htmlId;
 }

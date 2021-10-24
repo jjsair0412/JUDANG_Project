@@ -4,11 +4,13 @@ let storeCheckBoxIds = { // 체크박스에 동적으로 할당시킬 id값들 �
 
 let a = 0;
 
-if (myShops.length === 1) {
+if (myShops===null) {
     $('#myshopsInfoPosition').append('<div>가게가 없어요. 먼저 등록해주세요.</div>')
 } else {
     $('#myshopsInfoPosition').empty();
     for (let i = 0; i < myShops.length; i++) {
+        ++a;
+
         const nowShop = myShops[i].shopName;
         storeCheckBoxIds.checkBoxId = +a;
 
@@ -20,22 +22,20 @@ if (myShops.length === 1) {
         if(myShops[i].open){
             $('#myshopsInfoPosition').append('<input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\');">')
         }else{
-            $('#myshopsInfoPosition').append('<input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\');">')
+            $('#myshopsInfoPosition').append('<input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\''+storeCheckBoxIds.checkBoxId+'\');">')
         }
 
-        ++a;
-
-        function openLogic(id, shopName) {
+        function openLogic(id, shopName, htmlId) {
             let checked = document.getElementById(eval("id")).checked;
             let openShop = new Object();
             openShop.shopName = shopName;
             openShop.isOpen = checked;
+            openShop.htmlId = htmlId-1;
             $.ajax({
                 type: "get",
                 url: "/SellerPage/openCloseFunc",
                 data: openShop,
                 success: function (result) {
-                    console.log(result);
                     if (result == 1) {
                         alert("열고닫기 완료")
                     } else {

@@ -24,13 +24,13 @@ function storeSave() {
     data.shopName = $('#storeName').val();
     data.totalSeat = $('#allSeat').val();
     data.category = $('#category').val();
+    data.htmlId = storeCheckBoxIds.checkBoxId;
 
     $.ajax({
         type: "post",
         url: "/SellerPage/saveShop",
         data: data,
         success: function (result) {
-            console.log(result);
             if (result == 1) {
                 alert("가게 등록완료")
                 location.reload();

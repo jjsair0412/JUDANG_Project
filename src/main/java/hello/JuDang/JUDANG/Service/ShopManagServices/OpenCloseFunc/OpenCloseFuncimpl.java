@@ -12,11 +12,12 @@ import org.springframework.stereotype.Service;
 public class OpenCloseFuncimpl implements OpenCloseFunc{
     private final ShopRepository shopRepository;
     @Override
-    public int OpenCloseFunc(String id, String shopName, boolean isOpen) {
+    public int OpenCloseFunc(String id, String shopName, String htmlId, boolean isOpen) {
         Shop shop = new Shop();
         shop.setShopName(shopName);
         shop.setOpen(isOpen);
         shop.setSellerId(id);
+        shop.setHtmlId(htmlId);
 
         return shopRepository.update(shop);
     }
