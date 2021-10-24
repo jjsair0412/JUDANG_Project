@@ -1,7 +1,7 @@
-package hello.JuDang.JUDANG.Service.GetMyShopInfo;
+package hello.JuDang.JUDANG.Service.ShopManagServices.GetMyShopInfo;
 
 import hello.JuDang.JUDANG.Domain.Shop;
-import hello.JuDang.JUDANG.Repository.GetMyShopInfo.SellerShopInfo;
+import hello.JuDang.JUDANG.Repository.Shop.GetMyShopInfo.SellerShopInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
