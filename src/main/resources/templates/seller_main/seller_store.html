@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JUDANG : 판매자 - 가게 관리</title>
+    <link
+      rel="stylesheet"
+      href="/JUDANG_Project/src/main/resources/static/css/_seller_main/seller_store.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/JUDANG_Project/src/main/resources/static/css/grid.mim.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <script src="/JUDANG_Project/src/main/resources/static/css/_seller_main/jquery-1.12.3.js"></script>
+    <script src="/JUDANG_Project/src/main/resources/static/css/_seller_main/seller_main.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="nav_icon">
+                <i class="fas fa-wine-bottle"></i>
+                <h1>JUDANG</h1>
+              </div>
+              <div class="nav">
+                <ul class="nav_list">
+                  <li>
+                    <i class="far fa-address-card"></i> 
+                    <ul class="submenu">
+                        <li><a href="#">내 정보</a></li>
+                        <li><a href="#">가게 메뉴 관리</a></li>
+                        <li><a href="#">가게 리스트</a></li>
+                        <li><a href="#">가게 등록</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+          </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+              <div class="main-title">
+                  가게 이름
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <form action="#" method="#">
+                    <input class="form-input" type="number" placeholder="총 좌석 수" required>
+                    <input class="form-input" type="number" placeholder="남은 좌석 수" required>
+                    <input class="form-input" type="number" placeholder="대기 테이블 수" required>
+                    <button type="button" class="btn">Open</button>
+                    <button type="button" class="btn-2">Closed</button>
+                </form>
+            </div>
+
+            <div class="col-5">
+                <h3>예약 신청 리스트</h3>
+                <table class="store-buyer">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>이름</th>
+                            <th>예약 인원 수</th>
+                            <th>승인여부</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>a</td>
+                            <td>홍길동</td>
+                            <td>2명</td>
+                            <td>
+                                <label for="submit">확인</label>
+                                <input type="checkbox" name="store" value="select" id="submit">
+                                <label for="cancel">취소</label>
+                                <input type="checkbox" name="store" value="no" id="cancel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>b</td>
+                            <td>전우치</td>
+                            <td>4명</td>
+                            <td>
+                                <label for="submit-2">확인</label>
+                                <input type="checkbox" name="store" value="3" id="submit-2">
+                                <label for="cancel-2">취소</label>
+                                <input type="checkbox" name="store" value="4" id="cancel-2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>c</td>
+                            <td>강태공</td>
+                            <td>3명</td>
+                            <td>
+                                <label for="submit-3">확인</label>
+                                <input type="checkbox" name="store" value="5" id="submit-3">
+                                <label for="cancel-3">취소</label>
+                                <input type="checkbox" name="store" value="6" id="cancel-3">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>c</td>
+                            <td>강태공</td>
+                            <td>3명</td>
+                            <td>
+                                <label for="submit-4">확인</label>
+                                <input type="checkbox" name="store" value="7" id="submit-4">
+                                <label for="cancel-4">취소</label>
+                                <input type="checkbox" name="store" value="8" id="cancel-4">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn-3">예약 승인</button>
+            </div>
+
+            <div class="col-5">
+                <table class="store-buyer">
+                    <h3>대기 리스트</h3>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>이름</th>
+                            <th>예약 인원 수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>a</td>
+                            <td>홍길동</td>
+                            <td>2명</td>
+                        </tr>
+                        <tr>
+                            <td>b</td>
+                            <td>전우치</td>
+                            <td>4명</td>
+                        </tr>
+                        <tr>
+                            <td>c</td>
+                            <td>강태공</td>
+                            <td>3명</td>
+                        </tr>
+                        <tr>
+                            <td>c</td>
+                            <td>강태공</td>
+                            <td>3명</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn-3">대기 입장</button>
+            </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
