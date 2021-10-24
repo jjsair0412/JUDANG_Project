@@ -33,14 +33,14 @@ public class SellerPage {
     ) {
         int i = typeCheck(id, password);
         if (i == 1) { // 판매자일 경우
-            if(myShops.myShops(id) == null){
+            if(myShops.myShops(id) == null){ // 가게를 하나도 갖고있지 않다면
                 model.addAttribute("shop",new Shop());
                 model.addAttribute("myShops", myShops.myShops(id));
                 return "seller_main/seller_form";
-            }else{
+            }else{ // 한개라도 가게가 있다면
                 model.addAttribute("shop",new Shop());
                 model.addAttribute("myShops", myShops.myShops(id));
-                return "가게관리페이지";
+                return "seller_main/seller_store";
             }
         } else {
             return "/";
