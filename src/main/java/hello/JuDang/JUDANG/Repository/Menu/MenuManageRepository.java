@@ -6,7 +6,7 @@ import hello.JuDang.JUDANG.Domain.Shop;
 import java.util.Optional;
 
 public interface MenuManageRepository {
-    int save(Menu menu);
+    int save(Menu menu,String sellerId);
     Optional<Menu> findAllMenu(Shop shop);
     int update(Shop shop,Menu menu);
     int delete(Shop shop);

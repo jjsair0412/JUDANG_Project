@@ -21,7 +21,6 @@ public class ShopRepositoryImpl implements ShopRepository{
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
     @Override
     public int save(Shop shop) {
         int result = jdbcTemplate.update(

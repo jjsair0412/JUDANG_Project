@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class SellerPage {
     private final ShopRegisterService ShopService;
     private final LoginTypeCheck typeCheck;
-    private final GetMyShopInfo myshops;
+    private final GetMyShopInfo myShops;
 
     @GetMapping
     public String goSellerPage(
@@ -32,7 +32,7 @@ public class SellerPage {
         int i = typeCheck(id, password);
         if (i == 1) {
             model.addAttribute("shop",new Shop());
-            model.addAttribute("myShops",myshops.myShops(id));
+            model.addAttribute("myShops", myShops.myShops(id));
             return "seller_main/seller_form";
         } else {
             return "/";

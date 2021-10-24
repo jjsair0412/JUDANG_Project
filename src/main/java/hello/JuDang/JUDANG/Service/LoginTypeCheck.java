@@ -6,7 +6,6 @@ import hello.JuDang.JUDANG.Repository.Login.LoginRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -28,7 +27,5 @@ public class LoginTypeCheck {
             seller.setUserType(UserType.SELLER);
             return seller;
         }else return null;
-
     }
-
 }
