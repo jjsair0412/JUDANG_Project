@@ -17,9 +17,9 @@ public class MenuManageRepositoryImpl implements MenuManageRepository{
     }
 
     @Override
-    public int save(Menu menu) {
-
-        return 0;
+    public int save(Menu menu,String sellerId) {
+        int result = jdbcTemplate.update(" ", menu.getMenuName(), menu.getPrice());
+        return result;
     }
 
     @Override
