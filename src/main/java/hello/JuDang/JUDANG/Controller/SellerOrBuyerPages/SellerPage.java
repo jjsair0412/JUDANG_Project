@@ -5,9 +5,10 @@ import hello.JuDang.JUDANG.Controller.ControllerDomain.ShopOpenCloseForm;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Domain.UserType;
-import hello.JuDang.JUDANG.Service.GetMyShopInfo.GetMyShopInfo;
+import hello.JuDang.JUDANG.Service.ShopManagServices.GetMyShopInfo.GetMyShopInfo;
 import hello.JuDang.JUDANG.Service.LoginTypeCheck;
 import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
+import hello.JuDang.JUDANG.Service.ShopManagServices.OpenCloseFunc.OpenCloseFunc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -54,9 +55,11 @@ public class SellerPage {
 
     @GetMapping("/openCloseFunc")
     @ResponseBody
-    public int openFunc(ShopOpenCloseForm openCloseForm){
-        log.info("Store = {},isOpen ? ={}",openCloseForm.getShopName(),openCloseForm.getIsOpen());
-        return 1;
+    public int openFunc(
+            @SessionAttribute(name = "loginMember",required = false) String id,
+            ShopOpenCloseForm openCloseForm
+    ){
+        return openCloseFunc.OpenCloseFunc(id,openCloseForm.getShopName(),Boolean.parseBoolean(openCloseForm.getIsOpen()));
     }
 
     @PostMapping("/saveShop")

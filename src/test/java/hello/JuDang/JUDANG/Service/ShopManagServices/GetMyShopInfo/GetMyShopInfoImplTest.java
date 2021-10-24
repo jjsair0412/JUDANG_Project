@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Service.GetMyShopInfo;
+package hello.JuDang.JUDANG.Service.ShopManagServices.GetMyShopInfo;
 
 import hello.JuDang.JUDANG.Domain.Shop;
 import org.junit.jupiter.api.Test;

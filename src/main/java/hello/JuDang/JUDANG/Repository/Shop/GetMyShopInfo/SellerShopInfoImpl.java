@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Repository.GetMyShopInfo;
+package hello.JuDang.JUDANG.Repository.Shop.GetMyShopInfo;
 
 import hello.JuDang.JUDANG.Domain.Shop;
 import lombok.RequiredArgsConstructor;

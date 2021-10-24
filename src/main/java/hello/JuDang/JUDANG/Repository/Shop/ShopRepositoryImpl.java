@@ -65,8 +65,9 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public int update(Shop shop) {
-        return 0;
+        return jdbcTemplate.update("Update shop set open = ? where shopName = ? And sellerId = ?",shop.isOpen(),shop.getShopName(),shop.getSellerId());
     }
+
 
     @Override
     public int delete(Shop shop) {

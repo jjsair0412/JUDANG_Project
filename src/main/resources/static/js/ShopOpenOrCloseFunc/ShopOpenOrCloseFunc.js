@@ -11,11 +11,17 @@ if (myShops.length === 1) {
     for (let i = 0; i < myShops.length; i++) {
         const nowShop = myShops[i].shopName;
         storeCheckBoxIds.checkBoxId = +a;
+
         $('#myshopsInfoPosition').append('가게 이름 : <div>' + myShops[i].shopName + '</div>')
         $('#myshopsInfoPosition').append('가게 카테고리 : <div>' + myShops[i].category + '</div>')
         $('#myshopsInfoPosition').append('전체 좌석수 : <div>' + myShops[i].totalSeat + '</div>')
         $('#myshopsInfoPosition').append('현재 좌석수 : <div>' + myShops[i].currentSeat + '</div>')
-        $('#myshopsInfoPosition').append('<input type="checkbox" id="'+storeCheckBoxIds.checkBoxId+'" onclick="openLogic(\'' + a + '\',\''+nowShop+'\');">')
+
+        if(myShops[i].open){
+            $('#myshopsInfoPosition').append('<input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\');">')
+        }else{
+            $('#myshopsInfoPosition').append('<input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\');">')
+        }
 
         ++a;
 
@@ -32,7 +38,6 @@ if (myShops.length === 1) {
                     console.log(result);
                     if (result == 1) {
                         alert("열고닫기 완료")
-                        location.reload();
                     } else {
                         alert("가게 열고 닫기 실패")
                     }
@@ -41,6 +46,7 @@ if (myShops.length === 1) {
                     alert("통신 실패.")
                 }
             });
+
         }
     }
 }
