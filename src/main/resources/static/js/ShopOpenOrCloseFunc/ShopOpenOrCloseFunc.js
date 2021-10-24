@@ -22,7 +22,7 @@ if (myShops===null) {
         $('#myshopsInfoPosition').append('현재 좌석수 : <div>' + myShops[i].currentSeat + '</div>')
 
         if(myShops[i].open){
-            $('#myshopsInfoPosition').append('<input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\');">')
+            $('#myshopsInfoPosition').append('<input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\''+storeCheckBoxIds.checkBoxId+'\');">')
         }else{
             $('#myshopsInfoPosition').append('<input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\''+storeCheckBoxIds.checkBoxId+'\');">')
         }
