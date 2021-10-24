@@ -23,7 +23,6 @@ public class SellerPage {
     private final LoginTypeCheck typeCheck;
     private final GetMyShopInfo myshops;
     private final OpenCloseFunc openCloseFunc;
-    private final GetMyShopInfo myShops;
 
     @GetMapping
     public String goSellerPage(
