@@ -32,10 +32,16 @@ public class SellerPage {
             Model model
     ) {
         int i = typeCheck(id, password);
-        if (i == 1) {
-            model.addAttribute("shop",new Shop());
-            model.addAttribute("myShops", myShops.myShops(id));
-            return "seller_main/seller_form";
+        if (i == 1) { // 판매자일 경우
+            if(myShops.myShops(id) == null){
+                model.addAttribute("shop",new Shop());
+                model.addAttribute("myShops", myShops.myShops(id));
+                return "seller_main/seller_form";
+            }else{
+                model.addAttribute("shop",new Shop());
+                model.addAttribute("myShops", myShops.myShops(id));
+                return "가게관리페이지";
+            }
         } else {
             return "/";
         }
