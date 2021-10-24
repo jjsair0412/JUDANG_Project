@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class SellerPage {
     private final ShopRegisterService ShopService;
     private final LoginTypeCheck typeCheck;
-    private final GetMyShopInfo myshops;
+    private final GetMyShopInfo myShops;
     private final OpenCloseFunc openCloseFunc;
 
     @GetMapping
