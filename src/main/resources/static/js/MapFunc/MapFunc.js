@@ -1,31 +1,53 @@
-const mylo = document.getElementById("mylocation");
-let coordinate = new Object(); // 현재 좌표값 저장되는 객체
-if ('geolocation' in navigator) {
-    navigator.geolocation.watchPosition(success) // 사용자의 위치가 변화할때마다 콜백 실행. ( 다시 좌표값 받아옴 ) 위치가 변할때마다 콜백이라 onclick에선 못쓸듯
-} else {
-    alert("위치정보를 사용할 수 없어요.")
+let data = new Object(); // 서버로 전달할 값들 저장하는 객체
+function SearchMyStore() {
+    let position = $('#positionSearch').val(); // 사용자가 작성한 주소값 position 변수에 저장
+    naver.maps.Service.geocode({ // 이부분부터 지오코드 네이버 api들어감
+        query: position // query에 주소정보 들어감
+    }, function (status, response) {
+        if (status !== naver.maps.Service.Status.OK) {
+            return alert('Something wrong!');
+        }
+
+        var result = response.v2, // 검색 결과의 컨테이너
+            items = result.addresses; // 검색 결과의 배열 items배열에 json 형식으로 위도 / 경도가 들어감
+
+        data.latitude = items[0].y; // 위도 y가 위도고
+        data.longitude = items[0].x; // 경도 x가 경도임
+
+        console.log("위도 =" + data.latitude + " 경도 = " + data.longitude)
+
+        showMap(data);
+    });
 }
 
-function success(pos) {
-    coordinate.latitude = pos.coords.latitude; // 위도
-    coordinate.longitude = pos.coords.longitude; // 경도
-    mylo.innerText = "당신의 위도 : " + coordinate.latitude + " 당신의 경도 : " + coordinate.longitude;
+function storeSave() {
+    data.shopName = $('#storeName').val();
+    data.totalSeat = $('#allSeat').val();
+    data.category = $('#category').val();
 
     $.ajax({
         type: "post",
-        url: "/SellerPage/mylocation",
-        data: coordinate,
+        url: "/SellerPage/saveShop",
+        data: data,
         success: function (result) {
-            console.log(result)
+            console.log(result);
+            if (result == 1) {
+                alert("가게 등록완료")
+                location.reload();
+            } else {
+                alert("가게 등록실패")
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("통신 실패.")
         }
     });
+}
 
 
+function showMap(pos) {
     var HOME_PATH = window.HOME_PATH || '.';
-    var myPosition = new naver.maps.LatLng(coordinate.latitude, coordinate.longitude),
+    var myPosition = new naver.maps.LatLng(data.latitude, data.longitude),
         map = new naver.maps.Map('map', {
             center: myPosition,
             zoom: 15
