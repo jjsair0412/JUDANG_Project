@@ -21,7 +21,6 @@ public class BuyerPage {
 
     @PostMapping("/search/name")
     public String searchByName(){
-
         return "";
     }
 

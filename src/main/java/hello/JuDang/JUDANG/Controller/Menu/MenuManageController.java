@@ -37,6 +37,7 @@ public class MenuManageController {
 
     @PostMapping("/delete")
     public String deleteMenu(){
+
         return "";
     }
 

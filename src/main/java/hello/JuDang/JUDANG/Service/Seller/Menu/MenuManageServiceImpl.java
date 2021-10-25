@@ -6,6 +6,7 @@ import hello.JuDang.JUDANG.Repository.Menu.MenuManageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,12 +21,17 @@ public class MenuManageServiceImpl implements MenuManageService{
     }
 
     @Override
-    public Optional<Menu> findAllShop() {
-        return Optional.empty();
+    public Optional<List<Menu>> findAllMenu(String sellerId) {
+        List<Menu> allMenu = menuManageRepository.findAllMenu(sellerId);
+        Optional<List<Menu>> menus = Optional.ofNullable(allMenu);
+        if(menus.isPresent()){
+            return menus;
+        }else return null;
     }
 
     @Override
     public int menuModify(Shop shop) {
+
         return 0;
     }
 
