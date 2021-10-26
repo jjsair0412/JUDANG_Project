@@ -22,4 +22,10 @@ public class GetMyShopInfoImpl implements GetMyShopInfo{
         }
         return allMyShops;
     }
+
+    @Override
+    public Shop getMyShopInfo(String sellerId, String shopName, String htmlId) {
+        List<Shop> myShopInfo = sellerShopInfo.getMyShopInfo(sellerId, shopName, htmlId);
+        return  myShopInfo.get(0);
+    }
 }

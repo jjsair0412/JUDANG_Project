@@ -15,15 +15,15 @@ if (myShops === null) {
         storeCheckBoxIds.checkBoxId = +a;
 
 
-        $('#myshopsInfoPosition').append('가게 이름 : <div onclick="goThisStoreInfo(\'' + myShops[i].shopName + '\');">' + myShops[i].shopName + '</div>')
-        $('#myshopsInfoPosition').append('가게 카테고리 : <div>' + myShops[i].category + '</div>')
-        $('#myshopsInfoPosition').append('전체 좌석수 : <div>' + myShops[i].totalSeat + '</div>')
-        $('#myshopsInfoPosition').append('현재 좌석수 : <div>' + myShops[i].currentSeat + '</div>')
+        $('#myshopsInfoPosition').append('가게 이름 : <div onclick="goThisStoreInfo(\'' + myShops[i].shopName + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">' + myShops[i].shopName + '</div>')
+        // $('#myshopsInfoPosition').append('가게 카테고리 : <div>' + myShops[i].category + '</div>')
+        // $('#myshopsInfoPosition').append('전체 좌석수 : <div>' + myShops[i].totalSeat + '</div>')
+        // $('#myshopsInfoPosition').append('현재 좌석수 : <div>' + myShops[i].currentSeat + '</div>')
 
         if (myShops[i].open) {
-            $('#myshopsInfoPosition').append('<input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">')
+            $('#myshopsInfoPosition').append('영업 종료 : <input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">')
         } else {
-            $('#myshopsInfoPosition').append('<input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">')
+            $('#myshopsInfoPosition').append('영업 시작 : <input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">')
         }
 
         function openLogic(id, shopName, htmlId) {
@@ -54,9 +54,16 @@ if (myShops === null) {
             });
         }
 
-        function goThisStoreInfo(shopName){
+        function goThisStoreInfo(shopName, htmlId){
+            const number = htmlId-1;
             const newWindow = window.open("about:blank");
-            newWindow.location.href = "/SellerPage/goMyShopInfo/?shopName="+shopName;
+            newWindow.location.href = "/SellerPage/goMyShopInfo/?shopName="+shopName+"&&htmlId="+number;
         }
     }
+}
+
+function saveStore(){
+    const newWindow = window.open("about:blank");
+    let htmlnumber = storeCheckBoxIds.checkBoxId+1;
+    newWindow.location.href = "SellerPage/saveStoreRequest/?htmlnumber="+htmlnumber;
 }
