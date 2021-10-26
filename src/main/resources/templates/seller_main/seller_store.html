@@ -45,7 +45,7 @@
                                     <li><a href="#">내 정보</a></li>
                                     <li><a href="#">가게 메뉴 관리</a></li>
                                     <li><a href="#">가게 리스트</a></li>
-                                    <li><a href="#">가게 등록</a></li>
+                                    <li><a onclick="saveStore()">가게 등록</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="main-title">
-                    <div th:text="${firstShopName}"></div>
+                    <div th:text="${ShopName}"></div>
                 </div>
             </div>
         </div>

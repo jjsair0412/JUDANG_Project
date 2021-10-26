@@ -41,13 +41,26 @@ public class SellerPage {
             }else{ // 한개라도 가게가 있다면
                 List<Shop> shops = myShops.AllmyShops(id);
                 for (Shop firstShop :shops){
-                    model.addAttribute("firstShopName",firstShop.getShopName());
+                    model.addAttribute("ShopName",firstShop.getShopName());
                     model.addAttribute("allSeat",firstShop.getTotalSeat());
                 }
                 model.addAttribute("myShops", shops);
                 return "seller_main/seller_store";
             }
         } else {
+            return "/";
+        }
+    }
+
+    @GetMapping("/saveStoreRequest")
+    public String goSaveStore( // 가게등록하고싶어서 따로 요청을 전송하게 된다면 오는 메서드
+            @SessionAttribute(name = "loginMember", required = false) String id,
+            @SessionAttribute(name = "loginPassword", required = false) String password
+            ){
+        int i = typeCheck(id, password);
+        if(i==1){
+            return "/seller_main/seller_form";
+        }else{
             return "/";
         }
     }
@@ -70,6 +83,7 @@ public class SellerPage {
             @SessionAttribute(name = "loginMember",required = false) String id,
             ShopOpenCloseForm openCloseForm
     ){
+
         return openCloseFunc.OpenCloseFunc(
                 id,
                 openCloseForm.getShopName(),
@@ -100,8 +114,18 @@ public class SellerPage {
     }
 
     @GetMapping("/goMyShopInfo")
-    public String goThisStore(@RequestParam(value = "shopName") String shopName){
+    public String goThisStore(
+            @RequestParam(value = "shopName") String shopName,
+            @RequestParam(value = "htmlId") String htmlId,
+            @SessionAttribute(name = "loginMember", required = false) String id,
+            Model model
+            ){
+        Shop findShopInfo = myShops.getMyShopInfo(id, shopName, htmlId);
+        model.addAttribute("ShopName",findShopInfo.getShopName());
+        model.addAttribute("allSeat",findShopInfo.getTotalSeat());
+        model.addAttribute("myShops",myShops.AllmyShops(id));
 
+        return "seller_main/seller_store";
     }
 
 }

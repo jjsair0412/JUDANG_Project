@@ -14,29 +14,41 @@ import java.util.List;
 @Repository
 @Slf4j
 @RequiredArgsConstructor
-public class SellerShopInfoImpl implements SellerShopInfo{
+public class SellerShopInfoImpl implements SellerShopInfo {
     private final JdbcTemplate template;
 
     @Override
     public List<Shop> getAllMyShops(String sellerId) {
         String sql = "select * from shop where sellerId = ?";
         return template.query(
-                sql, new RowMapper<Shop>() {
-                    @Override
-                    public Shop mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        Shop shops = new Shop();
-                        shops.setSellerId(rs.getString("sellerId"));
-                        shops.setShopName(rs.getString("shopName"));
-                        shops.setCategory(rs.getString("category"));
-                        shops.setTotalSeat(rs.getInt("totalSeat"));
-                        shops.setCurrentSeat(rs.getInt("currentSeat"));
-                        shops.setLatitude(rs.getString("latitude"));
-                        shops.setLongitude(rs.getString("longitude"));
-                        shops.setOpen(rs.getBoolean("open"));
-                        return shops;
-                    }
-                }, sellerId
+                sql, myMapper(), sellerId
         );
+    }
 
+    @Override
+    public List<Shop> getMyShopInfo(String sellerId, String shopName, String htmlId) {
+        String sql = "select * from shop where sellerId = ? and shopName = ? and htmlId = ?";
+        return template.query(
+                sql, myMapper() , sellerId, shopName, htmlId
+        );
+    }
+
+    private RowMapper<Shop> myMapper(){
+        return new RowMapper<Shop>(){
+            @Override
+            public Shop mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Shop shops = new Shop();
+                shops.setSellerId(rs.getString("sellerId"));
+                shops.setShopName(rs.getString("shopName"));
+                shops.setCategory(rs.getString("category"));
+                shops.setTotalSeat(rs.getInt("totalSeat"));
+                shops.setCurrentSeat(rs.getInt("currentSeat"));
+                shops.setLatitude(rs.getString("latitude"));
+                shops.setLongitude(rs.getString("longitude"));
+                shops.setOpen(rs.getBoolean("open"));
+                shops.setHtmlId(rs.getString("htmlId"));
+                return shops;
+            }
+        };
     }
 }

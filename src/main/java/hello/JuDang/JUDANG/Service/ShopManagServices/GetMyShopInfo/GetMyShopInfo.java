@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface GetMyShopInfo {
     List<Shop> AllmyShops(String sellerId);
+    Shop getMyShopInfo(String sellerId, String shopName, String htmlId);
 }
