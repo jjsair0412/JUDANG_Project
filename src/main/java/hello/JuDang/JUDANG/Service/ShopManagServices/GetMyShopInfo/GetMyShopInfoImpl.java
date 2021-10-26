@@ -15,7 +15,7 @@ public class GetMyShopInfoImpl implements GetMyShopInfo{
 
     private final SellerShopInfo sellerShopInfo;
     @Override
-    public List<Shop> myShops(String sellerId) {
+    public List<Shop> AllmyShops(String sellerId) {
         List<Shop> allMyShops = sellerShopInfo.getAllMyShops(sellerId);
         if(allMyShops.size()==0){
             return null;

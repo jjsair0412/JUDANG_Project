@@ -25,6 +25,7 @@
     />
     <script th:src="@{/css/_seller_main/jquery-1.12.3.js}"></script>
     <script th:src="@{/css/_seller_main/seller_main.js}"></script>
+
 </head>
 <body>
 <header>
@@ -58,7 +59,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="main-title">
-                    가게 이름
+                    <div th:text="${firstShopName}"></div>
                 </div>
             </div>
         </div>
@@ -66,9 +67,9 @@
         <div class="row">
             <div class="col-2">
                 <form action="#" method="#">
-                    <input class="form-input" type="number" placeholder="총 좌석 수" required>
-                    <input class="form-input" type="number" placeholder="남은 좌석 수" required>
-                    <input class="form-input" type="number" placeholder="대기 테이블 수" required>
+                    총 좌석 수 : <p class="form-input" type="text" th:text="${allSeat}"></p>
+                    남은 좌석 수 : <p class="form-input" type="text"></p>
+                    대기 테이블 수 : <p class="form-input" type="text"></p>
                     <button type="button" class="btn">Open</button>
                     <button type="button" class="btn-2">Closed</button>
                 </form>

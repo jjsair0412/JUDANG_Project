@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -33,13 +35,16 @@ public class SellerPage {
     ) {
         int i = typeCheck(id, password);
         if (i == 1) { // 판매자일 경우
-            if(myShops.myShops(id) == null){ // 가게를 하나도 갖고있지 않다면
-                model.addAttribute("shop",new Shop());
-                model.addAttribute("myShops", myShops.myShops(id));
+            model.addAttribute("shop",new Shop());
+            if(myShops.AllmyShops(id) == null){ // 가게를 하나도 갖고있지 않다면
                 return "seller_main/seller_form";
             }else{ // 한개라도 가게가 있다면
-                model.addAttribute("shop",new Shop());
-                model.addAttribute("myShops", myShops.myShops(id));
+                List<Shop> shops = myShops.AllmyShops(id);
+                for (Shop firstShop :shops){
+                    model.addAttribute("firstShopName",firstShop.getShopName());
+                    model.addAttribute("allSeat",firstShop.getTotalSeat());
+                }
+                model.addAttribute("myShops", shops);
                 return "seller_main/seller_store";
             }
         } else {
@@ -92,6 +97,11 @@ public class SellerPage {
         shop.setOpen(false);
 
         return ShopService.shopRegister(shop);
+    }
+
+    @GetMapping("/goMyShopInfo")
+    public String goThisStore(@RequestParam(value = "shopName") String shopName){
+
     }
 
 }
