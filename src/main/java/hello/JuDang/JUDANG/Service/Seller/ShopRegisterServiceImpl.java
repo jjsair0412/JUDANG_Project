@@ -28,7 +28,6 @@ public class ShopRegisterServiceImpl implements ShopRegisterService{
     public Optional<List<Shop>> findByName(String name) {
         List<Shop> shopList = shopRepository.findByName(name);
         Optional<List<Shop>> shops = Optional.ofNullable(shopList);
-
         if(shops.isPresent()){
             return shops;
         }else return null;

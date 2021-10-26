@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,8 +24,8 @@ public class MenuManageRepositoryImpl implements MenuManageRepository{
     }
 
     @Override
-    public Optional<Menu> findAllMenu(Shop shop) {
-        return Optional.empty();
+    public List<Menu> findAllMenu(String sellerId) {
+        return null;
     }
 
     @Override
