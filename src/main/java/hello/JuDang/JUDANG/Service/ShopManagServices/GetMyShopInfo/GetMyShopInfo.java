@@ -5,5 +5,5 @@ import hello.JuDang.JUDANG.Domain.Shop;
 import java.util.List;
 
 public interface GetMyShopInfo {
-    List<Shop> myShops(String sellerId);
+    List<Shop> AllmyShops(String sellerId);
 }

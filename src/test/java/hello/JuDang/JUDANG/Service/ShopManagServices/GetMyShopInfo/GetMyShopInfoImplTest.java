@@ -17,7 +17,7 @@ class GetMyShopInfoImplTest {
 
     @Test
     void 가게가_없을경우_로직체크(){
-        List<Shop> nostore = shopInfoService.myShops("난가게없다");
+        List<Shop> nostore = shopInfoService.AllmyShops("난가게없다");
         assertThat(nostore).isEqualTo(null);
     }
 }
