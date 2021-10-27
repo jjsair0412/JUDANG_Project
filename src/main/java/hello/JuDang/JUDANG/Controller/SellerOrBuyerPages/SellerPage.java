@@ -55,10 +55,13 @@ public class SellerPage {
     @GetMapping("/saveStoreRequest")
     public String goSaveStore( // 가게등록하고싶어서 따로 요청을 전송하게 된다면 오는 메서드
             @SessionAttribute(name = "loginMember", required = false) String id,
-            @SessionAttribute(name = "loginPassword", required = false) String password
+            @SessionAttribute(name = "loginPassword", required = false) String password,
+                               @RequestParam(value = "htmlnumber", required = false) String htmlId,
+                               Model model
             ){
         int i = typeCheck(id, password);
         if(i==1){
+            model.addAttribute("htmlId",htmlId);
             return "/seller_main/seller_form";
         }else{
             return "/";
