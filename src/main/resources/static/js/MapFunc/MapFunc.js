@@ -24,7 +24,11 @@ function storeSave() {
     data.shopName = $('#storeName').val();
     data.totalSeat = $('#allSeat').val();
     data.category = $('#category').val();
-    data.htmlId = storeCheckBoxIds.checkBoxId;
+    if(getId==null){
+        data.htmlId = storeCheckBoxIds.checkBoxId;
+    }else{
+        data.htmlId = getId;
+    }
 
     $.ajax({
         type: "post",
@@ -33,7 +37,7 @@ function storeSave() {
         success: function (result) {
             if (result == 1) {
                 alert("가게 등록완료")
-                location.reload();
+                location.href="/SellerPage";
             } else {
                 alert("가게 등록실패")
             }

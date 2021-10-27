@@ -5,7 +5,7 @@ let storeCheckBoxIds = { // 체크박스에 동적으로 할당시킬 id값들 �
 let a = 0;
 
 if (myShops === null) {
-    $('#myshopsInfoPosition').append('<div>가게가 없어요. 먼저 등록해주세요.</div>')
+
 } else {
     $('#myshopsInfoPosition').empty();
     for (let i = 0; i < myShops.length; i++) {
@@ -21,9 +21,9 @@ if (myShops === null) {
         // $('#myshopsInfoPosition').append('현재 좌석수 : <div>' + myShops[i].currentSeat + '</div>')
 
         if (myShops[i].open) {
-            $('#myshopsInfoPosition').append('영업 종료 : <input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">')
+            $('#myshopsInfoPosition').append('영업 종료 : <input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');"></br>')
         } else {
-            $('#myshopsInfoPosition').append('영업 시작 : <input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">')
+            $('#myshopsInfoPosition').append('영업 시작 : <input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');"></br>')
         }
 
         function openLogic(id, shopName, htmlId) {
@@ -64,6 +64,6 @@ if (myShops === null) {
 
 function saveStore(){
     const newWindow = window.open("about:blank");
-    let htmlnumber = storeCheckBoxIds.checkBoxId+1;
+    let htmlnumber = storeCheckBoxIds.checkBoxId;
     newWindow.location.href = "SellerPage/saveStoreRequest/?htmlnumber="+htmlnumber;
 }
