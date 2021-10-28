@@ -64,6 +64,6 @@ if (myShops === null) {
 
 function saveStore(){
     const newWindow = window.open("about:blank");
-    let htmlnumber = storeCheckBoxIds.checkBoxId;
+    const htmlnumber = storeCheckBoxIds.checkBoxId;
     newWindow.location.href = "SellerPage/saveStoreRequest/?htmlnumber="+htmlnumber;
 }
