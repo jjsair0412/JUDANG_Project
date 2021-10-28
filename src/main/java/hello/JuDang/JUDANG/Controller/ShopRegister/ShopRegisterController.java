@@ -2,8 +2,7 @@ package hello.JuDang.JUDANG.Controller.ShopRegister;
 
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.Shop;
-import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
-import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
+import hello.JuDang.JUDANG.Service.Seller.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/shopRegister")
 @RequiredArgsConstructor
 public class ShopRegisterController {
-    private final ShopRegisterService shopRegister;
+    private final ShopService shopRegister;
 
     @GetMapping("")
     public String createRegister(Model model){

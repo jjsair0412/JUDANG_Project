@@ -7,7 +7,6 @@ import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Service.ShopManagServices.GetMyShopInfo.GetMyShopInfo;
 import hello.JuDang.JUDANG.Service.LoginTypeCheck;
-import hello.JuDang.JUDANG.Service.Seller.ShopRegisterService;
 import hello.JuDang.JUDANG.Service.ShopManagServices.OpenCloseFunc.OpenCloseFunc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/SellerPage")
 public class SellerPage {
-    private final ShopRegisterService ShopService;
+    private final hello.JuDang.JUDANG.Service.Seller.ShopService ShopService;
     private final LoginTypeCheck typeCheck;
     private final GetMyShopInfo myShops;
     private final OpenCloseFunc openCloseFunc;
