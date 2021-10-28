@@ -5,7 +5,7 @@ import hello.JuDang.JUDANG.Domain.Shop;
 import java.util.List;
 import java.util.Optional;
 
-public interface ShopRegisterService {
+public interface ShopService {
     int shopRegister(Shop shop);
     List<Shop> findAllShop();
     Optional<List<Shop>> findByName(String name);

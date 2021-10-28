@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ShopRegisterServiceImpl implements ShopRegisterService{
+public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
 
     @Override
