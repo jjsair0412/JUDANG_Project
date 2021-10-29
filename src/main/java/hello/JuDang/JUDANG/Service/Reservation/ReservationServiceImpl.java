@@ -1,15 +1,21 @@
 package hello.JuDang.JUDANG.Service.Reservation;
 
+import hello.JuDang.JUDANG.Domain.Reservation;
+import hello.JuDang.JUDANG.Repository.Reservation.ReservationRepository;
+import hello.JuDang.JUDANG.Service.Seller.ShopService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ReservationServiceImpl implements ReservationService{
-    @Override
-    public int reservation(String buyerId, String SellerId,int total,int current) {
-        if((total - current)==0){
-            return 0;
-        }
+    private final ShopService shopService;
+    private final ReservationRepository reservationRepository;
 
+    @Override
+    public int reservation(Reservation reservation) {
+
+        reservationRepository.insert(reservation);
         return 0;
     }
 }
