@@ -37,14 +37,10 @@ public class SellerJoinRepository implements MemberRepository {
         return memberList.stream().findAny();
     }
 
-    @Override // update구문 sql 이상함 where조건이 없는디 ?
+    @Override
     public int update(Member member) {
-        int result = jdbcTemplate.update("UPDATE seller SET id=?,password=?,name=?,Email=?,age=?"
-                , memberRowMapper()
-                , member.getId()
-                , member.getPassword()
-                , member.getName()
-                , member.getEmail());
+        int result = jdbcTemplate.update("UPDATE seller SET password=? WHERE id=?",
+                member.getPassword(),member.getId());
         return result;
     }
 

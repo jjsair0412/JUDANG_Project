@@ -25,5 +25,9 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         return result;
     }
 
-
+    @Override
+    public int update(Reservation reservation) {
+        int result = jdbcTemplate.update("UPDATE reservation SET status = 1 WHERE buyerId = ?", reservation.getBuyerId());
+        return result;
+    }
 }

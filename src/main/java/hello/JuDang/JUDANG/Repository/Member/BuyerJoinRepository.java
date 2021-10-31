@@ -44,8 +44,8 @@ public class BuyerJoinRepository implements MemberRepository {
 
     @Override
     public int update(Member member) {
-        int result = jdbcTemplate.update("UPDATE buyer SET password=?"
-                ,member.getPassword());
+        int result = jdbcTemplate.update("UPDATE buyer SET password=? WHERE id = ?"
+                ,member.getPassword(),member.getId());
         return result;
     }
 

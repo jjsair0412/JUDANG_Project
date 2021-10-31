@@ -17,5 +17,8 @@ public class ReservationServiceImpl implements ReservationService{
         return reservationRepository.insert(reservation);
     }
 
-
+    @Override
+    public int acceptReservation(Reservation reservation) {
+        return reservationRepository.update(reservation);
+    }
 }

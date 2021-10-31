@@ -4,4 +4,6 @@ import hello.JuDang.JUDANG.Domain.Reservation;
 
 public interface ReservationService {
     int makeReservation(Reservation reservation);
+    int acceptReservation(Reservation reservation);
+
 }
