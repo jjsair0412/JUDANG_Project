@@ -13,9 +13,9 @@ public class ReservationServiceImpl implements ReservationService{
     private final ReservationRepository reservationRepository;
 
     @Override
-    public int reservation(Reservation reservation) {
-
-        reservationRepository.insert(reservation);
-        return 0;
+    public int makeReservation(Reservation reservation) {
+        return reservationRepository.insert(reservation);
     }
+
+
 }
