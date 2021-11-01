@@ -19,6 +19,7 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public int acceptReservation(Reservation reservation) {
+
         return reservationRepository.update(reservation);
     }
 }
