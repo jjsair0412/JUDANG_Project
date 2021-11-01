@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>웹소켓 테스트용</title>
+</head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<body>
+가게id<input type="text" id="shopId">
+구매자id<input type="text" id="buyerId">
+구매자이름<input type="text" id="buyerName">
+예약인원<input type="text" id="numberOfPeople">
+휴대폰번호<input type="text" id="phoneNumber">
+가게이름<input type="text" id="shopName">
+<input type="button" onclick="sendReservation()">예약전송</input>
+<script>
+  function sendReservation(){
+      let resData = {
+          shopId : $('#shopId').val(),
+          buyerId : $('#buyerId').val(),
+          buyerName : $('#buyerName').val(),
+          numberOfPeople : $('#numberOfPeople').val(),
+          phoneNumber : $('#phoneNumber').val(),
+          shopName :$('#shopName').val()
+      }
+
+      $.ajax({
+          type: "post",
+          url: "/Reservation/goReser",
+          data: resData,
+          success: function (result) {
+              alert(result);
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert("통신 실패.")
+          }
+      });
+  }
+</script>
+</body>
+</html>

@@ -1,15 +1,15 @@
-package hello.JuDang.JUDANG.Domain;
+package hello.JuDang.JUDANG.Controller.ControllerDomain;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Reservation {
+public class ReservationForm {
     private String shopId;
     private String buyerId;
     private String buyerName;
-    private int numberOfPeople;
+    private String numberOfPeople;
     private String phoneNumber;
     private String shopName;
 }
