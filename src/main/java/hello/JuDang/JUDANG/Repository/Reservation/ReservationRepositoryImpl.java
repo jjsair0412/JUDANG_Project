@@ -22,12 +22,12 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public int insert(Reservation reservation) {
         int result = jdbcTemplate.update("INSERT INTO reservation(shopId,shopName,buyerId,buyerName,numberOfPeople,phoneNumber) values (?,?,?,?,?,?,?)",
-                reservation.getShopId(),
+                reservation.getShopNum(),
+                reservation.getShopName(),
                 reservation.getBuyerId(),
                 reservation.getBuyerName(),
                 reservation.getNumberOfPeople(),
-                reservation.getPhoneNumber(),
-                reservation.getShopName());
+                reservation.getPhoneNumber());
         return result;
     }
 
