@@ -1,9 +1,12 @@
 package hello.JuDang.JUDANG.Service.Reservation;
 
+import hello.JuDang.JUDANG.Controller.ControllerDomain.ReservationForm;
 import hello.JuDang.JUDANG.Domain.Reservation;
 
-public interface ReservationService {
-    int makeReservation(Reservation reservation);
-    int acceptReservation(Reservation reservation);
+import java.util.List;
 
+public interface ReservationService {
+    int makeReservation(ReservationForm reservation) throws Exception;
+    int acceptReservation(Reservation reservation);
+    List<Reservation> selectAllReservation(Reservation reservation); // 전체 예약 가져오기
 }
