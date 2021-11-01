@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Data
 public class Shop {
+    private int shopNum;
     private String sellerId;
     private String shopName;
     private String category;

@@ -1,13 +1,15 @@
 package hello.JuDang.JUDANG.Controller.Reservation;
 
-import hello.JuDang.JUDANG.Controller.ControllerDomain.ReservationForm;
 import hello.JuDang.JUDANG.Domain.Reservation;
 import hello.JuDang.JUDANG.Service.Reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +24,7 @@ public class ReservationController {
     @GetMapping
     public String goReservation(Model model){
         model.addAttribute("reservation",new Reservation());
-        return "TestReservation/TestPage1ReservSend";
+        return "";
     }
 
     @PostMapping
@@ -42,11 +44,5 @@ public class ReservationController {
 
         return "redirect:";
     }
-    // 아래는 테스트용
-    @PostMapping("/goReser")
-    @ResponseBody
-    public int makeReservation(
-            ReservationForm reservation) throws Exception{
-        return reservationService.makeReservation(reservation);
-    }
+
 }

@@ -17,6 +17,7 @@ import java.util.Optional;
 public class ShopRepositoryImpl implements ShopRepository{
     private JdbcTemplate jdbcTemplate;
 
+
     public ShopRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -37,6 +38,13 @@ public class ShopRepositoryImpl implements ShopRepository{
                     ps.setString(9,shop.getHtmlId());
                 });
         return result;
+    }
+
+    @Override
+    public Shop findById(String shopId) {
+        List<Shop> shopList = jdbcTemplate.query("SELECT * FROM shop WHERE id=?", shopRowMapper());
+        Shop shop = shopList.get(0);
+        return shop;
     }
 
     @Override
@@ -83,6 +91,7 @@ public class ShopRepositoryImpl implements ShopRepository{
             @Override
             public Shop mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Shop shop = new Shop();
+                shop.setShopNum(rs.getInt("shopNum"));
                 shop.setSellerId(rs.getString("sellerId"));
                 shop.setShopName(rs.getString("shopName"));
                 shop.setCategory(rs.getString("category"));

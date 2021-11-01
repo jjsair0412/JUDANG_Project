@@ -6,7 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Reservation {
-    private String shopId;
+    private int shopNum;
+    private String shopName;
     private String buyerId;
     private String buyerName;
     private int numberOfPeople;
