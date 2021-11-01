@@ -1,6 +1,8 @@
 package hello.JuDang.JUDANG.Controller.Reservation;
 
 import hello.JuDang.JUDANG.Domain.Reservation;
+import hello.JuDang.JUDANG.Domain.Shop;
+import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
 import hello.JuDang.JUDANG.Service.Reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +22,19 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/Reservation")
 public class ReservationController {
     private final ReservationService reservationService;
-
+    private final ShopRepository shopRepository;
     @GetMapping
-    public String goReservation(Model model){
-        model.addAttribute("reservation",new Reservation());
+    public String goReservation(Model model, HttpSession session){
+        Shop shop = shopRepository.findById((int)session.getAttribute("shopNum"));
+        Reservation reservation = new Reservation();
+        reservation.setShopNum(shop.getShopNum());
+        reservation.setShopName(shop.getShopName());
+        model.addAttribute("reservation",reservation);
         return "";
     }
 
     @PostMapping
-    public String makeReservation(@ModelAttribute Reservation reservation, RedirectAttributes redirectAttributes, HttpSession session){
-        reservation.setShopId((String)session.getAttribute("shopId"));
+    public String makeReservation(@ModelAttribute Reservation reservation, RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
         int result = reservationService.makeReservation(reservation);
         redirectAttributes.addAttribute("buyerId",reservation.getBuyerId());
         if(result<1){
@@ -41,8 +46,6 @@ public class ReservationController {
     @GetMapping("/accept")
     public String acceptReservation(@ModelAttribute Reservation reservation){
         int result = reservationService.acceptReservation(reservation);
-
         return "redirect:";
     }
-
 }

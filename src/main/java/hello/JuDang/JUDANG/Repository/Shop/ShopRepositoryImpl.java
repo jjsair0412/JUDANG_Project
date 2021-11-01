@@ -41,7 +41,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     }
 
     @Override
-    public Shop findById(String shopId) {
+    public Shop findById(int shopNum) {
         List<Shop> shopList = jdbcTemplate.query("SELECT * FROM shop WHERE id=?", shopRowMapper());
         Shop shop = shopList.get(0);
         return shop;
@@ -82,7 +82,7 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public int delete(Shop shop) {
-        return jdbcTemplate.update("delete from shop where sellerId = ?", shop.getSellerId());
+        return jdbcTemplate.update("delete from shop where sellerId = ? AND shopNum=?", shop.getSellerId(),shop.getShopNum());
     }
 
 
@@ -97,6 +97,7 @@ public class ShopRepositoryImpl implements ShopRepository{
                 shop.setCategory(rs.getString("category"));
                 shop.setTotalSeat(rs.getInt("totalSeat"));
                 shop.setCurrentSeat(rs.getInt("currentSeat"));
+                shop.setLeftSeat(rs.getInt("leftSeat"));
                 shop.setLatitude(rs.getString("latitude"));
                 shop.setLongitude(rs.getString("longitude"));
                 shop.setOpen(rs.getBoolean("open"));

@@ -10,7 +10,7 @@ public interface ShopRepository {
     List<Shop> findAllShop();
     List<Shop> findByName(String name);
     List<Shop> findByCategory(String category);
-    Shop findById(String shopId);
+    Shop findById(int shopNum);
     int update(Shop shop);
     int delete(Shop shop);
 }

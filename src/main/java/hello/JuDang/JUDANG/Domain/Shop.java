@@ -12,6 +12,7 @@ public class Shop {
     private String category;
     private int totalSeat;
     private int currentSeat;
+    private int leftSeat;
     private String latitude;
     private String longitude;
     private boolean open;

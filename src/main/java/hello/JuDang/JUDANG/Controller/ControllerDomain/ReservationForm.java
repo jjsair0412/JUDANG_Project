@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReservationForm {
-    private String shopId;
+    private int shopNum;
     private String buyerId;
     private String buyerName;
     private String numberOfPeople;
