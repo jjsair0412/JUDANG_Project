@@ -16,8 +16,9 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public int insert(Reservation reservation) {
-        int result = jdbcTemplate.update("INSERT INTO reservation(shopId,buyerId,buyerName,numberOfPeople,phoneNumber) values (?,?,?,?,?,?)",
+        int result = jdbcTemplate.update("INSERT INTO reservation(shopId,shopName,buyerId,buyerName,numberOfPeople,phoneNumber) values (?,?,?,?,?,?,?)",
                 reservation.getShopNum(),
+                reservation.getShopName(),
                 reservation.getBuyerId(),
                 reservation.getBuyerName(),
                 reservation.getNumberOfPeople(),
