@@ -28,7 +28,7 @@ public class TestController {
     @PostMapping("/goReser")
     @ResponseBody
     public int makeReservation(
-            ReservationForm reservation) throws Exception{
+            Reservation reservation) throws Exception{
         return reservationService.makeReservation(reservation);
     }
 }
