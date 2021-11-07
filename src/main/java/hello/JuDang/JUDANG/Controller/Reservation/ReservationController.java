@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -23,6 +22,7 @@ import javax.servlet.http.HttpSession;
 public class ReservationController {
     private final ReservationService reservationService;
     private final ShopRepository shopRepository;
+
     @GetMapping
     public String goReservation(Model model, HttpSession session){
         Shop shop = shopRepository.findById((int)session.getAttribute("shopNum"));
@@ -48,4 +48,5 @@ public class ReservationController {
         int result = reservationService.acceptReservation(reservation);
         return "redirect:";
     }
+
 }

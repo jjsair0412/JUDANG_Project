@@ -1,6 +1,5 @@
 package hello.JuDang.JUDANG.Service.Reservation;
 
-import hello.JuDang.JUDANG.ConfigFiles.WebSocket.SocketHandler;
 import hello.JuDang.JUDANG.Controller.ControllerDomain.ReservationForm;
 import hello.JuDang.JUDANG.Domain.Reservation;
 import hello.JuDang.JUDANG.Domain.Shop;
@@ -16,12 +15,10 @@ import java.util.List;
 public class ReservationServiceImpl implements ReservationService{
     private final ShopRepository shopRepository;
     private final ReservationRepository reservationRepository;
-    private final SocketHandler socketHandler;
 
     @Override
     public int makeReservation(Reservation reservation) throws Exception {
         int reserveResult = reservationRepository.insert(reservation); // 예약
-        socketHandler.shopReservationFind(reservationRepository.selectStoreReservation(reservation)); // 예약결과 뿌려줌
         return reserveResult;
     }
 

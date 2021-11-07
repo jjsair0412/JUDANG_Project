@@ -21,7 +21,8 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public int insert(Reservation reservation) {
-        int result = jdbcTemplate.update("INSERT INTO reservation(shopId,shopName,buyerId,buyerName,numberOfPeople,phoneNumber) values (?,?,?,?,?,?)",
+        int result = jdbcTemplate.update("INSERT INTO reservation(shopNum,shopName,buyerId,buyerName,numberOfPeople,phoneNumber) values (?,?,?,?,?,?)",
+                reservation.getShopNum(),
                 reservation.getShopName(),
                 reservation.getBuyerId(),
                 reservation.getBuyerName(),
@@ -38,21 +39,22 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public List<Reservation> selectStoreReservation(Reservation reservation) {
-        String sql = "select * from reservation where shopId = ? and shopName = ?";
+        String sql = "select * from reservation where shopNum = ? and shopName = ?";
         return jdbcTemplate.query(sql,
                 new RowMapper<Reservation>() {
                     @Override
                     public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Reservation resva = new Reservation();
-                        resva.setShopId(rs.getString("shopId"));
+                        resva.setShopNum(rs.getInt("shopNum"));
                         resva.setBuyerId(rs.getString("buyerId"));
                         resva.setBuyerName(rs.getString("buyerName"));
                         resva.setPhoneNumber(rs.getString("phoneNumber"));
                         resva.setNumberOfPeople(rs.getInt("numberOfPeople"));
                         resva.setShopName(rs.getString("shopName"));
+                        resva.setStatus(rs.getBoolean("status"));
                         return resva;
                     }
-                },reservation.getShopId(), reservation.getShopName()
+                },reservation.getShopNum(), reservation.getShopName()
         );
     }
 }
