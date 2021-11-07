@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Reservation {
-    private int shopNum;
-    private String shopName;
-    private String buyerId;
-    private String buyerName;
-    private int numberOfPeople;
-    private String phoneNumber;
-    private String shopName;
+    private int shopNum; // 가게 ID Auto Increasement
+    private String shopName; // 가게 이름
+    private String buyerId; // 구매자 ID
+    private String buyerName; // 구매자 이름
+    private int numberOfPeople; // 예약 인원
+    private String phoneNumber; // 연락처
+    private boolean status; // 예약 수락 여부
 }
