@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
+
 
 @Repository
 @Slf4j
@@ -53,6 +53,15 @@ public class ShopRepositoryImpl implements ShopRepository{
         if(shopList.isEmpty()){
             log.info("가게 정보 없음");
         }
+        return shopList;
+    }
+
+    @Override
+    public List<Shop> findNearShop(long lat, long lon) {
+        List<Shop> shopList = jdbcTemplate.query
+                ("select *,(6371*acos(cos(radians(?))*cos(radians(LATITUDE))*cos(radians(LONGTITUDE)-radians(?)) + sin(radians(?))*sin(radians(LATITUDE)))) AS distance from shop having distance <= 0.3",
+                shopRowMapper(), lat,lon,lat);
+
         return shopList;
     }
 
