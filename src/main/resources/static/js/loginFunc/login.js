@@ -29,6 +29,7 @@ window.goSellerPageOrBuyerPage = function (result) {
             let longitude;
             latitude = pos.coords.latitude;
             longitude = pos.coords.longitude;
+
             const newWindow = window.open("about:blank");
             newWindow.location.href = "/BuyerPage?lat="+latitude+"&lon="+longitude
         });
