@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface ShopService {
     int shopRegister(Shop shop);
     List<Shop> findAllShop();
-    Optional<List<Shop>> findByName(String name);
-    Optional<List<Shop>> findByCategory(String category);
+    List<Shop> findByName(String name);
+    List<Shop> findByCategory(String category);
     List<Shop> findNearShop(long lat,long lon);
     int modifyShop(Shop shop);
     int deleteShop(Shop shop);
