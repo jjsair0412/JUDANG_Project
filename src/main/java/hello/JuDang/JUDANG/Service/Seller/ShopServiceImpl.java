@@ -25,7 +25,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Shop> findNearShop(long lat, long lon) {
+    public List<Shop> findNearShop(String lat, String lon) {
         return shopRepository.findNearShop(lat, lon);
     }
 
