@@ -21,11 +21,19 @@ $('#loginFuncJs').click(function () {
 
 window.goSellerPageOrBuyerPage = function (result) {
 
-    const newWindow = window.open("about:blank");
+
 
     if (result === "buyer") {
-        newWindow.location.href = "/BuyerPage"
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            let latitude;
+            let longitude;
+            latitude = pos.coords.latitude;
+            longitude = pos.coords.longitude;
+            const newWindow = window.open("about:blank");
+            newWindow.location.href = "/BuyerPage?lat="+latitude+"&lon="+longitude
+        });
     } else if (result === "seller") {
+        const newWindow = window.open("about:blank");
         newWindow.location.href = "/SellerPage"
     } else {
         return null;
