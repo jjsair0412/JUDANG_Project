@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,11 +7,11 @@
     <title>구매자 메인</title>
     <link
       rel="stylesheet"
-      href="/JUDANG_Project/src/main/resources/static/css/_buyer/buyer_main.css"
+      th:href="@{/css/_buyer/buyer_main.css}"
     />
     <link
       rel="stylesheet"
-      href="/JUDANG_Project/src/main/resources/static/css/grid.mim.css"
+      th:href="@{/css/grid.mim.css}"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
@@ -21,8 +21,8 @@
       src="https://kit.fontawesome.com/9175f8db53.js"
       crossorigin="anonymous"
     ></script>
-    <script src="/JUDANG_Project/src/main/resources/static/css/_seller_main/jquery-1.12.3.js"></script>
-    <script src="/JUDANG_Project/src/main/resources/static/css/_seller_main/seller_main.js"></script>
+    <script th:src="@{/css/_seller_main/jquery-1.12.3.js}"></script>
+    <script th:src="@{/css/_seller_main/seller_main.js}"></script>
   </head>
   <body>
     <header>
@@ -64,10 +64,12 @@
               </div>
               <div class="row">
                   <div class="col-12">
-                      <div class="store-map">지도</div>
+                      <div id="map" class="store-map">지도</div>
                   </div>
               </div>
           </div>
       </main>
+    <script th:src="@{/js/MapFunc/BuyerMapFunc.js}"></script>
+    <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
   </body>
 </html>
