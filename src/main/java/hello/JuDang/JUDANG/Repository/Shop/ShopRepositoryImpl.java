@@ -57,7 +57,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     }
 
     @Override
-    public List<Shop> findNearShop(long lat, long lon) {
+    public List<Shop> findNearShop(String lat, String lon) {
         List<Shop> shopList = jdbcTemplate.query
                 ("select *,(6371*acos(cos(radians(?))*cos(radians(LATITUDE))*cos(radians(LONGTITUDE)-radians(?)) + sin(radians(?))*sin(radians(LATITUDE)))) AS distance from shop having distance <= 0.3",
                 shopRowMapper(), lat,lon,lat);

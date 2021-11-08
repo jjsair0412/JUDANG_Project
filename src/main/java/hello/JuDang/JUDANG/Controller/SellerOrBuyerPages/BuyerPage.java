@@ -25,10 +25,7 @@ public class BuyerPage {
     public String goBuyerPage(Model model,
                               @RequestParam String lat,@RequestParam String lon) {
         //현재 위치기반 지도 띄우기
-        Long latitude = Long.parseLong(lat);// long 변환
-        Long longitude = Long.parseLong(lon);// long 변환
-
-        List<Shop> nearShops = shopService.findNearShop(latitude, longitude);
+        List<Shop> nearShops = shopService.findNearShop(lat, lon);
         model.addAttribute("nearShops",nearShops);
         return "/buyer/buyer_main";
     }
