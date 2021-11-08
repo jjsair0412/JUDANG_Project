@@ -4,6 +4,7 @@ import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Service.Seller.ShopService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.hql.internal.classic.Parser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,12 @@ public class BuyerPage {
 
     @GetMapping
     public String goBuyerPage(Model model,
-                              @RequestParam long lat,@RequestParam long lon) {
+                              @RequestParam String lat,@RequestParam String lon) {
         //현재 위치기반 지도 띄우기
-        List<Shop> nearShops = shopService.findNearShop(lat, lon);
+        Long latitude = Long.parseLong(lat);// long 변환
+        Long longitude = Long.parseLong(lon);// long 변환
+
+        List<Shop> nearShops = shopService.findNearShop(latitude, longitude);
         model.addAttribute("nearShops",nearShops);
         return "/buyer/buyer_main";
     }

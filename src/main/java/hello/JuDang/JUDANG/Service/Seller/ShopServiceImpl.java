@@ -30,22 +30,14 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Optional<List<Shop>> findByName(String name) {
-        List<Shop> shopList = shopRepository.findByName(name);
-        Optional<List<Shop>> shops = Optional.ofNullable(shopList);
-        if(shops.isPresent()){
-            return shops;
-        }else return null;
+    public List<Shop> findByName(String name) {
+        return shopRepository.findByName(name);
+
     }
 
     @Override
-    public Optional<List<Shop>> findByCategory(String category) {
-        List<Shop> shopList = shopRepository.findByCategory(category);
-        Optional<List<Shop>> shops = Optional.ofNullable(shopList);
-
-        if(shops.isPresent()){
-            return shops;
-        }else return null;
+    public List<Shop> findByCategory(String category) {
+        return shopRepository.findByCategory(category);
     }
 
     @Override
