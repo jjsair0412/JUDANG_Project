@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -23,24 +22,24 @@ public class BuyerPage {
 
     @GetMapping
     public String goBuyerPage(Model model,
-                              @RequestParam String lat,@RequestParam String lon) {
+                              @RequestParam long lat,@RequestParam long lon) {
         //현재 위치기반 지도 띄우기
-        log.info("lat={},long={}",lat,lon);
-
-        return "";
+        List<Shop> nearShops = shopService.findNearShop(lat, lon);
+        model.addAttribute("nearShops",nearShops);
+        return "/buyer/buyer_main";
     }
 
     @PostMapping("/search/name")
-    public String searchByName(@RequestParam String searchWord){
-        Optional<List<Shop>> shops = shopService.findByName(searchWord);
-
-        return "";
+    public String searchByName(@RequestParam String searchWord,Model model){
+        List<Shop> shops = shopService.findByName(searchWord);
+        model.addAttribute("searchByNameList",shops);
+        return "/buyer/buyer_main";
     }
 
     @PostMapping("/search/category")
-    public String searchByCategory(@RequestParam String searchWord){
-        Optional<List<Shop>> shops = shopService.findByCategory(searchWord);
-
-        return "";
+    public String searchByCategory(@RequestParam String searchWord,Model model){
+        List<Shop> shops = shopService.findByCategory(searchWord);
+        model.addAttribute("searchByCategoryList",shops);
+        return "/buyer/buyer_main";
     }
 }
