@@ -101,7 +101,6 @@ public class SellerPage {
             ShopForm shopForm) {
 
         Shop shop = new Shop();
-
         shop.setHtmlId(shopForm.getHtmlId());
         shop.setCategory(shopForm.getCategory());
         shop.setSellerId(id);
