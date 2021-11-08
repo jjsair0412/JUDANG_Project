@@ -5,6 +5,7 @@ import hello.JuDang.JUDANG.Service.Seller.ShopService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,11 @@ public class BuyerPage {
     private final ShopService shopService;
 
     @GetMapping
-    public String goBuyerPage() {
+    public String goBuyerPage(Model model,
+                              @RequestParam long lat,@RequestParam long lon) {
         //현재 위치기반 지도 띄우기
+
+
         return "";
     }
 
