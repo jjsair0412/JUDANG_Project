@@ -23,9 +23,9 @@ public class BuyerPage {
 
     @GetMapping
     public String goBuyerPage(Model model,
-                              @RequestParam long lat,@RequestParam long lon) {
+                              @RequestParam String lat,@RequestParam String lon) {
         //현재 위치기반 지도 띄우기
-
+        log.info("lat={},long={}",lat,lon);
 
         return "";
     }
