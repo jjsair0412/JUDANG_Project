@@ -10,6 +10,7 @@ public interface ShopService {
     List<Shop> findAllShop();
     Optional<List<Shop>> findByName(String name);
     Optional<List<Shop>> findByCategory(String category);
+    List<Shop> findNearShop(long lat,long lon);
     int modifyShop(Shop shop);
     int deleteShop(Shop shop);
 

@@ -25,6 +25,11 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    public List<Shop> findNearShop(long lat, long lon) {
+        return shopRepository.findNearShop(lat, lon);
+    }
+
+    @Override
     public Optional<List<Shop>> findByName(String name) {
         List<Shop> shopList = shopRepository.findByName(name);
         Optional<List<Shop>> shops = Optional.ofNullable(shopList);

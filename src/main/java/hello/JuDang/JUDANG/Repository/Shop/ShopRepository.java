@@ -10,6 +10,7 @@ public interface ShopRepository {
     List<Shop> findAllShop();
     List<Shop> findByName(String name);
     List<Shop> findByCategory(String category);
+    List<Shop> findNearShop(long lat,long lon);
     Shop findById(int shopNum);
     int update(Shop shop);
     int delete(Shop shop);
