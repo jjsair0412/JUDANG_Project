@@ -70,6 +70,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public List<Shop> findByName(String name) {
         List<Shop> shopList = jdbcTemplate.query("select * from shop where shopName = ?", shopRowMapper(), name);
+        log.info("이름 검색 = {}",shopList.get(0));
         if(shopList.isEmpty()){
             return null;
         }else return shopList;
@@ -78,6 +79,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public List<Shop> findByCategory(String category) {
         List<Shop> shopList = jdbcTemplate.query("select * from shop where category = ?", shopRowMapper(), category);
+        log.info("카테고리 검색 = {}",shopList.get(0));
         if(shopList.isEmpty()){
             return null;
         }else return shopList;
