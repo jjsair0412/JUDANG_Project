@@ -60,9 +60,11 @@
               <div class="row">
                   <div class="col-12">
                     <div class="input-form">
-                        <input type="text" placeholder="가게 이름 / 카테고리" required/>
-                        <button type="button" class="btn">가게 이름</button>
-                        <button type="button" class="btn-2">카테고리</button>
+                        <form action="/BuyerPage/search/name" th:method="post" th:object="${searchWord}">
+                            <input type="text" id="searchWord" th:field="*{searchWord}" placeholder="가게 이름 / 카테고리" required/>
+
+                        <input type = "submit" class="btn" 검색 />
+                        </form>
                     </div>
                   </div>
               </div>

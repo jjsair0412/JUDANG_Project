@@ -1,5 +1,6 @@
 package hello.JuDang.JUDANG.Controller.SellerOrBuyerPages;
 
+import hello.JuDang.JUDANG.Controller.ControllerDomain.SearchWord;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Service.Seller.ShopService;
 import lombok.RequiredArgsConstructor;
@@ -27,19 +28,20 @@ public class BuyerPage {
         //현재 위치기반 지도 띄우기
         List<Shop> nearShops = shopService.findNearShop(lat, lon);
         model.addAttribute("nearShops",nearShops);
+        model.addAttribute("searchWord",new SearchWord());
         return "/buyer/buyer_main";
     }
 
     @PostMapping("/search/name")
-    public String searchByName(@RequestParam String searchWord,Model model){
-        List<Shop> shops = shopService.findByName(searchWord);
+    public String searchByName(SearchWord searchWord,Model model){
+        List<Shop> shops = shopService.findByName(searchWord.getSearchWord());
         model.addAttribute("searchByNameList",shops);
         return "/buyer/buyer_main";
     }
 
     @PostMapping("/search/category")
-    public String searchByCategory(@RequestParam String searchWord,Model model){
-        List<Shop> shops = shopService.findByCategory(searchWord);
+    public String searchByCategory(SearchWord searchWord,Model model){
+        List<Shop> shops = shopService.findByCategory(searchWord.getSearchWord());
         model.addAttribute("searchByCategoryList",shops);
         return "/buyer/buyer_main";
     }
