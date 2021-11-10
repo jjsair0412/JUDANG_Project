@@ -32,17 +32,11 @@ public class BuyerPage {
         return "/buyer/buyer_main";
     }
 
-    @PostMapping("/search/name")
+    @PostMapping("/search")
     public String searchByName(SearchWord searchWord,Model model){
         List<Shop> shops = shopService.findByName(searchWord.getSearchWord());
         model.addAttribute("searchByNameList",shops);
         return "/buyer/buyer_main";
     }
 
-    @PostMapping("/search/category")
-    public String searchByCategory(SearchWord searchWord,Model model){
-        List<Shop> shops = shopService.findByCategory(searchWord.getSearchWord());
-        model.addAttribute("searchByCategoryList",shops);
-        return "/buyer/buyer_main";
-    }
 }
