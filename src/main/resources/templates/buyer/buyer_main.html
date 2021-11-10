@@ -73,7 +73,9 @@
               </div>
           </div>
       </main>
+    <script th:inline="javascript">
+        const nearShops = [[${nearShops}]]
+    </script>
     <script th:src="@{/js/MapFunc/BuyerMapFunc.js}"></script>
-    <script th:src="@{/js/MapFunc/MapFunc.js}"></script>
   </body>
 </html>
