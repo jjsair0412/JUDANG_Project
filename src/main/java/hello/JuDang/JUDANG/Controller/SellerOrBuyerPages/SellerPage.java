@@ -107,8 +107,8 @@ public class SellerPage {
         shop.setShopName(shopForm.getShopName());
         shop.setCurrentSeat(0);
         shop.setTotalSeat(Integer.parseInt(shopForm.getTotalSeat()));
-        shop.setLatitude(shopForm.getLongitude());
-        shop.setLongitude(shopForm.getLatitude());
+        shop.setLatitude(shopForm.getLatitude());
+        shop.setLongitude(shopForm.getLongitude());
         shop.setOpen(false);
 
         return ShopService.shopRegister(shop);
