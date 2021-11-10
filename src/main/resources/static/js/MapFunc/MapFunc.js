@@ -11,8 +11,8 @@ function SearchMyStore() {
         var result = response.v2, // 검색 결과의 컨테이너
             items = result.addresses; // 검색 결과의 배열 items배열에 json 형식으로 위도 / 경도가 들어감
 
-        data.latitude = items[0].x; //  x 위도고
-        data.longitude = items[0].y; //  y 경도임
+        data.latitude = items[0].y; //  x 위도고
+        data.longitude = items[0].x; //  y 경도임
 
         console.log("위도 =" + data.latitude + " 경도 = " + data.longitude)
 
