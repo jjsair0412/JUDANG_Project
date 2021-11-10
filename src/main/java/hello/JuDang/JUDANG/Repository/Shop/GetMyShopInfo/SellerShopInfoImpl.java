@@ -43,8 +43,8 @@ public class SellerShopInfoImpl implements SellerShopInfo {
                 shops.setCategory(rs.getString("category"));
                 shops.setTotalSeat(rs.getInt("totalSeat"));
                 shops.setCurrentSeat(rs.getInt("currentSeat"));
-                shops.setLatitude(rs.getString("latitude"));
-                shops.setLongitude(rs.getString("longitude"));
+                shops.setLatitude(rs.getDouble("latitude"));
+                shops.setLongitude(rs.getDouble("longitude"));
                 shops.setOpen(rs.getBoolean("open"));
                 shops.setHtmlId(rs.getString("htmlId"));
                 return shops;

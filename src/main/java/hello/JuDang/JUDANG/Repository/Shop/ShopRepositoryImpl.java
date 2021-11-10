@@ -32,8 +32,8 @@ public class ShopRepositoryImpl implements ShopRepository{
                     ps.setString(3, shop.getCategory());
                     ps.setInt(4, shop.getTotalSeat());
                     ps.setInt(5, shop.getCurrentSeat());
-                    ps.setString(6, shop.getLatitude());
-                    ps.setString(7, shop.getLongitude());
+                    ps.setDouble(6, shop.getLatitude());
+                    ps.setDouble(7, shop.getLongitude());
                     ps.setBoolean(8,shop.isOpen());
                     ps.setString(9,shop.getHtmlId());
                 });
@@ -61,7 +61,6 @@ public class ShopRepositoryImpl implements ShopRepository{
         List<Shop> shopList = jdbcTemplate.query
                 ("SELECT *,(6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM shop HAVING distance <= 0.3",
                 shopRowMapper(), lat,lon,lat);
-        log.info("{}",shopList.get(0));
         return shopList;
     }
 
@@ -107,8 +106,8 @@ public class ShopRepositoryImpl implements ShopRepository{
                 shop.setTotalSeat(rs.getInt("totalSeat"));
                 shop.setCurrentSeat(rs.getInt("currentSeat"));
                 shop.setLeftSeat(rs.getInt("leftSeat"));
-                shop.setLatitude(rs.getString("latitude"));
-                shop.setLongitude(rs.getString("longitude"));
+                shop.setLatitude(rs.getDouble("latitude"));
+                shop.setLongitude(rs.getDouble("longitude"));
                 shop.setOpen(rs.getBoolean("open"));
                 shop.setHtmlId(rs.getString("htmlId"));
                 return null;

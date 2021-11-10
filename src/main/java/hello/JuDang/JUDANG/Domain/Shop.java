@@ -13,8 +13,8 @@ public class Shop {
     private int totalSeat;
     private int currentSeat;
     private int leftSeat;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private boolean open;
     private String htmlId;
 }
