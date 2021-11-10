@@ -58,9 +58,12 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public List<Shop> findNearShop(String lat, String lon) {
+        System.out.println("lat = " + lat);
+        System.out.println("lon = " + lon);
         List<Shop> shopList = jdbcTemplate.query
                 ("SELECT *,(6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM shop HAVING distance <= 0.3",
                 shopRowMapper(), lat,lon,lat);
+        System.out.println("shopList.size() = " + shopList.size());
         return shopList;
     }
 
@@ -110,7 +113,7 @@ public class ShopRepositoryImpl implements ShopRepository{
                 shop.setLongitude(rs.getDouble("longitude"));
                 shop.setOpen(rs.getBoolean("open"));
                 shop.setHtmlId(rs.getString("htmlId"));
-                return null;
+                return shop;
             }
         };
     }
