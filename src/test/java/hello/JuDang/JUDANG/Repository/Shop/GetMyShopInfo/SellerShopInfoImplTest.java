@@ -33,8 +33,8 @@ class SellerShopInfoImplTest {
         shop1.setCategory("이자카야");
         shop1.setTotalSeat(100);
         shop1.setCurrentSeat(50);
-        shop1.setLatitude("34.123123");
-        shop1.setLongitude("127.322323");
+        shop1.setLatitude(34.123123);
+        shop1.setLongitude(127.322323);
         shop1.setHtmlId("0");
         shop1.setOpen(true);
 
@@ -43,8 +43,8 @@ class SellerShopInfoImplTest {
         shop2.setCategory("걍술집");
         shop2.setTotalSeat(30);
         shop2.setCurrentSeat(20);
-        shop2.setLatitude("30.123123");
-        shop2.setLongitude("120.322323");
+        shop2.setLatitude(30.123123);
+        shop2.setLongitude(120.322323);
         shop2.setHtmlId("1");
         shop2.setOpen(false);
 
@@ -53,8 +53,8 @@ class SellerShopInfoImplTest {
         shop3.setCategory("ㄹㅇ그냥술집");
         shop3.setTotalSeat(550);
         shop3.setCurrentSeat(10);
-        shop3.setLatitude("302.123123");
-        shop3.setLongitude("1202.322323");
+        shop3.setLatitude(302.123123);
+        shop3.setLongitude(1202.322323);
         shop3.setHtmlId("2");
         shop3.setOpen(true);
 
