@@ -1,5 +1,7 @@
 package hello.JuDang.JUDANG.Repository.Shop;
 
+import hello.JuDang.JUDANG.Controller.ControllerDomain.SearchWord;
+import hello.JuDang.JUDANG.Domain.Category;
 import hello.JuDang.JUDANG.Domain.Shop;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -84,6 +86,32 @@ public class ShopRepositoryImpl implements ShopRepository{
         if(shopList.isEmpty()){
             return null;
         }else return shopList;
+    }
+
+    @Override
+    public Category ValidationCategory(SearchWord searchWord) {
+        List<Category> categoryList =  jdbcTemplate.query("select * from category where categoryName = ?",
+                new RowMapper<Category>() {
+                    @Override
+                    public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Category category = new Category();
+                        category.setCategoryName(rs.getString("categoryName"));
+                        category.setCount(rs.getInt("count"));
+                        return category;
+                    }
+                }, searchWord.getSearchWord()
+        );
+        return categoryList.isEmpty() ? null : categoryList.get(0);
+    }
+
+    @Override // 테스트용 코드
+    public int TESTINSERTCATEGORY(SearchWord searchWord) {
+        return jdbcTemplate.update("insert into category(categoryName) values(?)",searchWord.getSearchWord());
+    }
+
+    @Override // 테스트용 코드
+    public int TESTDELETECATEGORY(SearchWord searchWord) {
+        return jdbcTemplate.update("delete from category where categoryName = ?",searchWord.getSearchWord());
     }
 
     @Override
