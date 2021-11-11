@@ -2,7 +2,7 @@ package hello.JuDang.JUDANG.Controller.ShopRegister;
 
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.Shop;
-import hello.JuDang.JUDANG.Service.Seller.ShopService;
+import hello.JuDang.JUDANG.Service.Shop.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

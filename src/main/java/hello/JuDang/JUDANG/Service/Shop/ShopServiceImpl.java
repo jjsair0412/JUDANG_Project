@@ -1,4 +1,4 @@
-package hello.JuDang.JUDANG.Service.Seller;
+package hello.JuDang.JUDANG.Service.Shop;
 
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,14 +29,10 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Shop> findByName(String name) {
-        return shopRepository.findByName(name);
-
-    }
-
-    @Override
-    public List<Shop> findByCategory(String category) {
-        return shopRepository.findByCategory(category);
+    public List<Shop> searchShop(String searchWord) {
+        shopRepository.findByName(searchWord);
+        shopRepository.findByCategory(searchWord);
+        return null;
     }
 
     @Override

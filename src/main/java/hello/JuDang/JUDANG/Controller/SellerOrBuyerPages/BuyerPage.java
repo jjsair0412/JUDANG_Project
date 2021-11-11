@@ -2,10 +2,9 @@ package hello.JuDang.JUDANG.Controller.SellerOrBuyerPages;
 
 import hello.JuDang.JUDANG.Controller.ControllerDomain.SearchWord;
 import hello.JuDang.JUDANG.Domain.Shop;
-import hello.JuDang.JUDANG.Service.Seller.ShopService;
+import hello.JuDang.JUDANG.Service.Shop.ShopService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.hql.internal.classic.Parser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +33,7 @@ public class BuyerPage {
 
     @PostMapping("/search")
     public String searchByName(SearchWord searchWord,Model model){
-        List<Shop> shops = shopService.findByName(searchWord.getSearchWord());
+        List<Shop> shops = shopService.searchShop(searchWord.getSearchWord());
         model.addAttribute("searchByNameList",shops);
         return "/buyer/buyer_main";
     }
