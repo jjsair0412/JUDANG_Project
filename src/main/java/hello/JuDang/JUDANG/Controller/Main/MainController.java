@@ -43,6 +43,7 @@ public class MainController {
             return "buyer";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
             return "seller";
-        }else return "fail";
+        }else
+            return "fail";
     }
 }
