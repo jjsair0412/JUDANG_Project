@@ -39,7 +39,7 @@ public class ShopRepositoryImpl implements ShopRepository{
                     ps.setBoolean(8,shop.isOpen());
                     ps.setString(9,shop.getHtmlId());
                 });
-        jdbcTemplate.update("INSERT into category(categoryName) values(?)",shop.getCategory());
+        jdbcTemplate.update("INSERT into category(categoryName) values(?) ON DUPLICATE KEY UPDATE cnt = cnt+1",shop.getCategory());
         return result;
     }
 

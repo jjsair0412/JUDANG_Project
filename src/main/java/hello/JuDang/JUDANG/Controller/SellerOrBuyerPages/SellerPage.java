@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/SellerPage")
 public class SellerPage {
-    private final hello.JuDang.JUDANG.Service.Seller.ShopService ShopService;
+    private final hello.JuDang.JUDANG.Service.Shop.ShopService ShopService;
     private final LoginTypeCheck typeCheck;
     private final GetMyShopInfo myShops;
     private final OpenCloseFunc openCloseFunc;
