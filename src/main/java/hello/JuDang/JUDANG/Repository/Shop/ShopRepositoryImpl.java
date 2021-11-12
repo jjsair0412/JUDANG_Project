@@ -64,7 +64,7 @@ public class ShopRepositoryImpl implements ShopRepository{
         System.out.println("lat = " + lat);
         System.out.println("lon = " + lon);
         List<Shop> shopList = jdbcTemplate.query
-                ("SELECT *,(6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM shop HAVING distance <= 0.3",
+                ("SELECT *,(6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM shop HAVING distance <= 1",
                 shopRowMapper(), lat,lon,lat);
         System.out.println("shopList.size() = " + shopList.size());
         return shopList;
