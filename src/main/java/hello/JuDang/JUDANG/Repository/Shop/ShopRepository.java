@@ -12,7 +12,7 @@ public interface ShopRepository {
     List<Shop> findAllShop();
     List<Shop> findByName(String name);
     List<Shop> findByCategory(String category);
-    Category ValidationCategory(SearchWord searchWord);
+    List<Category> ValidationCategory(String searchWord);
     int TESTINSERTCATEGORY(SearchWord searchWord); // 테스트용 카테고리 저장
     int TESTDELETECATEGORY(SearchWord searchWord); // 테스트용 카테고리 삭제
     List<Shop> findNearShop(String lat,String lon);

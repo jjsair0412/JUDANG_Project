@@ -89,7 +89,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     }
 
     @Override
-    public Category ValidationCategory(SearchWord searchWord) {
+    public List<Category> ValidationCategory(String searchWord) {
         List<Category> categoryList =  jdbcTemplate.query("select * from category where categoryName = ?",
                 new RowMapper<Category>() {
                     @Override
@@ -99,9 +99,9 @@ public class ShopRepositoryImpl implements ShopRepository{
                         category.setCount(rs.getInt("count"));
                         return category;
                     }
-                }, searchWord.getSearchWord()
+                }, searchWord
         );
-        return categoryList.isEmpty() ? null : categoryList.get(0);
+        return categoryList;
     }
 
     @Override // 테스트용 코드

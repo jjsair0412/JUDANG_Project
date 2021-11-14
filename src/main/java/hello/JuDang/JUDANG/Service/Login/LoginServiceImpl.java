@@ -19,7 +19,6 @@ public class LoginServiceImpl implements LoginService{ // 얘 테스트코드 �
     public Member login(Member member) {
         Member loginMember = loginTypeCheck.checkType(member);
         return loginMember;
-
     }
 
 }

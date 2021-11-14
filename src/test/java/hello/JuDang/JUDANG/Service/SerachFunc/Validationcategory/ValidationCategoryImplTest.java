@@ -42,13 +42,12 @@ class ValidationCategoryImplTest {
 
     @Test
     void 카테고리있는경우(){
-        assertThat(validationCategory.CheckLogic(first)).isEqualTo(1);
+
     }
 
     @Test
     void 카테고리_없는경우(){
         SearchWord third = new SearchWord();
         third.setSearchWord("없당");
-        assertThat(validationCategory.CheckLogic(third)).isEqualTo(0);
     }
 }
