@@ -61,19 +61,15 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public List<Shop> findNearShop(String lat, String lon) {
-        System.out.println("lat = " + lat);
-        System.out.println("lon = " + lon);
         List<Shop> shopList = jdbcTemplate.query
                 ("SELECT *,(6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM shop HAVING distance <= 1",
                 shopRowMapper(), lat,lon,lat);
-        System.out.println("shopList.size() = " + shopList.size());
         return shopList;
     }
 
     @Override
     public List<Shop> findByName(String name) {
         List<Shop> shopList = jdbcTemplate.query("select * from shop where shopName = ?", shopRowMapper(), name);
-        log.info("이름 검색 = {}",shopList.get(0));
         if(shopList.isEmpty()){
             return null;
         }else return shopList;
@@ -82,7 +78,6 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public List<Shop> findByCategory(String category) {
         List<Shop> shopList = jdbcTemplate.query("select * from shop where category = ?", shopRowMapper(), category);
-        log.info("카테고리 검색 = {}",shopList.get(0));
         if(shopList.isEmpty()){
             return null;
         }else return shopList;
@@ -96,7 +91,7 @@ public class ShopRepositoryImpl implements ShopRepository{
                     public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Category category = new Category();
                         category.setCategoryName(rs.getString("categoryName"));
-                        category.setCount(rs.getInt("count"));
+                        category.setCount(rs.getInt("cnt"));
                         return category;
                     }
                 }, searchWord

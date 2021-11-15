@@ -62,7 +62,6 @@
                     <div class="input-form">
                         <form action="/BuyerPage/search" th:method="post" th:object="${searchWord}">
                             <input type="text" id="searchWord" th:field="*{searchWord}" placeholder="가게 이름 / 카테고리" required/>
-
                         <input type = "submit" class="btn" 검색 />
                         </form>
                     </div>
@@ -76,7 +75,8 @@
           </div>
       </main>
     <script th:inline="javascript">
-        var locationShops = [[${nearShops}]]
+        let locationShops = [[${nearShops}]]
+        let searchByNameList = [[${searchByNameList}]]
     </script>
     <script th:src="@{/js/MapFunc/BuyerMapFunc.js}"></script>
   </body>

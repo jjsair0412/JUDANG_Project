@@ -1,21 +1,32 @@
 window.onload = function BuyerMap() {
-
-    buyershowMap(locationShops);
+    if (searchByNameList == null) {
+        buyershowMap(locationShops);
+    } else {
+        buyershowMap(searchByNameList);
+    }
 }
 
-function buyershowMap(locations){
-    let sch = location.search
-    const params = new URLSearchParams(sch);
-
-    var map = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(params.get('lat'), params.get('lon')),
+function mapFunc(lat, lon){
+    return new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(lat, lon),
         zoom: 15
     });
+}
+
+function buyershowMap(locations) {
+    let mapResult;
+    if (searchByNameList == null) {
+        let sch = location.search
+        const params = new URLSearchParams(sch);
+        mapResult = mapFunc(params.get('lat'),  params.get('lon'));
+    } else {
+        mapResult = mapFunc(locations[0].latitude, locations[0].longitude);
+    }
 
 
     for (let i = 0; i < locations.length; i++) {
         var marker = new naver.maps.Marker({
-            map: map,
+            map: mapResult,
             title: locations[i].place,
             position: new naver.maps.LatLng(locations[i].latitude, locations[i].longitude),
         });
