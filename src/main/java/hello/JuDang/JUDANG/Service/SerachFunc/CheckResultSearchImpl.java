@@ -19,7 +19,7 @@ public class CheckResultSearchImpl implements CheckResultSearch {
     @Override
     public List<Shop> SearchFunc(String searchWord) {
         int i = validationCategory.CheckLogic(searchWord);
-        if(i == 0){ // 카테고리검색
+        if(i == 1){ // 카테고리검색
             List<Shop> byCategory = shopRepository.findByCategory(searchWord);
             return byCategory;
         }else{ // 가게이름검색
