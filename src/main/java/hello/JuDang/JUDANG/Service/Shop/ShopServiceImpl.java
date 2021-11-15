@@ -2,6 +2,7 @@ package hello.JuDang.JUDANG.Service.Shop;
 
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
+import hello.JuDang.JUDANG.Service.SerachFunc.CheckResultSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
+    private final CheckResultSearch checkResultSearch;
 
     @Override
     public int shopRegister(Shop shop) {
@@ -30,9 +32,8 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public List<Shop> searchShop(String searchWord) {
-        shopRepository.findByName(searchWord);
-        shopRepository.findByCategory(searchWord);
-        return null;
+        List<Shop> shops = checkResultSearch.SearchFunc(searchWord);
+        return shops;
     }
 
     @Override
