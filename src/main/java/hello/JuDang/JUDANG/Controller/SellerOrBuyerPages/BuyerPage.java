@@ -25,7 +25,6 @@ public class BuyerPage {
             , @RequestParam String lat
             , @RequestParam String lon) {
 
-
         //현재 위치기반 지도 띄우기
         List<Shop> nearShops = shopService.findNearShop(lat, lon);
         model.addAttribute("nearShops", nearShops);
@@ -42,4 +41,10 @@ public class BuyerPage {
         return "/buyer/buyer_main";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("loginMember");
+        session.removeAttribute("loginPassword");
+        return "redirect:_main/main";
+    }
 }
