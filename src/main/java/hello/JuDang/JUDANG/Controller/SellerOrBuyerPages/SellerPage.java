@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -127,6 +128,12 @@ public class SellerPage {
         model.addAttribute("myShops",myShops.AllmyShops(id));
 
         return "seller_main/seller_store";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("loginMember");
+        session.removeAttribute("loginPassword");
+        return "redirect:_main/main";
     }
 
 }
