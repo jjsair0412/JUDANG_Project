@@ -15,6 +15,7 @@ function mapFunc(lat, lon){
 
 function buyershowMap(locations) {
     let mapResult;
+    let contentResult;
     if (searchByNameList == null) {
         let sch = location.search
         const params = new URLSearchParams(sch);
@@ -25,17 +26,18 @@ function buyershowMap(locations) {
 
 
     for (let i = 0; i < locations.length; i++) {
-        var marker = new naver.maps.Marker({
+
+        let marker = new naver.maps.Marker({
             map: mapResult,
-            title: locations[i].place,
+            title: locations[i].shopName,
             position: new naver.maps.LatLng(locations[i].latitude, locations[i].longitude),
         });
 
 
-        // 가게정보 json으로 받아와서 html코드로 작성
-        var contentString = [
+
+        contentResult = [
             '<div class="iw_inner">',
-            '   <h3>서울특별시청</h3>',
+            '   <h>'+locations[i].shopName+'</h3>',
             '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
             // '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
             '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
@@ -44,8 +46,8 @@ function buyershowMap(locations) {
             '</div>'
         ].join('');
 
-        var infowindow = new naver.maps.InfoWindow({ // 마커정보인듯
-            content: contentString,
+        let infowindow = new naver.maps.InfoWindow({ // 마커정보인듯
+            content: contentResult,
             maxWidth: 140,
             backgroundColor: "#eee",
             borderColor: "#2db400",
@@ -60,7 +62,7 @@ function buyershowMap(locations) {
             if (infowindow.getMap()) {
                 infowindow.close();
             } else {
-                infowindow.open(map, marker);
+                infowindow.open(mapResult, marker);
             }
         });
     }

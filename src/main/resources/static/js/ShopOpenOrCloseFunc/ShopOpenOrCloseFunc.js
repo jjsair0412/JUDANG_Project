@@ -26,6 +26,7 @@ if (myShops === null) {
             $('#myshopsInfoPosition').append('영업 시작 : <input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');"></br>')
         }
 
+
         function openLogic(id, shopName, htmlId) {
             let checked = document.getElementById(eval("id")).checked;
             let openShop = new Object();
