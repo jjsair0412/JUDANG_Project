@@ -22,7 +22,7 @@ public class MemberManageController {
 
     @GetMapping("/myInfo")
     public String createMemberInfo(){
-        return "myInfo";
+        return "MemberManage/myInfo";
     }
 
     @PostMapping("/update")
