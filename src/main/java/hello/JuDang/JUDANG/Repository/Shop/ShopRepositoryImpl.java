@@ -52,7 +52,7 @@ public class ShopRepositoryImpl implements ShopRepository{
 
     @Override
     public Shop findById(int shopNum) {
-        List<Shop> shopList = jdbcTemplate.query("SELECT * FROM shop WHERE id=?", shopRowMapper());
+        List<Shop> shopList = jdbcTemplate.query("SELECT * FROM shop WHERE id=?", shopRowMapper(),shopNum);
         Shop shop = shopList.get(0);
         return shop;
     }
