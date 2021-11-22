@@ -21,9 +21,17 @@ function SearchMyStore() {
 }
 
 function storeSave() {
+    data.shopNumber = $('#shopNumber').val();
     data.shopName = $('#storeName').val();
     data.totalSeat = $('#allSeat').val();
     data.category = $('#category').val();
+    data.businessHours = $('#businessHours').val();
+
+    data.twoSeats = $('#twoSeats').val();
+    data.fourSeats = $('#fourSeats').val();
+    data.sixSeats = $('#sixSeats').val();
+    data.eightSeats = $('#eightSeats').val();
+
     if(getId==null){
         data.htmlId = storeCheckBoxIds.checkBoxId;
     }else{

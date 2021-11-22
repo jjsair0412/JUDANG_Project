@@ -100,19 +100,7 @@ public class SellerPage {
     public int myGetMyPosition(
             @SessionAttribute(name = "loginMember", required = false) String id,
             ShopForm shopForm) {
-
-        Shop shop = new Shop();
-        shop.setHtmlId(shopForm.getHtmlId());
-        shop.setCategory(shopForm.getCategory());
-        shop.setSellerId(id);
-        shop.setShopName(shopForm.getShopName());
-        shop.setCurrentSeat(0);
-        shop.setTotalSeat(Integer.parseInt(shopForm.getTotalSeat()));
-        shop.setLatitude(shopForm.getLatitude());
-        shop.setLongitude(shopForm.getLongitude());
-        shop.setOpen(false);
-
-        return ShopService.shopRegister(shop);
+        return ShopService.shopRegister(shopForm, id);
     }
 
     @GetMapping("/goMyShopInfo")

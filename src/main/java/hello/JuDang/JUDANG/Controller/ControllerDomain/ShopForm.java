@@ -15,4 +15,13 @@ public class ShopForm {
     private double longitude; // 경도
     private boolean open;
     private String htmlId;
+
+    // 추가정보
+    private String businessHours; // 영업시간
+    private String shopNumber; // 가게번호
+    private int shopNum;
+    private int twoSeats;
+    private int fourSeats;
+    private int sixSeats;
+    private int eightSeats;
 }

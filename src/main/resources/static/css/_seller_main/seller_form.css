@@ -89,13 +89,17 @@ input {
 }
 
 input[placeholder$='총 좌석 수'] {
-  margin: 50px 0;
+  margin: 20px 0;
 }
 
 input[placeholder$='카테고리'] {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
+.seat {
+  display: inline-block;
+  width: 128px;
+}
 .btn {
   margin-right: 35px;
 }
@@ -123,8 +127,8 @@ input[placeholder$='카테고리'] {
 }
 
 .store-map {
-  margin: 100px 0 0 200px;
-  text-align: center;
-  border: 2px dashed black;
-  padding: 200px 200px;
+  margin: 100px 0 0 50px;
+  font-size: 14px;
+  border: 2px solid black;
+  padding: 210px 300px;
 }
