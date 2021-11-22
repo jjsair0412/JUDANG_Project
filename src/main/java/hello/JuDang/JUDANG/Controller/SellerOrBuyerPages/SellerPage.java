@@ -100,6 +100,9 @@ public class SellerPage {
     public int myGetMyPosition(
             @SessionAttribute(name = "loginMember", required = false) String id,
             ShopForm shopForm) {
+        log.info("좌석정보={}",shopForm.getTotalSeat());
+        log.info("여섯자리 좌석정보={}",shopForm.getSixSeats());
+
         return ShopService.shopRegister(shopForm, id);
     }
 

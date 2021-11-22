@@ -6,4 +6,5 @@ public interface SeatsRepository {
     int save(Seats seats);
     Seats select(int shopNum);
     int update(Seats seats);
+    int delete(Seats seats); // 테스트용 삭제코드
 }

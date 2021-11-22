@@ -36,11 +36,12 @@ public class ShopServiceImpl implements ShopService {
         shop.setLongitude(shopForm.getLongitude());
         shop.setOpen(false);
 
-        seats.setShopNum(0);
+        seats.setShopNum(13);
         seats.setTwoSeats(shopForm.getTwoSeats());
         seats.setFourSeats(shopForm.getFourSeats());
         seats.setSixSeats(shopForm.getSixSeats());
         seats.setEightSeats(shopForm.getEightSeats());
+
 
 
         return MakeShopSaveResult(shopRepository.save(shop), seatsRepository.save(seats));
