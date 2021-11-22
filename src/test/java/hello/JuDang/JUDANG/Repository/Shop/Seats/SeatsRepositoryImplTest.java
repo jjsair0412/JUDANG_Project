@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import hello.JuDang.JUDANG.Domain.Seats;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,16 @@ class SeatsRepositoryImplTest {
     }
 
     @Test
+    void 좌석정보삭제(){
+        assertThat(seatsRepository.delete(one)).isEqualTo(1);
+    }
+
+    @Test
     @Transactional
     void 가게정보있을때(){
         Seats result = seatsRepository.select(one.getShopNum());
-        assertThat(result.getShopNum()).isEqualTo(result.getShopNum());
+        assertThat(result.getShopNum()).isEqualTo(one.getShopNum());
+        assertThat(result.getSixSeats()).isEqualTo(one.getSixSeats());
     }
 
     @Test

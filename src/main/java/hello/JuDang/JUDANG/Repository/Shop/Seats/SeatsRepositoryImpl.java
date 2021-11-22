@@ -34,6 +34,12 @@ public class SeatsRepositoryImpl implements SeatsRepository {
         return result;
     }
 
+
+    @Override
+    public int delete(Seats seats) {
+        return jdbcTemplate.update("delete from seats where shopNum = ?",seats.getShopNum());
+    }
+
     @Override
     public Seats select(int shopNum) {
         List<Seats> seats = jdbcTemplate.query("SELECT * FROM seats WHERE shopNum = ?", seatsRowMapper(),shopNum);
@@ -44,6 +50,7 @@ public class SeatsRepositoryImpl implements SeatsRepository {
     public int update(Seats seats) {
         return 0;
     }
+
 
     private RowMapper<Seats> seatsRowMapper(){
         return new RowMapper<Seats>() {
