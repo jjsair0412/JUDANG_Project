@@ -36,7 +36,6 @@ class ShopServiceImplTest {
         shopForm.setCategory("이자카야");
         shopForm.setShopName("주진성가게");
         shopForm.setCurrentSeat(100);
-        shopForm.setTotalSeat("100000");
         shopForm.setLatitude(34.123123);
         shopForm.setLongitude(128.123123);
         shopForm.setOpen(true);

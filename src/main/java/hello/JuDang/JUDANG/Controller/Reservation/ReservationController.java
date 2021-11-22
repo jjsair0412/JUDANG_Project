@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
@@ -24,11 +21,17 @@ public class ReservationController {
     private final ShopRepository shopRepository;
 
     @GetMapping
-    public String goReservation(Model model, HttpSession session){
-        Shop shop = shopRepository.findById((int)session.getAttribute("shopNum"));
+    public String goReservation(Model model,
+                                @SessionAttribute (name="shopNum") int shopNum,
+                                @SessionAttribute (name="loginMember") String buyerId,
+                                @SessionAttribute (name="loginMemberName") String buyerName){
+        Shop shop = shopRepository.findById(shopNum);
         Reservation reservation = new Reservation();
         reservation.setShopNum(shop.getShopNum());
         reservation.setShopName(shop.getShopName());
+        reservation.setBuyerId(buyerId);
+        reservation.setBuyerName(buyerName);
+
         model.addAttribute("reservation",reservation);
         return "";
     }
@@ -37,10 +40,11 @@ public class ReservationController {
     public String makeReservation(@ModelAttribute Reservation reservation, RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
         int result = reservationService.makeReservation(reservation);
         redirectAttributes.addAttribute("buyerId",reservation.getBuyerId());
-        if(result<1){
+
+        if(result<1){ // 실패
             return "";
         }
-        return "redirect:/";
+        return "redirect:/"; //성공 (내 정보 -> 예약 현황으로)
     }
 
     @GetMapping("/accept")

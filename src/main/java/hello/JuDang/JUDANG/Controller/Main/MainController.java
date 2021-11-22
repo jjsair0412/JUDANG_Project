@@ -31,14 +31,13 @@ public class MainController {
     @PostMapping("/StartLogin")
     @ResponseBody
     public String StartLogin(LoginForm loginForm,
-                             HttpServletRequest request,
-                             Model model){
+                             HttpServletRequest request){
         Member member = new Member();
         member.setId(loginForm.getId());
         member.setPassword(loginForm.getPassword());
         HttpSession session = request.getSession();
         Member loginMember = loginService.login(member);
-        model.addAttribute("loginMember",loginMember);
+        session.setAttribute("loginMemberName",loginMember.getName());
         session.setAttribute("loginMember",loginMember.getId());
         session.setAttribute("loginPassword",loginMember.getPassword()); // ...
         if (loginMember.getUserType().equals(UserType.BUYER)) {
