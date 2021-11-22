@@ -3,6 +3,7 @@ package hello.JuDang.JUDANG.Repository.Shop;
 import hello.JuDang.JUDANG.Controller.ControllerDomain.SearchWord;
 import hello.JuDang.JUDANG.Domain.Category;
 import hello.JuDang.JUDANG.Domain.Shop;
+import hello.JuDang.JUDANG.Repository.Shop.Seats.SeatsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,9 +19,10 @@ import java.util.List;
 @Slf4j
 public class ShopRepositoryImpl implements ShopRepository{
     private JdbcTemplate jdbcTemplate;
+    private SeatsRepository seatsRepository;
 
-
-    public ShopRepositoryImpl(DataSource dataSource) {
+    public ShopRepositoryImpl(DataSource dataSource, SeatsRepository seatsRepository) {
+        this.seatsRepository = seatsRepository;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -41,7 +43,9 @@ public class ShopRepositoryImpl implements ShopRepository{
                     ps.setString(9,shop.getHtmlId());
                 });
         jdbcTemplate.update("INSERT into category(categoryName) values(?) ON DUPLICATE KEY UPDATE cnt = cnt+1",shop.getCategory());
-        return result;
+        Shop byHtmlId = findByHtmlId(shop.getHtmlId());
+        int i = seatsRepository.insertPK(byHtmlId);
+        return result == 1 && i == 1 ? 1 : 0;
     }
 
     @Override

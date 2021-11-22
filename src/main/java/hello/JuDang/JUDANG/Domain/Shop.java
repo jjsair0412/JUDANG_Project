@@ -17,4 +17,8 @@ public class Shop {
     private String phoneNumber; // 가게 전화번호
     private String businessHours;
     private String htmlId;
+
+    private int LeftSeat;
+    private int CurrentSeat;
+    private int TotalSeat;
 }
