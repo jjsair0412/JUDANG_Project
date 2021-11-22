@@ -44,7 +44,6 @@ public class SellerPage {
                 List<Shop> shops = myShops.AllmyShops(id);
                 for (Shop firstShop :shops){
                     model.addAttribute("ShopName",firstShop.getShopName());
-                    model.addAttribute("allSeat",firstShop.getTotalSeat());
                 }
                 model.addAttribute("myShops", shops);
                 return "seller_main/seller_store";
@@ -114,7 +113,6 @@ public class SellerPage {
             ){
         Shop findShopInfo = myShops.getMyShopInfo(id, shopName, htmlId);
         model.addAttribute("ShopName",findShopInfo.getShopName());
-        model.addAttribute("allSeat",findShopInfo.getTotalSeat());
         model.addAttribute("myShops",myShops.AllmyShops(id));
 
         return "seller_main/seller_store";

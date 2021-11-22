@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Data
 public class ShopForm {
+    private int shopNum;// 가게 아이디
     private String sellerId;
     private String shopName;
     private String category;
@@ -18,8 +19,7 @@ public class ShopForm {
 
     // 추가정보
     private String businessHours; // 영업시간
-    private String shopNumber; // 가게번호
-    private int shopNum;
+    private String phoneNumber; // 가게 전화번호
     private int twoSeats;
     private int fourSeats;
     private int sixSeats;

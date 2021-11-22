@@ -7,21 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Shop {
-    private int shopNum;
+    private int shopNum;// 가게 아이디
     private String sellerId;
     private String shopName;
     private String category;
-    private int totalSeat;
-    private int currentSeat;
-    private int leftSeat;
-    private int twoSeats;
-    private int fourSeats;
-    private int sixSeats;
-    private int eightSeats;
     private double latitude;
     private double longitude;
     private boolean open;
-    private String phoneNumber;
+    private String phoneNumber; // 가게 전화번호
     private String businessHours;
     private String htmlId;
 }

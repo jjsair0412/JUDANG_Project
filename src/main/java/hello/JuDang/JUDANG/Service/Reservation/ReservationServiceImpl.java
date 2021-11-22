@@ -27,7 +27,7 @@ public class ReservationServiceImpl implements ReservationService{
             return 0;
         } else{
         updateShopSeat(reservation, shop);
-        return reservationRepository.update(reservation);
+        return reservationRepository.statusUpdate(reservation);
         }
     }
 
