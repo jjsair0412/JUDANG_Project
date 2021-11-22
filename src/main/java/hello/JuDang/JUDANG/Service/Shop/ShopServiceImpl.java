@@ -32,20 +32,23 @@ public class ShopServiceImpl implements ShopService {
         shop.setLongitude(shopForm.getLongitude());
         shop.setOpen(false);
 
+        int shopResult = shopRepository.save(shop);
+        int seatsResult = 0;
+        if (shopResult==1){
+            Shop registeredShop = shopRepository.findByHtmlId(shop.getHtmlId());
+            seats.setShopNum(registeredShop.getShopNum());
+            seats.setTwoSeats(shopForm.getTwoSeats());
+            seats.setFourSeats(shopForm.getFourSeats());
+            seats.setSixSeats(shopForm.getSixSeats());
+            seats.setEightSeats(shopForm.getEightSeats());
+            seatsResult = seatsRepository.save(seats);
+        }
 
-        seats.setShopNum(shopForm.getShopNum());
-        seats.setTwoSeats(shopForm.getTwoSeats());
-        seats.setFourSeats(shopForm.getFourSeats());
-        seats.setSixSeats(shopForm.getSixSeats());
-        seats.setEightSeats(shopForm.getEightSeats());
-
-
-
-        return MakeShopSaveResult(shopRepository.save(shop), seatsRepository.save(seats));
+        return MakeShopSaveResult(shopResult,seatsResult);
     }
 
-    private int MakeShopSaveResult(int result, int save){
-        if(result == 1 && save == 1){
+    private int MakeShopSaveResult(int shopResult, int seatsResult){
+        if(shopResult == 1 && seatsResult == 1){
             return 1;
         }else {
             return 0;
