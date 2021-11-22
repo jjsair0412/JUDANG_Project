@@ -21,9 +21,7 @@ function SearchMyStore() {
 }
 function storeSave() {
 
-
-
-
+    data.htmlId = guid()
     data.phoneNumber = $('#phoneNumber').val();
     data.shopName = $('#storeName').val();
     data.totalSeat = $('#allSeat').val();
@@ -34,12 +32,6 @@ function storeSave() {
     data.fourSeats = $('#fourSeats').val();
     data.sixSeats = $('#sixSeats').val();
     data.eightSeats = $('#eightSeats').val();
-
-    if(getId==null){
-        data.htmlId = storeCheckBoxIds.checkBoxId;
-    }else{
-        data.htmlId = getId;
-    }
 
     $.ajax({
         type: "post",

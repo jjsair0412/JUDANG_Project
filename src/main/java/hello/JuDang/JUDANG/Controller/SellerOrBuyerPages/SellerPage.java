@@ -91,7 +91,6 @@ public class SellerPage {
             @SessionAttribute(name = "loginMember",required = false) String id,
             ShopOpenCloseForm openCloseForm
     ){
-
         return openCloseFunc.OpenCloseFunc(
                 id,
                 openCloseForm.getShopName(),
