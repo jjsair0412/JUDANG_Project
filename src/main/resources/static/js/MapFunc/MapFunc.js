@@ -19,8 +19,11 @@ function SearchMyStore() {
         showMap(data);
     });
 }
-
 function storeSave() {
+
+
+
+
     data.phoneNumber = $('#phoneNumber').val();
     data.shopName = $('#storeName').val();
     data.totalSeat = $('#allSeat').val();

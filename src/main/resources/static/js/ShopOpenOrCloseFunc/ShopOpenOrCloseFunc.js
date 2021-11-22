@@ -12,11 +12,6 @@ if (myShops === null) {
     for (let i = 0; i < myShops.length; i++) {
         ++a;
 
-        let htmlId = myShops[i].htmlId;
-        if(storeCheckBoxIds.checkBoxId === htmlId){
-            a += htmlId;
-        }
-
         const nowShop = myShops[i].shopName;
         storeCheckBoxIds.checkBoxId = +a;
 
