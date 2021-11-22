@@ -22,21 +22,17 @@ public class ShopServiceImpl implements ShopService {
     public int shopRegister(ShopForm shopForm, String id) {
         Shop shop = new Shop();
         Seats seats = new Seats();
-
-
         shop.setBusinessHours(shopForm.getBusinessHours());
-        shop.setPhoneNumber(shopForm.getShopNumber());
+        shop.setPhoneNumber(shopForm.getPhoneNumber());
         shop.setHtmlId(shopForm.getHtmlId());
         shop.setCategory(shopForm.getCategory());
         shop.setSellerId(id);
         shop.setShopName(shopForm.getShopName());
-        shop.setCurrentSeat(0);
-        shop.setTotalSeat(Integer.parseInt(shopForm.getTotalSeat()));
         shop.setLatitude(shopForm.getLatitude());
         shop.setLongitude(shopForm.getLongitude());
         shop.setOpen(false);
 
-        seats.setShopNum(0);
+        seats.setShopNum(shopForm.getShopNum());
         seats.setTwoSeats(shopForm.getTwoSeats());
         seats.setFourSeats(shopForm.getFourSeats());
         seats.setSixSeats(shopForm.getSixSeats());

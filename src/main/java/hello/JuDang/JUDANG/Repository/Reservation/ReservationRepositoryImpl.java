@@ -32,7 +32,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     }
 
     @Override
-    public int update(Reservation reservation) {
+    public int statusUpdate(Reservation reservation) {
         int result = jdbcTemplate.update("UPDATE reservation SET status = 1 WHERE buyerId = ?", reservation.getBuyerId());
         return result;
     }

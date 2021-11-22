@@ -27,24 +27,18 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public int save(Shop shop) {
         int result = jdbcTemplate.update(
-                "INSERT INTO shop(sellerId,shopName,category,totalSeat,currentSeat,twoSeats,fourSeats,sixSeat,eightSeats,latitude,longitude,open,phoneNumber,businessHours,htmlId) " +
-                        "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "INSERT INTO shop(sellerId,shopName,category,latitude,longitude,open,phoneNumber,businessHours,htmlId) " +
+                        "values(?,?,?,?,?,?,?,?,?)",
                 ps -> {
                     ps.setString(1, shop.getSellerId());
                     ps.setString(2, shop.getShopName());
                     ps.setString(3, shop.getCategory());
-                    ps.setInt(4, shop.getTotalSeat());
-                    ps.setInt(5, shop.getCurrentSeat());
-                    ps.setInt(6,shop.getTwoSeats());
-                    ps.setInt(7,shop.getFourSeats());
-                    ps.setInt(8,shop.getSixSeats());
-                    ps.setInt(9,shop.getEightSeats());
-                    ps.setDouble(10, shop.getLatitude());
-                    ps.setDouble(11, shop.getLongitude());
-                    ps.setBoolean(12,shop.isOpen());
-                    ps.setString(13,shop.getPhoneNumber());
-                    ps.setString(14,shop.getBusinessHours());
-                    ps.setString(15,shop.getHtmlId());
+                    ps.setDouble(4, shop.getLatitude());
+                    ps.setDouble(5, shop.getLongitude());
+                    ps.setBoolean(6,shop.isOpen());
+                    ps.setString(7,shop.getPhoneNumber());
+                    ps.setString(8,shop.getBusinessHours());
+                    ps.setString(9,shop.getHtmlId());
                 });
         jdbcTemplate.update("INSERT into category(categoryName) values(?) ON DUPLICATE KEY UPDATE cnt = cnt+1",shop.getCategory());
         return result;
@@ -139,13 +133,6 @@ public class ShopRepositoryImpl implements ShopRepository{
                 shop.setSellerId(rs.getString("sellerId"));
                 shop.setShopName(rs.getString("shopName"));
                 shop.setCategory(rs.getString("category"));
-                shop.setTotalSeat(rs.getInt("totalSeat"));
-                shop.setCurrentSeat(rs.getInt("currentSeat"));
-                shop.setLeftSeat(rs.getInt("leftSeat"));
-                shop.setTwoSeats(rs.getInt("twoSeats"));
-                shop.setFourSeats(rs.getInt("fourSeats"));
-                shop.setSixSeats(rs.getInt("sixSeats"));
-                shop.setEightSeats(rs.getInt("eightSeats"));
                 shop.setLatitude(rs.getDouble("latitude"));
                 shop.setLongitude(rs.getDouble("longitude"));
                 shop.setOpen(rs.getBoolean("open"));

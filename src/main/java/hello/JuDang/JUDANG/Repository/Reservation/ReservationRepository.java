@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ReservationRepository {
     int insert(Reservation reservation);
-    int update(Reservation reservation);
+    int statusUpdate(Reservation reservation);
     List<Reservation> selectStoreReservation(Reservation reservation);
 }
