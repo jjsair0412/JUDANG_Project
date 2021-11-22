@@ -1,7 +1,7 @@
+
 let storeCheckBoxIds = { // 체크박스에 동적으로 할당시킬 id값들 저장해두고 있는 객체
     'checkBoxId': 0
 }
-
 
 let a = 0;
 
@@ -16,15 +16,15 @@ if (myShops === null) {
         storeCheckBoxIds.checkBoxId = +a;
 
 
-        $('#myshopsInfoPosition').append('가게 이름 : <div onclick="goThisStoreInfo(\'' + myShops[i].shopName + '\',\'' + storeCheckBoxIds.checkBoxId + '\');">' + myShops[i].shopName + '</div>')
+        $('#myshopsInfoPosition').append('가게 이름 : <div onclick="goThisStoreInfo(\'' + myShops[i].shopName + '\',\'' + myShops[i].htmlId + '\');">' + myShops[i].shopName + '</div>')
         // $('#myshopsInfoPosition').append('가게 카테고리 : <div>' + myShops[i].category + '</div>')
         // $('#myshopsInfoPosition').append('전체 좌석수 : <div>' + myShops[i].totalSeat + '</div>')
         // $('#myshopsInfoPosition').append('현재 좌석수 : <div>' + myShops[i].currentSeat + '</div>')
 
         if (myShops[i].open) {
-            $('#myshopsInfoPosition').append('영업 종료 : <input type="checkbox" checked id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');"></br>')
+            $('#myshopsInfoPosition').append('영업 종료 : <input type="checkbox" checked id="' + a + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + myShops[i].htmlId + '\');"></br>')
         } else {
-            $('#myshopsInfoPosition').append('영업 시작 : <input type="checkbox" id="' + storeCheckBoxIds.checkBoxId + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + storeCheckBoxIds.checkBoxId + '\');"></br>')
+            $('#myshopsInfoPosition').append('영업 시작 : <input type="checkbox" id="' + a  + '" onclick="openLogic(\'' + a + '\',\'' + nowShop + '\',\'' + myShops[i].htmlId  + '\');"></br>')
         }
 
 
@@ -33,7 +33,7 @@ if (myShops === null) {
             let openShop = new Object();
             openShop.shopName = shopName;
             openShop.isOpen = checked;
-            openShop.htmlId = htmlId - 1;
+            openShop.htmlId = htmlId;
 
             $.ajax({
                 type: "get",
@@ -57,9 +57,8 @@ if (myShops === null) {
         }
 
         function goThisStoreInfo(shopName, htmlId){
-            const number = htmlId-1;
             const newWindow = window.open("about:blank");
-            newWindow.location.href = "/SellerPage/goMyShopInfo/?shopName="+shopName+"&&htmlId="+number;
+            newWindow.location.href = "/SellerPage/goMyShopInfo/?shopName="+shopName+"&&htmlId="+htmlId;
         }
     }
 }
