@@ -1,5 +1,7 @@
 package hello.JuDang.JUDANG.Controller.SellerOrBuyerPages;
 
+
+import hello.JuDang.JUDANG.Service.Shop.ShopService;
 import hello.JuDang.JUDANG.Controller.ControllerDomain.ShopForm;
 import hello.JuDang.JUDANG.Controller.ControllerDomain.ShopOpenCloseForm;
 import hello.JuDang.JUDANG.Domain.Member;
@@ -22,7 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/SellerPage")
 public class SellerPage {
-    private final hello.JuDang.JUDANG.Service.Shop.ShopService ShopService;
+    private final ShopService ShopService;
     private final LoginTypeCheck typeCheck;
     private final GetMyShopInfo myShops;
     private final OpenCloseFunc openCloseFunc;
@@ -100,9 +102,6 @@ public class SellerPage {
     public int myGetMyPosition(
             @SessionAttribute(name = "loginMember", required = false) String id,
             ShopForm shopForm) {
-        log.info("좌석정보={}",shopForm.getTotalSeat());
-        log.info("여섯자리 좌석정보={}",shopForm.getSixSeats());
-
         return ShopService.shopRegister(shopForm, id);
     }
 
