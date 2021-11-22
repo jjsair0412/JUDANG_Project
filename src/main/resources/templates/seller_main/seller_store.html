@@ -51,6 +51,8 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
     </nav>
 </header>
 
@@ -70,8 +72,15 @@
                     총 좌석 수 : <p class="form-input" type="text" th:text="${allSeat}"></p>
                     남은 좌석 수 : <p class="form-input" type="text"></p>
                     대기 테이블 수 : <p class="form-input" type="text"></p>
-                    <button type="button" class="btn">Open</button>
-                    <button type="button" class="btn-2">Closed</button>
+
+                    <label for="open">Open</label>
+                    <input type="radio" name="store-time" value="1" id="open"/>
+
+                    <label for="close">Close</label>
+                    <input type="radio" name="store-time" value="2" id="close"/>
+
+                    <button type="submit" class="btn">확인</button>
+                    <button type="button" class="logout-btn">로그아웃</button>
                 </form>
             </div>
 
@@ -173,11 +182,71 @@
             </div>
         </div>
     </div>
-    <details>
-        <summary>내 가게 목록</summary>
-        <div  id ="myshopsInfoPosition"></div>
-    </details>
 </main>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <details>
+                    <summary>내 가게 목록</summary>
+                    <table class="detail-table">
+                        <thead>
+                        <tr>
+                            <th>가게 이름</th>
+                            <th>오픈 여부</th>
+                            <th>인원 현황</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>주당</td>
+                            <td>Open</td>
+                            <td>15명</td>
+                        </tr>
+                        <tr>
+                            <td>당주</td>
+                            <td>Close</td>
+                            <td>-</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div  id ="myshopsInfoPosition"></div>
+                </details>
+            </div>
+            <div class="col-8">
+                <h3>현재 테이블 현황</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>가게이름</th>
+                        <th>2인</th>
+                        <th>4인</th>
+                        <th>6인</th>
+                        <th>8인</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>주당</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>당주</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</footer>
 <script th:inline="javascript">
     const myShops = [[${myShops}]]
 </script>

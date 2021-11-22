@@ -127,13 +127,24 @@ input[placeholder$='남은 좌석 수'] {
   margin-top: 100px;
 }
 
-.btn {
-  margin-left: 10px;
-  margin-right: 25px;
+#open{
+  margin-right: 30px;
 }
 
-.btn,
-.btn-2 {
+.logout-btn{
+  width: 80px;
+  height: 50px;
+  color: black;
+  border: 2px solid #d3dce6;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+  transition: opacity 300ms ease-in-out;
+  margin-left: 10px;
+}
+
+.btn,.btn-2 {
   display: inline-flex; /* width값을 주고 텍스트 가운데 배치를 위해 */
   justify-content: center;
   align-items: center;
@@ -156,6 +167,12 @@ input[placeholder$='남은 좌석 수'] {
   opacity: 0.3;
   cursor: pointer;
 }
+
+.logout-btn:hover{
+  cursor: pointer;
+}
+
+
 
 .store-buyer {
   margin-left: 100px;
@@ -199,4 +216,17 @@ td:first-child {
 h3 {
   text-align: center;
   margin-bottom: 20px;
+}
+
+/* footer */
+#footer{
+  margin-top: 30px;
+}
+
+summary{
+  margin-bottom: 10px;
+}
+
+.detail-table{
+  width: 270px;
 }
