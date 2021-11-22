@@ -52,6 +52,14 @@ public class ShopRepositoryImpl implements ShopRepository{
     }
 
     @Override
+    public Shop findByHtmlId(String htmlId) {
+        List<Shop> shopList = jdbcTemplate.query("SELECT * FROM shop WHERE htmlId=?", shopRowMapper(),htmlId);
+        Shop shop = shopList.get(0);
+        return shop;
+    }
+
+
+    @Override
     public List<Shop> findAllShop() {
         List<Shop> shopList = jdbcTemplate.query("select * from shop", shopRowMapper());
         if(shopList.isEmpty()){
