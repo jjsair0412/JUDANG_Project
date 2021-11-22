@@ -27,7 +27,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     @Override
     public int save(Shop shop) {
         int result = jdbcTemplate.update(
-                "INSERT INTO shop(sellerId,shopName,category,totalSeat,currentSeat,twoSeats,fourSeats,sixSeats,eightSeats,latitude,longitude,open,phoneNumber,businessHours,htmlId) " +
+                "INSERT INTO shop(sellerId,shopName,category,totalSeat,currentSeat,twoSeats,fourSeats,sixSeat,eightSeats,latitude,longitude,open,phoneNumber,businessHours,htmlId) " +
                         "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 ps -> {
                     ps.setString(1, shop.getSellerId());

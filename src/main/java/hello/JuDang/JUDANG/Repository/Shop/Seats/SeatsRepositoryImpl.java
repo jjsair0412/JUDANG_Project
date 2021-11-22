@@ -37,10 +37,7 @@ public class SeatsRepositoryImpl implements SeatsRepository {
     @Override
     public Seats select(int shopNum) {
         List<Seats> seats = jdbcTemplate.query("SELECT * FROM seats WHERE shopNum = ?", seatsRowMapper(),shopNum);
-        if (seats.isEmpty()){
-            log.info("가게 정보 없음");
-        }
-        return seats.get(0);
+        return seats.isEmpty() ? null : seats.get(0);
     }
 
     @Override
