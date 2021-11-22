@@ -29,7 +29,7 @@ class SeatsRepositoryImplTest {
         one.setFourSeats(8);
         one.setSixSeats(7);
         one.setEightSeats(1);
-        int save = seatsRepository.save(one);
+        int save = seatsRepository.save(one,1);
         assertThat(save).isEqualTo(1);
     }
 

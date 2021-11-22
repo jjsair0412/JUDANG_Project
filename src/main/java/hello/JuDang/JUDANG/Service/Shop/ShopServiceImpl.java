@@ -40,16 +40,16 @@ public class ShopServiceImpl implements ShopService {
         seats.setEightSeats(shopForm.getEightSeats());
 
 
+        int save = shopRepository.save(shop);
 
-        return MakeShopSaveResult(shopRepository.save(shop), seatsRepository.save(seats));
+        Shop byHtmlId = shopRepository.findByHtmlId(shopForm.getHtmlId());
+        int result = MakeShopSaveResult(byHtmlId, seats);
+
+        return save == 1 && result ==1 ? 1 : 0;
     }
 
-    private int MakeShopSaveResult(int result, int save){
-        if(result == 1 && save == 1){
-            return 1;
-        }else {
-            return 0;
-        }
+    private int MakeShopSaveResult(Shop byHtmlId, Seats seats){
+        return seatsRepository.save(seats, byHtmlId.getShopNum());
     }
 
     @Override

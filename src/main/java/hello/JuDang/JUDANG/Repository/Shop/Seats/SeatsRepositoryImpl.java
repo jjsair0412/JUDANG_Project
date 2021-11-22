@@ -1,6 +1,7 @@
 package hello.JuDang.JUDANG.Repository.Shop.Seats;
 
 import hello.JuDang.JUDANG.Domain.Seats;
+import hello.JuDang.JUDANG.Domain.Shop;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,16 +23,14 @@ public class SeatsRepositoryImpl implements SeatsRepository {
     }
 
     @Override
-    public int save(Seats seats) {
-        int result = jdbcTemplate.update("INSERT INTO seats(shopNum,twoSeats,fourSeats,sixSeats,eightSeats) VALUES(?,?,?,?,?)",
-                ps -> {
-                    ps.setInt(1, seats.getShopNum());
-                    ps.setInt(2, seats.getTwoSeats());
-                    ps.setInt(3, seats.getFourSeats());
-                    ps.setInt(4, seats.getSixSeats());
-                    ps.setInt(5, seats.getEightSeats());
-                });
+    public int save(Seats seats, int shopNum) {
+        int result = jdbcTemplate.update("update seats set twoSeats = ?, fourSeats = ?, sixSeats = ?, eightSeats = ? where shopNum = ?  ",
+            seats.getTwoSeats(), seats.getFourSeats(), seats.getSixSeats(), seats.getEightSeats(), shopNum);
         return result;
+    }
+
+    public int insertPK(Shop shop){
+        return jdbcTemplate.update("insert into seats(shopNum) values(?)",shop.getShopNum());
     }
 
 

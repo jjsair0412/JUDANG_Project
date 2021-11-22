@@ -2,6 +2,7 @@ let storeCheckBoxIds = { // 체크박스에 동적으로 할당시킬 id값들 �
     'checkBoxId': 0
 }
 
+
 let a = 0;
 
 if (myShops === null) {
@@ -10,6 +11,11 @@ if (myShops === null) {
     $('#myshopsInfoPosition').empty();
     for (let i = 0; i < myShops.length; i++) {
         ++a;
+
+        let htmlId = myShops[i].htmlId;
+        if(storeCheckBoxIds.checkBoxId === htmlId){
+            a += htmlId;
+        }
 
         const nowShop = myShops[i].shopName;
         storeCheckBoxIds.checkBoxId = +a;
