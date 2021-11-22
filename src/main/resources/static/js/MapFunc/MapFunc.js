@@ -21,7 +21,7 @@ function SearchMyStore() {
 }
 
 function storeSave() {
-    data.shopNumber = $('#shopNumber').val();
+    data.phoneNumber = $('#phoneNumber').val();
     data.shopName = $('#storeName').val();
     data.totalSeat = $('#allSeat').val();
     data.category = $('#category').val();
