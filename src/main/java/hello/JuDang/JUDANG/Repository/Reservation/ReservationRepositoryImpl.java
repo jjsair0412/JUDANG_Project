@@ -46,11 +46,11 @@ public class ReservationRepositoryImpl implements ReservationRepository {
                     public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Reservation resva = new Reservation();
                         resva.setShopNum(rs.getInt("shopNum"));
+                        resva.setShopName(rs.getString("shopName"));
                         resva.setBuyerId(rs.getString("buyerId"));
                         resva.setBuyerName(rs.getString("buyerName"));
                         resva.setPhoneNumber(rs.getString("phoneNumber"));
                         resva.setNumberOfPeople(rs.getInt("numberOfPeople"));
-                        resva.setShopName(rs.getString("shopName"));
                         resva.setStatus(rs.getBoolean("status"));
                         return resva;
                     }
