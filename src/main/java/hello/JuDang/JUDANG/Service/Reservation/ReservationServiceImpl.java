@@ -3,31 +3,46 @@ package hello.JuDang.JUDANG.Service.Reservation;
 import hello.JuDang.JUDANG.Domain.Reservation;
 import hello.JuDang.JUDANG.Domain.Seats;
 import hello.JuDang.JUDANG.Domain.Shop;
+import hello.JuDang.JUDANG.Domain.Waiting;
 import hello.JuDang.JUDANG.Repository.Reservation.ReservationRepository;
+import hello.JuDang.JUDANG.Repository.Reservation.Waiting.WaitingRepository;
 import hello.JuDang.JUDANG.Repository.Shop.Seats.SeatsRepository;
 import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReservationServiceImpl implements ReservationService{
     private final ShopRepository shopRepository;
     private final ReservationRepository reservationRepository;
     private final SeatsRepository seatsRepository;
-
+    private final WaitingRepository waitingRepository;
+    private final CheckLeftSeats checkLeftSeats;
     @Override
-    public int makeReservation(Reservation reservation) throws Exception {
+    public String makeReservation(Reservation reservation) throws Exception {
         Seats selectShop = seatsRepository.select(reservation.getShopNum());
-        int leftTwo = selectShop.getTwoSeats() - selectShop.getSitTwoSeats();
-        int leftFour = selectShop.getFourSeats() - selectShop.getSitFourSeats();
-        int leftSix = selectShop.getSixSeats() - selectShop.getSitSixSeats();
-        int leftEight = selectShop.getEightSeats() - selectShop.getSitEightSeats();
-
         int numberOfPeople = reservation.getNumberOfPeople();
-        checkSeatsType(numberOfPeople);
-        return 0;
+        Waiting waiting = new Waiting();
+                waiting.setShopNum(reservation.getShopNum());
+                waiting.setShopName(reservation.getShopName());
+                waiting.setBuyerId(reservation.getBuyerId());
+                waiting.setBuyerName(reservation.getBuyerName());
+                waiting.setNumberOfPeople(reservation.getNumberOfPeople());
+                waiting.setPhoneNumber(reservation.getPhoneNumber());
+
+        int seatsType = checkSeatsType(numberOfPeople);
+        String leftSeats = checkLeftSeats.check(selectShop, seatsType);
+
+        if(leftSeats.equals("대기")){
+            waitingRepository.insert(waiting);
+        }else{
+            reservationRepository.insert(reservation);
+        }
+        return leftSeats;
 
     }
 
@@ -68,8 +83,6 @@ public class ReservationServiceImpl implements ReservationService{
             return 8;}
         else return 0;
     }
-
-
 
 }
 

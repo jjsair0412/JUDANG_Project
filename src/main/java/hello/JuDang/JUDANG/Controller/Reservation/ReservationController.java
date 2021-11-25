@@ -38,10 +38,10 @@ public class ReservationController {
 
     @PostMapping
     public String makeReservation(@ModelAttribute Reservation reservation, RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
-        int result = reservationService.makeReservation(reservation);
+        String result = reservationService.makeReservation(reservation);
         redirectAttributes.addAttribute("buyerId",reservation.getBuyerId());
 
-        if(result<1){ // 실패
+        if(result.equals("실패")){ // 실패
             return "";
         }
         return "redirect:/"; //성공 (내 정보 -> 예약 현황으로)
