@@ -10,7 +10,6 @@ public class ShopForm {
     private String sellerId;
     private String shopName;
     private String category;
-    private int currentSeat;
     private double latitude; // 위도
     private double longitude; // 경도
     private boolean open;

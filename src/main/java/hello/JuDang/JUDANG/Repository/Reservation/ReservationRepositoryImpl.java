@@ -1,6 +1,7 @@
 package hello.JuDang.JUDANG.Repository.Reservation;
 
 import hello.JuDang.JUDANG.Domain.Reservation;
+import hello.JuDang.JUDANG.Domain.Waiting;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,12 @@ public class ReservationRepositoryImpl implements ReservationRepository {
                 reservation.getNumberOfPeople(),
                 reservation.getPhoneNumber());
         return result;
+    }
+
+    @Override
+    public List<Reservation> select(String buyerId) {
+        List<Reservation> reservations = jdbcTemplate.query("SELECT * FROM waiting WHERE buyerId=?", reservationRowMapper(), buyerId);
+        return reservations;
     }
 
     @Override

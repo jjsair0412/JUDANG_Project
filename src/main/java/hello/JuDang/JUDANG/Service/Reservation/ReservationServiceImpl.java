@@ -51,12 +51,8 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public int acceptReservation(Reservation reservation) {
         Shop shop = shopRepository.findById(reservation.getShopNum());
-        if(shop.getLeftSeat()<reservation.getNumberOfPeople()){
-            return 0;
-        } else{
-        updateShopSeat(reservation, shop);
-        return reservationRepository.statusUpdate(reservation);
-        }
+
+        return 0;
     }
 
     @Override
@@ -64,13 +60,6 @@ public class ReservationServiceImpl implements ReservationService{
         return null;
     }
 
-    private void updateShopSeat(Reservation reservation, Shop shop) {
-        int addReservationSeat = shop.getCurrentSeat() + reservation.getNumberOfPeople();
-        int leftSeat = shop.getTotalSeat() - addReservationSeat;
-        shop.setCurrentSeat(addReservationSeat);
-        shop.setLeftSeat(leftSeat);
-        shopRepository.update(shop);
-    }
 
     private int checkSeatsType(int numberOfPeople) {
         if(numberOfPeople <3){
