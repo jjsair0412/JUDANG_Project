@@ -18,7 +18,4 @@ public class Shop {
     private String businessHours;
     private String htmlId;
 
-    private int LeftSeat;
-    private int CurrentSeat;
-    private int TotalSeat;
 }

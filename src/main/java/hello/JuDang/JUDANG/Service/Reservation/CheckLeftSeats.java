@@ -25,7 +25,7 @@ public class CheckLeftSeats {
             case 2:
                 if(leftTwo<1){
                     log.info("남은 자리 없음");
-                    return "2인 대기";
+                    return "대기";
                 }else{
                     log.info("2인 테이블");
                     return "2인 완료";
@@ -33,7 +33,7 @@ public class CheckLeftSeats {
             case 4:
                 if(leftFour<1){
                     log.info("남은 자리 없음");
-                    return "4인 대기";
+                    return "대기";
                 }else{
                     log.info("4인 테이블");
                     return "4인 완료";
@@ -41,7 +41,7 @@ public class CheckLeftSeats {
             case 6:
                 if(leftSix<1){
                     log.info("남은 자리 없음");
-                    return "6인 대기";
+                    return "대기";
                 }else{
                     log.info("6인 테이블");
                     return "6인 완료";
@@ -49,9 +49,9 @@ public class CheckLeftSeats {
             case 8:
                 if(leftEight<1){
                     log.info("남은 자리 없음");
-                    return "6인 대기";
+                    return "대기";
                 }else{
-                    log.info("6인 테이블");
+                    log.info("8인 테이블");
                     return "6인 완료";
                 }
             default:

@@ -35,7 +35,6 @@ class ShopServiceImplTest {
         shopForm.setSellerId("jjsjjsair");
         shopForm.setCategory("이자카야");
         shopForm.setShopName("주진성가게");
-        shopForm.setCurrentSeat(100);
         shopForm.setLatitude(34.123123);
         shopForm.setLongitude(128.123123);
         shopForm.setOpen(true);
