@@ -50,6 +50,7 @@ public class ReservationController {
     @GetMapping("/accept")
     public String acceptReservation(@ModelAttribute Reservation reservation){
         int result = reservationService.acceptReservation(reservation);
+
         return "redirect:";
     }
 
