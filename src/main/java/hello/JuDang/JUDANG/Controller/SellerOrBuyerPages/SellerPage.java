@@ -37,15 +37,15 @@ public class SellerPage {
     ) {
         int i = typeCheck(id, password);
         if (i == 1) { // 판매자일 경우
-            model.addAttribute("AllShopInfo",ShopService.findAllShop());
+            model.addAttribute("AllShopInfo", ShopService.findAllShop());
             List<Shop> shops = myShops.AllmyShops(id);
             model.addAttribute("myShops", shops);
-            model.addAttribute("shop",new Shop());
-            if(myShops.AllmyShops(id) == null){ // 가게를 하나도 갖고있지 않다면
+            model.addAttribute("shop", new Shop());
+            if (myShops.AllmyShops(id) == null) { // 가게를 하나도 갖고있지 않다면
                 return "seller_main/seller_form";
-            }else{ // 한개라도 가게가 있다면
-                for (Shop firstShop :shops){
-                    model.addAttribute("ShopName",firstShop.getShopName());
+            } else { // 한개라도 가게가 있다면
+                for (Shop firstShop : shops) {
+                    model.addAttribute("ShopName", firstShop.getShopName());
                 }
                 return "seller_main/seller_store";
             }
@@ -56,19 +56,19 @@ public class SellerPage {
 
     @GetMapping("/saveStoreRequest")
     public String goSaveStore( // 가게등록하고싶어서 따로 요청을 전송하게 된다면 오는 메서드
-            @SessionAttribute(name = "loginMember", required = false) String id,
-            @SessionAttribute(name = "loginPassword", required = false) String password,
+                               @SessionAttribute(name = "loginMember", required = false) String id,
+                               @SessionAttribute(name = "loginPassword", required = false) String password,
                                @RequestParam(value = "htmlnumber", required = false) String htmlId,
                                Model model
-            ){
-        model.addAttribute("AllShopInfo",ShopService.findAllShop());
+    ) {
+        model.addAttribute("AllShopInfo", ShopService.findAllShop());
         model.addAttribute("myShops", myShops.AllmyShops(id));
-        model.addAttribute("shop",new Shop());
+        model.addAttribute("shop", new Shop());
         int i = typeCheck(id, password);
-        if(i==1){
-            model.addAttribute("htmlId",htmlId);
+        if (i == 1) {
+            model.addAttribute("htmlId", htmlId);
             return "/seller_main/seller_form";
-        }else{
+        } else {
             return "/";
         }
     }
@@ -88,9 +88,9 @@ public class SellerPage {
     @GetMapping("/openCloseFunc")
     @ResponseBody
     public int openFunc(
-            @SessionAttribute(name = "loginMember",required = false) String id,
+            @SessionAttribute(name = "loginMember", required = false) String id,
             ShopOpenCloseForm openCloseForm
-    ){
+    ) {
         return openCloseFunc.OpenCloseFunc(
                 id,
                 openCloseForm.getShopName(),
@@ -113,15 +113,16 @@ public class SellerPage {
             @RequestParam(value = "htmlId") String htmlId,
             @SessionAttribute(name = "loginMember", required = false) String id,
             Model model
-            ){
+    ) {
         Shop findShopInfo = myShops.getMyShopInfo(id, shopName, htmlId);
-        model.addAttribute("ShopName",findShopInfo.getShopName());
-        model.addAttribute("myShops",myShops.AllmyShops(id));
+        model.addAttribute("ShopName", findShopInfo.getShopName());
+        model.addAttribute("myShops", myShops.AllmyShops(id));
 
         return "seller_main/seller_store";
     }
+
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.removeAttribute("loginMember");
         session.removeAttribute("loginPassword");
         return "redirect:_main/main";
