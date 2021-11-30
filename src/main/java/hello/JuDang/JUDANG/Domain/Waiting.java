@@ -11,7 +11,9 @@ public class Waiting {
     private String buyerId; // 구매자 ID
     private String buyerName; // 구매자 이름
     private int numberOfPeople; // 예약 인원
+    private String reservationSeats;
     private String phoneNumber; // 연락처
     private boolean status; // 예약 수락 여부
+    private String time;
 
 }

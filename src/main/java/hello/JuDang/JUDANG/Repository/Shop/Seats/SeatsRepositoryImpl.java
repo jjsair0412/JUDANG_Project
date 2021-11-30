@@ -46,9 +46,9 @@ public class SeatsRepositoryImpl implements SeatsRepository {
     }
 
     @Override
-    public int update(Seats seats) {
-        jdbcTemplate.update("UPDATE seats SET ");
-        return 0;
+    public int updateLeftSeats(Seats seats,String sql) {
+        int result = jdbcTemplate.update(sql, seats.getShopNum());
+        return result;
     }
 
 

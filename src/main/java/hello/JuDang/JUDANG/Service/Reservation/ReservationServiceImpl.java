@@ -26,42 +26,44 @@ public class ReservationServiceImpl implements ReservationService{
     public String makeReservation(Reservation reservation) throws Exception {
         Seats selectShop = seatsRepository.select(reservation.getShopNum());
         int numberOfPeople = reservation.getNumberOfPeople();
-        Waiting waiting = new Waiting();
-                waiting.setShopNum(reservation.getShopNum());
-                waiting.setShopName(reservation.getShopName());
-                waiting.setBuyerId(reservation.getBuyerId());
-                waiting.setBuyerName(reservation.getBuyerName());
-                waiting.setNumberOfPeople(reservation.getNumberOfPeople());
-                waiting.setPhoneNumber(reservation.getPhoneNumber());
 
-        int seatsType = checkSeatsType(numberOfPeople);
-        String leftSeats = checkLeftSeats.check(selectShop, seatsType);
+        String seatsType = checkSeatsType(numberOfPeople);
+        String allottedSeats = checkLeftSeats.check(selectShop, seatsType);
 
-        if(leftSeats.equals("대기")){
+        if(allottedSeats.equals("대기")){
+            Waiting waiting = getWaiting(reservation);
+            waiting.setReservationSeats(allottedSeats);
             waitingRepository.insert(waiting);
         }else{
+            reservation.setReservationSeats(allottedSeats);
             reservationRepository.insert(reservation);
         }
-        return leftSeats;
+        return allottedSeats;
 
     }
-
 
 
     @Override
     public int acceptReservation(Reservation reservation) {
-        Reservation select = reservationRepository.select(reservation.getBuyerId());
+        Reservation selectReservation = reservationRepository.select(reservation.getBuyerId());
+        Seats selectShop = seatsRepository.select(reservation.getShopNum());
+        String allottedSeats = checkLeftSeats.check(selectShop, selectReservation.getReservationSeats());
+
         int update = reservationRepository.statusUpdate(reservation.getBuyerId());
-        if (update<1){
-            log.info("예약 수락 실패");
+        if (allottedSeats.equals("대기")){
+            log.info("예약 가능한 좌석이 없음");
             return 0;
-        }else if(update==1){
-
+        }else {
+            if (update < 1){
+                log.info("예약 수락 실패");
+                return 0;
+            }else{
+                return leftSeatsCount(selectShop, allottedSeats);
+            }
         }
-
-
-        return 0;
     }
+
+
 
     @Override
     public List<Reservation> selectAllReservation(Reservation reservation) {
@@ -69,17 +71,48 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
 
-    private int checkSeatsType(int numberOfPeople) {
-        if(numberOfPeople <3){
-            return 2;
-        }else if(numberOfPeople >2 && numberOfPeople <=4){
-            return 4;
-        }else if (numberOfPeople > 4 && numberOfPeople <=6){
-            return 6;
-        }else if (numberOfPeople > 6 && numberOfPeople <=8){
-            return 8;}
-        else return 0;
+    private Waiting getWaiting(Reservation reservation) {
+        Waiting waiting = new Waiting();
+        waiting.setShopNum(reservation.getShopNum());
+        waiting.setShopName(reservation.getShopName());
+        waiting.setBuyerId(reservation.getBuyerId());
+        waiting.setBuyerName(reservation.getBuyerName());
+        waiting.setNumberOfPeople(reservation.getNumberOfPeople());
+        waiting.setPhoneNumber(reservation.getPhoneNumber());
+        return waiting;
     }
 
+    private String checkSeatsType(int numberOfPeople) {
+        if(numberOfPeople <3){
+            return "2인";
+        }else if(numberOfPeople >2 && numberOfPeople <=4){
+            return "3인";
+        }else if (numberOfPeople > 4 && numberOfPeople <=6){
+            return "6인";
+        }else if (numberOfPeople > 6 && numberOfPeople <=8){
+            return "8인";}
+        else return "8인 이상";
+    }
+
+    private int leftSeatsCount(Seats selectShop, String allottedSeats) {
+        String sql;
+        switch (allottedSeats){
+            case "2인":
+                sql="UPDATE seats SET sitTwoSeats+=1 WHERE shopNum=?";
+                return seatsRepository.updateLeftSeats(selectShop,sql);
+            case "4인":
+                sql="UPDATE seats SET sitFourSeats+=1 WHERE shopNum=?";
+                return seatsRepository.updateLeftSeats(selectShop,sql);
+            case "6인":
+                sql="UPDATE seats SET sitSixSeats+=1 WHERE shopNum=?";
+                return seatsRepository.updateLeftSeats(selectShop,sql);
+            case "8인":
+                sql="UPDATE seats SET sitEightSeats+=1 WHERE shopNum=?";
+                return seatsRepository.updateLeftSeats(selectShop,sql);
+            case "8인 이상":
+                return 0;
+            default:return 0;
+        }
+    }
 }
 
