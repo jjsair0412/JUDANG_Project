@@ -50,7 +50,15 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public int acceptReservation(Reservation reservation) {
-        Shop shop = shopRepository.findById(reservation.getShopNum());
+        Reservation select = reservationRepository.select(reservation.getBuyerId());
+        int update = reservationRepository.statusUpdate(reservation.getBuyerId());
+        if (update<1){
+            log.info("예약 수락 실패");
+            return 0;
+        }else if(update==1){
+
+        }
+
 
         return 0;
     }

@@ -33,14 +33,14 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     }
 
     @Override
-    public List<Reservation> select(String buyerId) {
+    public Reservation select(String buyerId) {
         List<Reservation> reservations = jdbcTemplate.query("SELECT * FROM waiting WHERE buyerId=?", reservationRowMapper(), buyerId);
-        return reservations;
+        return reservations.get(0);
     }
 
     @Override
-    public int statusUpdate(Reservation reservation) {
-        int result = jdbcTemplate.update("UPDATE reservation SET status = 1 WHERE buyerId = ?", reservation.getBuyerId());
+    public int statusUpdate(String buyerId) {
+        int result = jdbcTemplate.update("UPDATE reservation SET status = 1 WHERE buyerId = ?", buyerId);
         return result;
     }
 
