@@ -31,8 +31,7 @@ class SellerShopInfoImplTest {
         shop1.setSellerId("one");
         shop1.setShopName("첫번째");
         shop1.setCategory("이자카야");
-        shop1.setTotalSeat(100);
-        shop1.setCurrentSeat(50);
+
         shop1.setLatitude(34.123123);
         shop1.setLongitude(127.322323);
         shop1.setHtmlId("0");
@@ -41,8 +40,7 @@ class SellerShopInfoImplTest {
         shop2.setSellerId("two");
         shop2.setShopName("두번째");
         shop2.setCategory("걍술집");
-        shop2.setTotalSeat(30);
-        shop2.setCurrentSeat(20);
+
         shop2.setLatitude(30.123123);
         shop2.setLongitude(120.322323);
         shop2.setHtmlId("1");
@@ -51,8 +49,7 @@ class SellerShopInfoImplTest {
         shop3.setSellerId("two");
         shop3.setShopName("세번째");
         shop3.setCategory("ㄹㅇ그냥술집");
-        shop3.setTotalSeat(550);
-        shop3.setCurrentSeat(10);
+
         shop3.setLatitude(302.123123);
         shop3.setLongitude(1202.322323);
         shop3.setHtmlId("2");
@@ -88,7 +85,6 @@ class SellerShopInfoImplTest {
     void 내가_선택한_가게정보_가져오기(){
         List<Shop> myShopInfo = SellerShopInfoImpl.getMyShopInfo("two", "두번째", "1");
         for (Shop one:myShopInfo){
-            assertThat(one.getTotalSeat()).isEqualTo(30);
             assertThat(one.getLatitude()).isEqualTo("30.123123");
             assertThat(one.getLongitude()).isEqualTo("120.322323");
         }

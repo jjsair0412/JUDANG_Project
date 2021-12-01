@@ -51,7 +51,5 @@ public class MemberManageController {
             session.removeAttribute("loginPassword");
             return "redirect:_main/main";
         }
-
-
     }
 }

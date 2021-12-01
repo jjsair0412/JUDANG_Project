@@ -17,31 +17,33 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ReservationServiceImpl implements ReservationService{
-    private final ShopRepository shopRepository;
     private final ReservationRepository reservationRepository;
     private final SeatsRepository seatsRepository;
     private final WaitingRepository waitingRepository;
     private final CheckLeftSeats checkLeftSeats;
+    private final CheckSeatsType checkSeatsType;
+
     @Override
     public String makeReservation(Reservation reservation) throws Exception {
         Seats selectShop = seatsRepository.select(reservation.getShopNum());
         int numberOfPeople = reservation.getNumberOfPeople();
 
-        String seatsType = checkSeatsType(numberOfPeople);
+        String seatsType = checkSeatsType.check(numberOfPeople);
         String allottedSeats = checkLeftSeats.check(selectShop, seatsType);
+        log.info("allottedSeats={}, satsType={}",allottedSeats,seatsType);
 
         if(allottedSeats.equals("대기")){
             Waiting waiting = getWaiting(reservation);
             waiting.setReservationSeats(allottedSeats);
-            waitingRepository.insert(waiting);
+            int result = waitingRepository.insert(waiting);
+            log.info("waiting result = {}",result);
         }else{
             reservation.setReservationSeats(allottedSeats);
-            reservationRepository.insert(reservation);
+            int result = reservationRepository.insert(reservation);
+            log.info("reservation result = {}",result);
         }
         return allottedSeats;
-
     }
-
 
     @Override
     public int acceptReservation(Reservation reservation) {
@@ -63,8 +65,6 @@ public class ReservationServiceImpl implements ReservationService{
         }
     }
 
-
-
     @Override
     public List<Reservation> selectAllReservation(Reservation reservation) {
         return null;
@@ -82,32 +82,26 @@ public class ReservationServiceImpl implements ReservationService{
         return waiting;
     }
 
-    private String checkSeatsType(int numberOfPeople) {
-        if(numberOfPeople <3){
-            return "2인";
-        }else if(numberOfPeople >2 && numberOfPeople <=4){
-            return "3인";
-        }else if (numberOfPeople > 4 && numberOfPeople <=6){
-            return "6인";
-        }else if (numberOfPeople > 6 && numberOfPeople <=8){
-            return "8인";}
-        else return "8인 이상";
-    }
+
 
     private int leftSeatsCount(Seats selectShop, String allottedSeats) {
         String sql;
         switch (allottedSeats){
             case "2인":
-                sql="UPDATE seats SET sitTwoSeats+=1 WHERE shopNum=?";
+                sql="UPDATE seats SET sitTwoSeats=sitTwoSeats+1 WHERE shopNum=?";
+                log.info("{}",sql);
                 return seatsRepository.updateLeftSeats(selectShop,sql);
             case "4인":
-                sql="UPDATE seats SET sitFourSeats+=1 WHERE shopNum=?";
+                sql="UPDATE seats SET sitFourSeats=sitFourSeats+1 WHERE shopNum=?";
+                log.info("{}",sql);
                 return seatsRepository.updateLeftSeats(selectShop,sql);
             case "6인":
-                sql="UPDATE seats SET sitSixSeats+=1 WHERE shopNum=?";
+                sql="UPDATE seats SET sitSixSeats=sitSixSeats+1 WHERE shopNum=?";
+                log.info("{}",sql);
                 return seatsRepository.updateLeftSeats(selectShop,sql);
             case "8인":
-                sql="UPDATE seats SET sitEightSeats+=1 WHERE shopNum=?";
+                sql="UPDATE seats SET sitEightSeats=sitEightSeats+1 WHERE shopNum=?";
+                log.info("{}",sql);
                 return seatsRepository.updateLeftSeats(selectShop,sql);
             case "8인 이상":
                 return 0;
@@ -115,4 +109,3 @@ public class ReservationServiceImpl implements ReservationService{
         }
     }
 }
-

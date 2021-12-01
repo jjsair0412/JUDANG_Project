@@ -35,7 +35,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public Reservation select(String buyerId) {
-        List<Reservation> reservations = jdbcTemplate.query("SELECT * FROM waiting WHERE buyerId=?", reservationRowMapper(), buyerId);
+        List<Reservation> reservations = jdbcTemplate.query("SELECT * FROM reservation WHERE buyerId=?", reservationRowMapper(), buyerId);
         return reservations.get(0);
     }
 

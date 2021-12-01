@@ -34,7 +34,7 @@ class ReservationServiceImplTest {
     void 좌석배정테스트() throws Exception {
         Reservation reservation = getReservation();
         String result = reservationService.makeReservation(reservation);
-        Assertions.assertThat(result).isEqualTo("6인 완료");
+        Assertions.assertThat(result).isEqualTo("6인");
 
     }
 
@@ -44,14 +44,24 @@ class ReservationServiceImplTest {
     void 만석테스트() throws Exception {
         Reservation reservation = getReservation();
         String result = reservationService.makeReservation(reservation);
-        Assertions.assertThat(result).isEqualTo("4인 대기");
+        Assertions.assertThat(result).isEqualTo("대기");
 
+    }
+
+    @Test
+    @Rollback
+    @Transactional
+    void 수락테스트() throws Exception {
+        Reservation reservation = getReservation();
+        reservationService.makeReservation(reservation);
+        int acceptReservation = reservationService.acceptReservation(reservation);
+        Assertions.assertThat(acceptReservation).isEqualTo(1);
     }
 
 
     Reservation getReservation(){
         Reservation reservation = new Reservation();
-        reservation.setShopNum(181);
+        reservation.setShopNum(174);
         reservation.setShopName("첫번째");
         reservation.setBuyerId("kkk");
         reservation.setBuyerName("준범");
