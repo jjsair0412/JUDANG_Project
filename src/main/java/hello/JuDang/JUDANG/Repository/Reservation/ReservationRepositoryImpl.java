@@ -22,12 +22,13 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public int insert(Reservation reservation) {
-        int result = jdbcTemplate.update("INSERT INTO reservation(shopNum,shopName,buyerId,buyerName,numberOfPeople,phoneNumber) values (?,?,?,?,?,?)",
+        int result = jdbcTemplate.update("INSERT INTO reservation(shopNum,shopName,buyerId,buyerName,numberOfPeople,reservationSeats,phoneNumber) values (?,?,?,?,?,?,?)",
                 reservation.getShopNum(),
                 reservation.getShopName(),
                 reservation.getBuyerId(),
                 reservation.getBuyerName(),
                 reservation.getNumberOfPeople(),
+                reservation.getReservationSeats(),
                 reservation.getPhoneNumber());
         return result;
     }
@@ -38,6 +39,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         return reservations.get(0);
     }
 
+
     @Override
     public int statusUpdate(String buyerId) {
         int result = jdbcTemplate.update("UPDATE reservation SET status = 1 WHERE buyerId = ?", buyerId);
@@ -46,7 +48,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public List<Reservation> selectStoreReservation(Reservation reservation) {
-        String sql = "select * from reservation where shopNum = ? and shopName = ?";
+        String sql = "select * from reservation where shopNum = ? and shopName = ? ORDER BY 'time'";
         return jdbcTemplate.query(sql,
                 reservationRowMapper(),reservation.getShopNum(), reservation.getShopName()
         );
@@ -63,7 +65,9 @@ public class ReservationRepositoryImpl implements ReservationRepository {
                 resva.setBuyerName(rs.getString("buyerName"));
                 resva.setPhoneNumber(rs.getString("phoneNumber"));
                 resva.setNumberOfPeople(rs.getInt("numberOfPeople"));
+                resva.setReservationSeats(rs.getString("reservationSeats"));
                 resva.setStatus(rs.getBoolean("status"));
+                resva.setTime(rs.getString("time"));
                 return resva;
             }
         };

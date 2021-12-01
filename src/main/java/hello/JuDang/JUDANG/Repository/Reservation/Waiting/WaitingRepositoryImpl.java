@@ -18,12 +18,13 @@ public class WaitingRepositoryImpl implements WaitingRepository{
 
     @Override
     public int insert(Waiting waiting) {
-        int result = jdbcTemplate.update("INSERT INTO waiting(shopNum,shopName,buyerId,buyerName,numberOfPeople,phoneNumber) values(?,?,?,?,?,?)",
+        int result = jdbcTemplate.update("INSERT INTO waiting(shopNum,shopName,buyerId,buyerName,numberOfPeople,reservationSeats,phoneNumber) values(?,?,?,?,?,?,?)",
                 waiting.getShopNum(),
                 waiting.getShopName(),
                 waiting.getBuyerId(),
                 waiting.getBuyerName(),
                 waiting.getNumberOfPeople(),
+                waiting.getReservationSeats(),
                 waiting.getPhoneNumber());
         return result;
     }
@@ -57,7 +58,9 @@ public class WaitingRepositoryImpl implements WaitingRepository{
                 waiting.setBuyerName(rs.getString("buyerName"));
                 waiting.setPhoneNumber(rs.getString("phoneNumber"));
                 waiting.setNumberOfPeople(rs.getInt("numberOfPeople"));
+                waiting.setReservationSeats(rs.getString("reservationSeats"));
                 waiting.setStatus(rs.getBoolean("status"));
+                waiting.setTime(rs.getString("time"));
                 return waiting;
             }
         };

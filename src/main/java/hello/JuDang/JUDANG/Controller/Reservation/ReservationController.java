@@ -50,7 +50,11 @@ public class ReservationController {
     @GetMapping("/accept")
     public String acceptReservation(@ModelAttribute Reservation reservation){
         int result = reservationService.acceptReservation(reservation);
-
+        if(result<1){
+            log.info("예약 수락 실패");
+        }else{
+            log.info("예약 수락 성공");
+        }
         return "redirect:";
     }
 
