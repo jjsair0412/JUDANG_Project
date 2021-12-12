@@ -33,10 +33,10 @@ public class ReservationController {
         reservation.setBuyerName(buyerName);
 
         model.addAttribute("reservation",reservation);
-        return "";
+        return "buyer/buyer_form";
     }
 
-    @PostMapping
+    @PostMapping("/makeReservation")
     public String makeReservation(@ModelAttribute Reservation reservation, RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
         String result = reservationService.makeReservation(reservation);
         redirectAttributes.addAttribute("buyerId",reservation.getBuyerId());
