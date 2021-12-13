@@ -7,7 +7,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>JUDANG</title>
+      <title th:title="#{judang.title}">JUDANG</title>
       <link rel="stylesheet" th:href="@{/css/_main/mainStyle.css}" />
       <link
         rel="stylesheet"
@@ -30,7 +30,7 @@
             <div class="col-12">
               <div class="navbar">
                 <i class="fas fa-wine-bottle"></i>
-                <h1>JUDANG</h1>
+                <h1 th:title="#{judang.title}">JUDANG</h1>
               </div>
             </div>
           </div>
@@ -99,14 +99,14 @@
             <div class="col-12 col-md-12">
               <div class="footer-form">
                 <form>
-                  <label for="Id">아이디</label>
+                  <label for="Id" th:text="#{label.id}">아이디</label>
                   <input type="text"
                          id="ID"
                          placeholder="ID"
                          required
                   />
 
-                  <label for="Password">비밀번호</label>
+                  <label for="Password" th:text="#{label.password}">비밀번호</label>
                   <input
                     type="password"
                     id="Password"
@@ -115,8 +115,8 @@
                   />
 
                   <div class="lj-btn">
-                    <button type="button" id="loginFuncJs" class="login-btn">로그인</button>
-                    <button type="button" th:onclick="|location.href='@{/join}'|" class="join-btn">회원가입</button>
+                    <button type="button" id="loginFuncJs" class="login-btn" th:text="#{button.login}">로그인</button>
+                    <button type="button" th:onclick="|location.href='@{/join}'|" class="join-btn" th:text="#{button.join}">회원가입</button>
                   </div>
                 </form>
               </div>
