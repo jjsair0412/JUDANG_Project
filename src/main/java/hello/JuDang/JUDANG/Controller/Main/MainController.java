@@ -39,7 +39,7 @@ public class MainController {
         Member loginMember = loginService.login(member);
         session.setAttribute("loginMemberName",loginMember.getName());
         session.setAttribute("loginMember",loginMember.getId());
-        session.setAttribute("loginPassword",loginMember.getPassword()); // ...최신화실험
+        session.setAttribute("loginPassword",loginMember.getPassword()); // ...최신화실험 2
         if (loginMember.getUserType().equals(UserType.BUYER)) {
             return "buyer";
         } else if (loginMember.getUserType().equals(UserType.SELLER)) {
