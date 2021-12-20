@@ -44,7 +44,7 @@ public class ReservationController {
         if(result.equals("실패")){ // 실패
             return "";
         }
-        return "redirect:/"; //성공 (내 정보 -> 예약 현황으로)
+        return "redirect:/MemberManage/myInfo"; //성공 (내 정보 -> 예약 현황으로)
     }
 
     @GetMapping("/accept")
@@ -55,7 +55,6 @@ public class ReservationController {
         }else{
             log.info("예약 수락 성공");
         }
-        return "redirect:";
+        return "알림을 주도록 하자";
     }
-
 }

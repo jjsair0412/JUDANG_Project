@@ -1,14 +1,14 @@
-package hello.JuDang.JUDANG.Service.Seller.Menu;
+package hello.JuDang.JUDANG.Service.Menu;
+
 
 import hello.JuDang.JUDANG.Domain.Menu;
 import hello.JuDang.JUDANG.Domain.Shop;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface MenuManageService {
+public interface MenuService {
     int addMenu(Menu menu,String sellerId);
-    Optional<List<Menu>> findAllMenu(String sellerId);
+    List<Menu> findAllMenu(int shopNum);
     int menuModify(Shop shop);
     int menuDelete(Shop shop);
 }
