@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+
+
+/* Reset CSS */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font-size: 16px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+    outline: none;
+    box-shadow: none;
+}
+
+ul,
+ol,
+li {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+}
+th, td {
+    border-bottom: 1px solid #444444;
+    border-left: 1px solid #444444;
+    padding: 10px;
+}
+th:first-child, td:first-child {
+    border-left: none;
+}
+
+
+
+/* header - nav */
+.navbar {
+    background-color: #263343;
+}
+
+.nav_icon {
+    position: relative;
+    display: flex;
+}
+
+.nav_icon i {
+    margin-right: 5px;
+    font-size: 25px;
+    color: #d49466;
+}
+
+.nav_icon h1 {
+    font-size: 25px;
+    color: white;
+}
+
+.nav_list {
+    position: absolute; /* 메뉴 위치 지정 */
+    top: 0;
+    right: 0;
+}
+
+.nav_list i {
+    display: inline-block;
+    font-size: 32px;
+    position: relative;
+    padding-left: 64px;
+    color: white;
+}
+
+.nav_list li {
+    background-color: #263343;
+    text-align: center;
+}
+
+.nav_list li a {
+    display: block;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+}
+
+.nav_list li a:hover {
+    background-color: gray;
+}
+
+.nav_list li ul.submenu {
+    display: none;
+    position: absolute;
+}
+
+.nav_list li ul.submenu li {
+    width: 180px;
+}
+
+/* store-title */
+.store-title, .store-menu{
+    margin-top: 150px;
+}
+
+.store-title h3{
+    margin-bottom: 30px;
+}
+
+.store-title h4{
+    margin-bottom: 15px;
+}
+
+.store-sit li{
+    margin-bottom: 10px;
+}
+
+.store-link{
+    margin-top: 70px;
+}
+
+.menu-tb{
+    margin-top: 50px;
+    text-align: center;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.menu-tb::-webkit-scrollbar{
+    display: none;
+}
+
+.store-info__button{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin-right: 20px;
+}
+
+.btn,
+.btn2 {
+    border: 2px solid #d3dce6;
+    width: 120px;
+    height: 50px;
+    color: black;
+    background-color: white;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.05em;
+    font-weight: 700;
+    transition: opacity 300ms ease-in-out;
+    margin-top: 25px;
+    margin-bottom: 150px;
+}
+
+.btn:hover,
+.btn2:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
