@@ -1,5 +1,6 @@
 package hello.JuDang.JUDANG.Service.Member;
 
+import hello.JuDang.JUDANG.Controller.ControllerDomain.MemberForm;
 import hello.JuDang.JUDANG.Domain.Member;
 import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Repository.Member.MemberRepository;
@@ -17,25 +18,43 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository sellerJoinRepository;
 
     @Override
-    public int memberRegister(Member member) {
-        int result=0;
-        if(member.getUserType().equals(UserType.BUYER)){
-            result = buyerJoinRepository.save(member);
+    public int memberRegister(MemberForm form) {
+            Member member = exchangeType(form);
+            switch (member.getUserType()) {
+                case BUYER:
+                    return buyerJoinRepository.save(member);
+                case SELLER:
+                    return sellerJoinRepository.save(member);
+                default:
+                    return 0;
+            }
+    }
 
-        }else if(member.getUserType().equals(UserType.SELLER)){
-            result = sellerJoinRepository.save(member);
+    private Member exchangeType(MemberForm form) {
+        Member member = new Member();
+        member.setId(form.getId());
+        member.setName(form.getName());
+        member.setPassword(form.getPassword());
+        member.setEmail(form.getEmail());
+        member.setAge(form.getAge());
 
-        }else return 0;
-        return result;
+        //타입 정해주기
+        if ("BUYER".equals(form.getTypeBuyer())) {
+            member.setUserType(UserType.BUYER);
+        } else if ("SELLER".equals(form.getTypeSeller())){
+            member.setUserType(UserType.SELLER);
+        }
+
+        return member;
     }
 
     @Override
     public Optional<Member> searchById(String id) {
-        if(buyerJoinRepository.findById(id).equals(1)){
+        if (buyerJoinRepository.findById(id).equals(1)) {
             return buyerJoinRepository.findById(id);
-        }else if(sellerJoinRepository.findById(id).equals(1)){
+        } else if (sellerJoinRepository.findById(id).equals(1)) {
             return sellerJoinRepository.findById(id);
-        }else return null;
+        } else return null;
     }
 
     @Override
