@@ -128,4 +128,9 @@ public class SellerPage {
         return "redirect:_main/main";
     }
 
+    @GetMapping("/MyStore")
+    public String ShopInfo(){ // 가게정보 페이지
+        return "store_info/store_info";
+    }
+
 }
