@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService{ // 얘 테스트코드 있음
-    private final LoginRepository loginRepository;
     private final LoginTypeCheck loginTypeCheck;
 
     @Override
