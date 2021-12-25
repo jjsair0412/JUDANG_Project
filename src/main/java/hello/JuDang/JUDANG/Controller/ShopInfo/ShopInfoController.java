@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 public class ShopInfoController {
     private final ShopRepository shopRepository;
     private final MenuService menuService;
+
     @GetMapping("/{shopNum}")
     public String goShopInfo(@PathVariable("shopNum") int shopNum,
                              Model model,
@@ -26,8 +27,6 @@ public class ShopInfoController {
         model.addAttribute("shopInfo",shopRepository.findById(shopNum));
         model.addAttribute("shopMenu",menuService.findAllMenu(shopNum));
         session.setAttribute("shopNum",shopNum);
-        return "/buyer/shopInfo";
+        return "/store_info/store_info";
     }
-
-
 }
