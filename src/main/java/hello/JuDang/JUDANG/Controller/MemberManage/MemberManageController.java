@@ -21,32 +21,30 @@ public class MemberManageController {
     private final MemberService memberService;
 
     @GetMapping("/myInfo")
-    public String createMemberInfo(){
+    public String createMemberInfo() {
         return "MemberManage/myInfo";
     }
 
     @PostMapping("/update")
-    public String memberModify(Model model,
-                               MemberForm form,
-                               @SessionAttribute(name="loginMember",required = false)String loginId,
-                               @SessionAttribute(name="loginPassword",required = false)String loginPassword){
-        Member member =(Member) model.getAttribute("member");
-        member.setPassword(form.getPassword());
-        int result = memberService.memberModify(member);
-        if (result==0){
+    public String memberModify(
+            MemberForm form,
+            @SessionAttribute(name = "loginMember", required = false) String loginId,
+            @SessionAttribute(name = "loginPassword", required = false) String loginPassword) {
+        int result = memberService.memberModify(memberService.exchangeType(form));
+        if (result == 0) { // 실패
             return "redirect:";
-        }
+        } // 성공
         return "";
     }
 
     @GetMapping("delete")
     public String deleteMember(Model model,
-                               HttpSession session){
-        Member member =(Member) model.getAttribute("member");
+                               HttpSession session) {
+        Member member = (Member) model.getAttribute("member");
         int result = memberService.memberDelete(member);
-        if (result == 0){
+        if (result == 0) {
             return "redirect:";
-        }else {
+        } else {
             session.removeAttribute("loginMember");
             session.removeAttribute("loginPassword");
             return "redirect:_main/main";

@@ -6,8 +6,10 @@ import hello.JuDang.JUDANG.Domain.UserType;
 import hello.JuDang.JUDANG.Repository.Member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Method;
 import java.util.Optional;
 
 @Slf4j
@@ -30,7 +32,41 @@ public class MemberServiceImpl implements MemberService {
             }
     }
 
-    private Member exchangeType(MemberForm form) {
+
+    @Override
+    public int memberModify(Member member) {
+        switch (member.getUserType()){
+            case BUYER:
+                return buyerJoinRepository.update(member);
+            case SELLER:
+                return sellerJoinRepository.update(member);
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public int memberDelete(Member member) {
+        switch (member.getUserType()){
+            case BUYER:
+                return buyerJoinRepository.delete(member);
+            case SELLER:
+                return sellerJoinRepository.delete(member);
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public Optional<Member> searchById(String id) {
+        if (buyerJoinRepository.findById(id).equals(1)) {
+            return buyerJoinRepository.findById(id);
+        } else if (sellerJoinRepository.findById(id).equals(1)) {
+            return sellerJoinRepository.findById(id);
+        } else return null;
+    }
+
+    public Member exchangeType(MemberForm form) {
         Member member = new Member();
         member.setId(form.getId());
         member.setName(form.getName());
@@ -46,24 +82,5 @@ public class MemberServiceImpl implements MemberService {
         }
 
         return member;
-    }
-
-    @Override
-    public Optional<Member> searchById(String id) {
-        if (buyerJoinRepository.findById(id).equals(1)) {
-            return buyerJoinRepository.findById(id);
-        } else if (sellerJoinRepository.findById(id).equals(1)) {
-            return sellerJoinRepository.findById(id);
-        } else return null;
-    }
-
-    @Override
-    public int memberModify(Member member) {
-        return buyerJoinRepository.update(member);
-    }
-
-    @Override
-    public int memberDelete(Member member) {
-        return 0;
     }
 }
