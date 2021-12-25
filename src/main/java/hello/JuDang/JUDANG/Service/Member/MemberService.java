@@ -10,5 +10,5 @@ public interface MemberService {
     Optional<Member> searchById(String Id);
     int memberModify(Member member);
     int memberDelete(Member member);
-
+    Member exchangeType(MemberForm form); // memberForm을 member로 타입지정해주어서 변환해주는 메서드
 }
