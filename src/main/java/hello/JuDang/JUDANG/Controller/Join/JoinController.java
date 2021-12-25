@@ -28,23 +28,11 @@ public class JoinController {
 
     @PostMapping
     public String join(MemberForm form) {
-        Member member = new Member();
-        member.setId(form.getId());
-        member.setName(form.getName());
-        member.setPassword(form.getPassword());
-        member.setEmail(form.getEmail());
-        member.setAge(form.getAge());
-
-        //타입 정해주기
-        if ("BUYER".equals(form.getTypeBuyer())) {
-            member.setUserType(UserType.BUYER);
-        }else if ("SELLER".equals(form.getTypeSeller())) {
-            member.setUserType(UserType.SELLER);
-        }else return null;
-
-        int result = memberService.memberRegister(member);
-        if(result==0){
+        int result = memberService.memberRegister(form);
+        if(result==0){ // 회원가입 실패 페이지 필요할듯 ?
             return "redirect:";
-        } return "_main/main";
+        }else{
+            return "join.commit/join.successful";
+        }
     }
 }

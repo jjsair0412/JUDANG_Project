@@ -1,10 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Judang - 가게 정보</title>
+    <link rel="stylesheet" th:href="@{/css/_store/_store-info.css}" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/grid.mim.css}" />
+    <script
+            src="https://kit.fontawesome.com/9175f8db53.js"
+            crossorigin="anonymous"
+    ></script>
+    <script th:src="@{/css/_seller_main/jquery-1.12.3.js}"></script>
+    <script th:src="@{/css/_seller_main/seller_main.js}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-현호하이
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="nav_icon">
+                        <i class="fas fa-wine-bottle"></i>
+                        <h1>JUDANG</h1>
+                    </div>
+                    <div class="nav">
+                        <ul class="nav_list">
+                            <li>
+                                <i class="far fa-address-card"></i>
+                                <ul class="submenu">
+                                    <li><a href="#">내 정보</a></li>
+                                    <li><a href="#">가게 메뉴 관리</a></li>
+                                    <li><a href="#">가게 리스트</a></li>
+                                    <li><a onclick="saveStore()">가게 등록</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="store-title">
+                        <h3>가게 이름 : 1943</h3>
+                        <h4>전화번호 : xxx-xxxx-xxxx</h4>
+                        <h4>가게 위치 : 서울시 --- ---</h4>
+                        <h4>영업 시간 : 21시</h4>
+                        <h4>오픈 여부 : </h4>
+                        <div class="store-sit">
+                            <h4>남은 좌석 수 </h4>
+                            <ul>
+                                <li>2인 좌석 수 :</li>
+                                <li>4인 좌석 수 :</li>
+                                <li>6인 좌석 수 :</li>
+                                <li>8인 좌석 수 :</li>
+                            </ul>
+                        </div>
+                        <h4 class="store-link"><a href="#">공식 사이트 이동(예시)</a></h4>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="store-menu">
+                        <h3>가게 대표 메뉴(Store-Menu)</h3>
+                        <div class="menu-tb">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>카테고리</th>
+                                        <th>메뉴이름</th>
+                                        <th>가격</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>식사</td>
+                                        <td>까르보나라</td>
+                                        <td>8,000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>식사</td>
+                                        <td>까르보나라</td>
+                                        <td>8,000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>식사</td>
+                                        <td>까르보나라</td>
+                                        <td>8,000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>식사</td>
+                                        <td>까르보나라</td>
+                                        <td>8,000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>식사</td>
+                                        <td>까르보나라</td>
+                                        <td>8,000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td>식사</td>
+                                        <td>까르보나라</td>
+                                        <td>8,000원</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="store-info__button">
+                            <button type="button" class="btn">가게 검색</button>
+                            <button type="button" class="btn2">예약하러 가기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 </body>
 </html>
