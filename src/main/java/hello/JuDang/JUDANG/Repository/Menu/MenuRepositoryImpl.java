@@ -7,13 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class MenuManageRepositoryImpl implements MenuManageRepository{
+public class MenuRepositoryImpl implements MenuRepository {
     private JdbcTemplate jdbcTemplate;
 
-    public MenuManageRepositoryImpl(DataSource dataSource) {
+    public MenuRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -24,7 +23,7 @@ public class MenuManageRepositoryImpl implements MenuManageRepository{
     }
 
     @Override
-    public List<Menu> findAllMenu(String sellerId) {
+    public List<Menu> findAllMenu(int shopNum) {
         return null;
     }
 
