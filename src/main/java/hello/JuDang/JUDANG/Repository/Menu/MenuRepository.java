@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface MenuRepository {
     int save(Menu menu,int shopNum);
     List<Menu> findAllMenu(int shopNum);
-    int update(Shop shop,Menu menu);
-    int delete(Shop shop);
+    int updatePrice(Menu menu, Shop shop);
+    int updateMenuName(Shop shop, Menu menu);
+    int delete(Shop shop,Menu menu);
 }

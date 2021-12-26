@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -108,5 +109,84 @@ class MenuRepositoryImplTest {
                 () -> assertThat(menuRepository.save(menu4, 190)).isEqualTo(1)
         );
 
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    void 메뉴_삭제(){
+        Menu menu3 = new Menu(); // 184번 가게의 1번 매뉴
+        menu3.setMenuName("Test_Menu_3");
+        menu3.setMenuNum(1);
+        menu3.setPrice(1300);
+
+        Shop shop = new Shop();
+        shop.setShopNum(190);
+
+        assertThat(menuRepository.delete(shop,menu3)).isEqualTo(1);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    void 메뉴_가격_업데이트(){
+        Menu menu3 = new Menu(); // 184번 가게의 1번 매뉴
+        menu3.setMenuNum(1);
+        menu3.setPrice(1500);
+
+        Shop shop = new Shop();
+        shop.setShopNum(190);
+
+        assertThat(menuRepository.updatePrice(menu3,shop));
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    void 메뉴_이름_업데이트(){
+        Menu menu3 = new Menu(); // 184번 가게의 1번 매뉴
+        menu3.setMenuNum(1);
+        menu3.setMenuName("Update_Test_Menu");
+
+        Shop shop = new Shop();
+        shop.setShopNum(190);
+
+        assertThat(menuRepository.updatePrice(menu3,shop));
+    }
+
+
+    @Test
+    void 테스트용_모든메뉴_가져오기() {
+        List<Menu> Shop_One = menuRepository.findAllMenu(189);
+        List<Menu> Shop_Two = menuRepository.findAllMenu(190);
+
+        for (Menu m : Shop_One) {
+            System.out.println("m.getMenuName() = " + m.getMenuName());
+            System.out.println("m.getPrice() = " + m.getPrice());
+            System.out.println("m.getMenuNum() = " + m.getMenuNum());
+        }
+
+        for (Menu m2 : Shop_Two) {
+            System.out.println("m2.getMenuName() = " + m2.getMenuName());
+            System.out.println("m2.getMenuNum() = " + m2.getMenuNum());
+            System.out.println("m2.getPrice() = " + m2.getPrice());
+        }
+
+        /**
+         * 결과 :
+         * m.getMenuName() = Test_Menu
+         * m.getPrice() = 1000
+         * m.getMenuNum() = 1
+         * m.getMenuName() = Test_Menu_2
+         * m.getPrice() = 2000
+         * m.getMenuNum() = 2
+         * m2.getMenuName() = Test_Menu_3
+         * m2.getMenuNum() = 1
+         * m2.getPrice() = 1300
+         * m2.getMenuName() = Test_Menu_4
+         * m2.getMenuNum() = 2
+         * m2.getPrice() = 53000
+         *
+         */
     }
 }

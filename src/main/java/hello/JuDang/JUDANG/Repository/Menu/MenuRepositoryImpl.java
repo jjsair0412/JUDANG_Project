@@ -3,9 +3,12 @@ package hello.JuDang.JUDANG.Repository.Menu;
 import hello.JuDang.JUDANG.Domain.Menu;
 import hello.JuDang.JUDANG.Domain.Shop;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -17,7 +20,7 @@ public class MenuRepositoryImpl implements MenuRepository {
     }
 
     @Override
-    public int save(Menu menu,int shopNum) {
+    public int save(Menu menu, int shopNum) {
         return jdbcTemplate.update(
                 "insert into Menu values(?,?,?,?)",
                 menu.getMenuNum(),
@@ -29,16 +32,42 @@ public class MenuRepositoryImpl implements MenuRepository {
 
     @Override
     public List<Menu> findAllMenu(int shopNum) {
-        return null;
+        String sql = "select * from Menu where shopNum = ?";
+        return jdbcTemplate.query(
+                sql, new RowMapper<Menu>() {
+                    @Override
+                    public Menu mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Menu menu = new Menu();
+                        menu.setMenuName(rs.getString("menuName"));
+                        menu.setPrice(rs.getInt("price"));
+                        menu.setMenuNum(rs.getInt("menuNum"));
+                        return menu;
+                    }
+                }, shopNum
+        );
     }
 
     @Override
-    public int update(Shop shop, Menu menu) {
-        return 0;
+    public int updatePrice(Menu menu, Shop shop) {
+        return jdbcTemplate.update("Update Menu set price = ? where shopNum = ? AND menuNum = ?",
+                menu.getPrice(),
+                shop.getShopNum(),
+                menu.getMenuNum()
+        );
     }
 
     @Override
-    public int delete(Shop shop) {
-        return 0;
+    public int updateMenuName(Shop shop, Menu menu) {
+        return jdbcTemplate.update("Update Menu set menuName = ? where shopNum = ? AND menuNum = ?",
+                menu.getMenuName(),
+                shop.getShopNum(),
+                menu.getMenuNum()
+        );
+    }
+
+
+    @Override
+    public int delete(Shop shop, Menu menu) {
+        return jdbcTemplate.update("Delete from Menu where menuNum = ? AND shopNum = ?", menu.getMenuNum(),shop.getShopNum());
     }
 }
