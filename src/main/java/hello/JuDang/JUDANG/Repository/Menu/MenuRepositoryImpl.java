@@ -17,9 +17,14 @@ public class MenuRepositoryImpl implements MenuRepository {
     }
 
     @Override
-    public int save(Menu menu,String sellerId) {
-        int result = jdbcTemplate.update(" ", menu.getMenuName(), menu.getPrice());
-        return result;
+    public int save(Menu menu,int shopNum) {
+        return jdbcTemplate.update(
+                "insert into Menu values(?,?,?,?)",
+                menu.getMenuNum(),
+                shopNum,
+                menu.getMenuName(),
+                menu.getPrice()
+        );
     }
 
     @Override

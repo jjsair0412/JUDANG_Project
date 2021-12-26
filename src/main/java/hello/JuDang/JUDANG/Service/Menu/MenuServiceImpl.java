@@ -15,7 +15,7 @@ public class MenuServiceImpl implements MenuService{
     private final MenuRepository menuRepository;
 
     @Override
-    public int addMenu(Menu menu, String sellerId) {
+    public int addMenu(Menu menu, int shopNum) {
         return 0;
     }
 

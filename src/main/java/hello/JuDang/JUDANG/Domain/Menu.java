@@ -8,5 +8,5 @@ import lombok.Setter;
 public class Menu {
     private String menuName;
     private int price;
-
+    private int menuNum;
 }
