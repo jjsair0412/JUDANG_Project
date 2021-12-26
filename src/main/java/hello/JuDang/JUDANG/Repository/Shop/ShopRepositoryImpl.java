@@ -5,6 +5,7 @@ import hello.JuDang.JUDANG.Domain.Category;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Repository.Shop.Seats.SeatsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,7 @@ public class ShopRepositoryImpl implements ShopRepository{
     private JdbcTemplate jdbcTemplate;
     private SeatsRepository seatsRepository;
 
+    @Autowired
     public ShopRepositoryImpl(DataSource dataSource, SeatsRepository seatsRepository) {
         this.seatsRepository = seatsRepository;
         this.jdbcTemplate = new JdbcTemplate(dataSource);

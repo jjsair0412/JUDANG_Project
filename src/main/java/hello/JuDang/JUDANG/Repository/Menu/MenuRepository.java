@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MenuRepository {
-    int save(Menu menu,String sellerId);
+    int save(Menu menu,int shopNum);
     List<Menu> findAllMenu(int shopNum);
     int update(Shop shop,Menu menu);
     int delete(Shop shop);
