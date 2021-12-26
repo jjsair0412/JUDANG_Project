@@ -16,7 +16,7 @@ public class MenuServiceImpl implements MenuService{
 
     @Override
     public int addMenu(Menu menu, int shopNum) {
-        return 0;
+        return menuRepository.save(menu,shopNum);
     }
 
     @Override
@@ -26,12 +26,27 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public int menuModify(Shop shop) {
-        return 0;
+    public int menuModify(Shop shop, String MenuName) {
+        Menu menu = new Menu();
+        menu.setMenuName(MenuName);
+        return menuRepository.updateMenuName(shop,menu);
     }
 
     @Override
-    public int menuDelete(Shop shop) {
-        return 0;
+    public int menuPriceModify(Shop shop, int MenuPrice) {
+        Menu menu = new Menu();
+        menu.setPrice(MenuPrice);
+        return menuRepository.updatePrice(menu,shop);
+    }
+
+    @Override
+    public int menuDelete(int shopNum, int MenuNum) {
+        Shop shop= new Shop();
+        shop.setShopNum(shopNum);
+
+        Menu menu = new Menu();
+        menu.setMenuNum(MenuNum);
+
+        return menuRepository.delete(shop,menu);
     }
 }

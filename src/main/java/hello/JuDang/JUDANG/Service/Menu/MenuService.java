@@ -9,6 +9,7 @@ import java.util.List;
 public interface MenuService {
     int addMenu(Menu menu,int shopNum);
     List<Menu> findAllMenu(int shopNum);
-    int menuModify(Shop shop);
-    int menuDelete(Shop shop);
+    int menuModify(Shop shop, String MenuName);
+    int menuPriceModify(Shop shop, int MenuPrice);
+    int menuDelete(int shopNum, int MenuNum);
 }
