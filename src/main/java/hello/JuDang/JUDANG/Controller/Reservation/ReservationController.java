@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
@@ -37,10 +39,21 @@ public class ReservationController {
     }
 
     @PostMapping("/makeReservation")
-    public String makeReservation(@ModelAttribute Reservation reservation, RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
+    public String makeReservation(@ModelAttribute Reservation reservation,
+                                  RedirectAttributes redirectAttributes,
+                                  HttpSession session, BindingResult bindingResult) throws Exception {
+        //구매자 연락처 미입력
+        if(StringUtils.hasText(reservation.getPhoneNumber())){
+            bindingResult.rejectValue("phoneNumber","empty");
+        }
+
+        if(bindingResult.hasErrors()){
+            log.info("오류 = {}",bindingResult);
+            return "redirect:buyer/buyer_form";
+        }
+
         String result = reservationService.makeReservation(reservation);
         redirectAttributes.addAttribute("buyerId",reservation.getBuyerId());
-
         if(result.equals("실패")){ // 실패
             return "";
         }
