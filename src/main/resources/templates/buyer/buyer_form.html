@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -65,14 +66,27 @@
             <div class="title-box">
               <h1>구매자 예약 신청</h1>
               <h4>모든 항목을 기재 후 예약 신청이 가능합니다.</h4>
-              <input type="text" placeholder="가게 이름" required />
-              <input type="text" placeholder="예약자" required />
-              <input type="number" placeholder="예약 인원" required />
-              <input type="tel" placeholder="연락처" required />
-              <div>
-                <button type="submit" class="btn">예약하기</button>
-                <button type="button" class="btn-2">돌아가기</button>
-              </div>
+              <form th:action th:object="${reservation}" method="post">
+
+                <label th:text="#{label.shopName}">가게이름</label>
+                <input th:value="${reservation.shopName}" type="text" placeholder="가게 이름" required readonly/>
+                <label th:text="#{label.reservationer}">예약자 이름</label>
+                <input th:value="${reservation.buyerName}"type="text" placeholder="예약자" required readonly/>
+                <input type="number" placeholder="예약 인원" required />
+
+                <div>
+                  <input type="tel" th:errorclass="field-error" placeholder="연락처" required />
+                  <div
+                          class="field-error" th:errors="*{phoneNumber}">연락처 오류 메시지
+                  </div>
+                </div>
+
+                <div>
+                  <button type="submit" th:text="#{button.reservation}" class="btn">예약하기</button>
+                  <button type="button" th:text="#{button.backToMain}" class="btn-2">돌아가기</button>
+                </div>
+
+              </form>
               <h4>
                 JUDANG 서비스는 호프 및 주점을 이용하는 사용자들에게 편의를
                 제공합니다.
