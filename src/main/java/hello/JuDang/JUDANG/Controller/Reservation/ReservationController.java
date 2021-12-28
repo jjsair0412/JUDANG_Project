@@ -8,8 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,13 @@ import javax.servlet.http.HttpSession;
 public class ReservationController {
     private final ReservationService reservationService;
     private final ShopRepository shopRepository;
+    private final ReservationValidator reservationValidator;
+
+
+    @InitBinder
+    public void init(WebDataBinder dataBinder){
+        dataBinder.addValidators(reservationValidator);
+    }
 
     @GetMapping
     public String goReservation(Model model,
@@ -39,13 +47,10 @@ public class ReservationController {
     }
 
     @PostMapping("/makeReservation")
-    public String makeReservation(@ModelAttribute Reservation reservation,
+    public String makeReservation(@Validated @ModelAttribute Reservation reservation,
+                                  BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes,
-                                  HttpSession session, BindingResult bindingResult) throws Exception {
-        //구매자 연락처 미입력
-        if(StringUtils.hasText(reservation.getPhoneNumber())){
-            bindingResult.rejectValue("phoneNumber","empty");
-        }
+                                  HttpSession session ) throws Exception {
 
         if(bindingResult.hasErrors()){
             log.info("오류 = {}",bindingResult);
