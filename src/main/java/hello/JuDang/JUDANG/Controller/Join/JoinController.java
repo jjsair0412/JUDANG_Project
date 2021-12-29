@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class JoinController {
     private final MemberService memberService;
+    private final JoinValidator joinValidator;
+
+    @InitBinder
+    public void init(WebDataBinder dataBinder){
+        dataBinder.addValidators(joinValidator);
+    }
 
     @GetMapping
     public String joinForm(Model model) {
@@ -25,9 +31,8 @@ public class JoinController {
         return "join/join";
     }
 
-
     @PostMapping
-    public String join(MemberForm form) {
+    public String join(@Validated @ModelAttribute MemberForm form) {
         int result = memberService.memberRegister(form);
         if(result==0){ // 회원가입 실패 페이지 필요할듯 ?
             return "redirect:";

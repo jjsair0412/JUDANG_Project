@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Data
 public class MemberForm {
-    private String Id;
-    private String Password;
-    private String Name;
-    private String Email;
-    private int age;
+    private String id;
+    private String password;
+    private String name;
+    private String email;
+    private Integer age;
     private String typeBuyer;
     private String typeSeller;
 }
