@@ -22,13 +22,6 @@ import javax.servlet.http.HttpSession;
 public class ReservationController {
     private final ReservationService reservationService;
     private final ShopRepository shopRepository;
-    private final ReservationValidator reservationValidator;
-
-
-    @InitBinder
-    public void init(WebDataBinder dataBinder){
-        dataBinder.addValidators(reservationValidator);
-    }
 
     @GetMapping
     public String goReservation(Model model,
