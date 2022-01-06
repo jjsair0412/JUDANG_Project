@@ -18,12 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class JoinController {
     private final MemberService memberService;
-    private final JoinValidator joinValidator;
-
-    @InitBinder
-    public void init(WebDataBinder dataBinder){
-        dataBinder.addValidators(joinValidator);
-    }
 
     @GetMapping
     public String joinForm(Model model) {
