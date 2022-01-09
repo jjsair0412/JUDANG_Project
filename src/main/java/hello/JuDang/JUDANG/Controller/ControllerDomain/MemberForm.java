@@ -29,7 +29,6 @@ public class MemberForm {
     @Email
     private String email;
 
-    @NotBlank
     @NotNull
     private Integer age;
 
