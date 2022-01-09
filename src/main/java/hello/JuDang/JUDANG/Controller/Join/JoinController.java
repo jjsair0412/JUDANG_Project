@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +27,17 @@ public class JoinController {
     }
 
     @PostMapping
-    public String join(@Validated @ModelAttribute MemberForm form) {
+    public String join(@Validated @ModelAttribute MemberForm form, BindingResult bindingResult) {
+        //검증 실패
+        if(bindingResult.hasErrors()){
+            log.info("error = {}",bindingResult);
+            return "join/join";
+        }
+
         int result = memberService.memberRegister(form);
+
         if(result==0){ // 회원가입 실패 페이지 필요할듯 ?
-            return "redirect:";
+            return "";
         }else{
             return "join.commit/join.successful";
         }

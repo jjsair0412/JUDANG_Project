@@ -21,10 +21,10 @@
             <h1>JUDANG - 회원가입</h1>
 
             <form th:action th:method="post" th:object="${memberForm}">
-              <label for="typeBuyer">구매자</label>
+              <label for="typeBuyer" th:text="#{label.buyer}">구매자</label>
               <input type="radio" name="user" value="BUYER" id="typeBuyer" th:field="*{typeBuyer}"/>
 
-              <label for="typeSeller">판매자</label>
+              <label for="typeSeller" th:text="#{label.seller}">판매자</label>
               <input
                 type="radio"
                 name="user"
@@ -33,13 +33,13 @@
                 th:field="*{typeSeller}"
               />
 
-              <label for="Name">이름</label>
-              <input type="text" id="Name" placeholder="이름" required th:field="*{name}" />
-
-              <label for="Id">아이디</label>
+              <label for="Id" th:text="#{label.id}">아이디</label>
               <input type="text" id="Id" placeholder="ID" required th:field="*{id}"/>
+              <div
+                      class="field-error" th:errors="*{id}"> id 오류
+              </div>
 
-              <label for="Password">비밀번호</label>
+              <label for="Password" th:text="#{label.password}">비밀번호</label>
               <input
                       th:field="*{password}"
                 type="password"
@@ -47,8 +47,17 @@
                 placeholder="Password"
                 required
               />
+              <div
+                      class="field-error" th:errors="*{password}"> password 오류
+              </div>
 
-              <label for="Email">이메일</label>
+              <label for="Name" th:text="#{label.name}">이름</label>
+              <input type="text" id="Name" placeholder="이름" required th:field="*{name}" />
+              <div
+                      class="field-error" th:errors="*{name}"> 이름 오류
+              </div>
+
+              <label for="Email" th:text="#{label.email}">이메일</label>
               <input
                       th:field="*{email}"
                 type="email"
@@ -56,8 +65,11 @@
                 placeholder="Email"
                 required
               />
+              <div
+                      class="field-error" th:errors="*{email}"> Email 오류
+              </div>
 
-              <label for="age">나이</label>
+              <label for="age" th:text="#{label.age}">나이</label>
               <input
                       th:field="*{age}"
                 type="number"
@@ -66,6 +78,9 @@
                 max="100"
                 placeholder="Age ( 구매자는 입력 필수 )"
               />
+              <div
+                      class="field-error" th:errors="*{age}"> age 오류
+              </div>
 
 
             <div class="sc-button">
