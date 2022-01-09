@@ -4,32 +4,29 @@ package hello.JuDang.JUDANG.Controller.ControllerDomain;
 import lombok.Data;
 import org.hibernate.validator.constraints.CodePointLength;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Data
 public class MemberForm {
     @NotBlank
-    @NotNull
     @CodePointLength(min = 4,max = 15)
+    @Pattern(regexp = "[a-z|0-9]")
     private String id;
 
     @NotBlank
-    @NotNull
     @CodePointLength(min = 4,max = 15)
     private String password;
 
     @NotBlank
-    @NotNull
+    @Pattern(regexp = "[^a-z|A-Z]")
     private String name;
 
     @NotBlank
-    @NotNull
     @Email
     private String email;
 
     @NotNull
+    @Min(20)
     private Integer age;
 
     private String typeBuyer;
