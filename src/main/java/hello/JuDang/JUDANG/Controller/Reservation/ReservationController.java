@@ -1,5 +1,6 @@
 package hello.JuDang.JUDANG.Controller.Reservation;
 
+import hello.JuDang.JUDANG.Controller.ControllerDomain.ReservationForm;
 import hello.JuDang.JUDANG.Domain.Reservation;
 import hello.JuDang.JUDANG.Domain.Shop;
 import hello.JuDang.JUDANG.Repository.Shop.ShopRepository;
@@ -29,18 +30,13 @@ public class ReservationController {
                                 @SessionAttribute (name="loginMember") String buyerId,
                                 @SessionAttribute (name="loginMemberName") String buyerName){
         Shop shop = shopRepository.findById(shopNum);
-        Reservation reservation = new Reservation();
-        reservation.setShopNum(shop.getShopNum());
-        reservation.setShopName(shop.getShopName());
-        reservation.setBuyerId(buyerId);
-        reservation.setBuyerName(buyerName);
-
-        model.addAttribute("reservation",reservation);
+        ReservationForm reservationForm = new ReservationForm(shopNum,shop.getShopName(),buyerId,buyerName);
+        model.addAttribute("reservation",reservationForm);
         return "buyer/buyer_form";
     }
 
     @PostMapping("/makeReservation")
-    public String makeReservation(@Validated @ModelAttribute Reservation reservation,
+    public String makeReservation(@Validated @ModelAttribute ReservationForm form,
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes,
                                   HttpSession session ) throws Exception {
@@ -50,8 +46,10 @@ public class ReservationController {
             return "redirect:buyer/buyer_form";
         }
 
+        Reservation reservation = new Reservation(form.getShopNum(), form.getShopName(), form.getBuyerId(), form.getBuyerName(),
+                form.getNumberOfPeople(), form.getPhoneNumber());
+
         String result = reservationService.makeReservation(reservation);
-        redirectAttributes.addAttribute("buyerId",reservation.getBuyerId());
         if(result.equals("실패")){ // 실패
             return "";
         }

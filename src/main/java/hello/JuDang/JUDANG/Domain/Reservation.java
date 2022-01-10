@@ -15,4 +15,16 @@ public class Reservation {
     private String phoneNumber; // 연락처
     private boolean status; // 예약 수락 여부
     private String time; //예약 시간
+
+    public Reservation() {
+    }
+
+    public Reservation(int shopNum, String shopName, String buyerId, String buyerName, Integer numberOfPeople, String phoneNumber) {
+        this.shopNum = shopNum;
+        this.shopName = shopName;
+        this.buyerId = buyerId;
+        this.buyerName = buyerName;
+        this.numberOfPeople = numberOfPeople;
+        this.phoneNumber = phoneNumber;
+    }
 }
