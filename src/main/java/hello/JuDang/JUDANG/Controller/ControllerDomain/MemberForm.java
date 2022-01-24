@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 public class MemberForm {
     @NotBlank
     @CodePointLength(min = 4,max = 15)
-    @Pattern(regexp = "[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]")
+    @Pattern(regexp = "^[a-z0-9+]*$")
     private String id;
 
     @NotBlank
@@ -18,7 +18,7 @@ public class MemberForm {
     private String password;
 
     @NotBlank
-    @Pattern(regexp = "[^a-z|A-Z]")
+    @Pattern(regexp = "[가-힣+]*")
     private String name;
 
     @NotBlank
